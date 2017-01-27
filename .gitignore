@@ -22,6 +22,7 @@ $RECYCLE.BIN/
 *.tlog
 *.idb
 *.lastbuildstate
+*.sdf
 # =========================
 # Operating System Files
 # =========================
