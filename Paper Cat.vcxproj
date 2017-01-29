@@ -84,6 +84,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="papercat.h" />
+    <ClInclude Include="scissors.h" />
     <ClInclude Include="ship.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
@@ -96,6 +97,7 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="papercat.cpp" />
+    <ClCompile Include="scissors.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
