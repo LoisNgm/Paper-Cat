@@ -34,6 +34,11 @@ void Papercat::initialize(HWND hwnd)
 	if (!buttonsTexture.initialize(graphics, BUTTONS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing button texture"));
 
+	// main textures
+	if (!mainTexture.initialize(graphics, ELEMENTS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing main texture"));
+
+
 	//   // nebula texture
 	//   if (!nebulaTexture.initialize(graphics,NEBULA_IMAGE))
 	//       throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
@@ -82,6 +87,15 @@ void Papercat::initialize(HWND hwnd)
 	creditsButton.setX(GAME_WIDTH / 3);
 	creditsButton.setY(GAME_HEIGHT / 2.5 + BUTTON_SPACING * 2);
 
+	// elements
+	// scissors
+	if (!scissor1.initialize(this, scissorsNS::WIDTH, scissorsNS::HEIGHT, scissorsNS::TEXTURE_COLS, &mainTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing scissors"));
+	scissor1.setFrames(scissorsNS::SCISSORS_START_FRAME, scissorsNS::SCISSORS_END_FRAME);
+	scissor1.setCurrentFrame(scissorsNS::SCISSORS_START_FRAME);
+	scissor1.setX(50);
+	scissor1.setY(100);
+	scissor1.setVisible(0);
 	//asteroids
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
@@ -156,6 +170,12 @@ void Papercat::render()
 	else if (gameStart == 1)
 	{
 		backgroundStage.draw();
+		scissor1.draw();
+	}
+	// exit at any point
+	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
+	{
+		exitGame();
 	}
 	graphics->spriteEnd();                  // end drawing sprites
 }
@@ -169,6 +189,7 @@ void Papercat::releaseAll()
 	menuTexture.onLostDevice();
 	buttonsTexture.onLostDevice();
 	backgroundStageTexture.onLostDevice();
+	mainTexture.onLostDevice();
 	//nebulaTexture.onLostDevice();
 	//shipTexture.onLostDevice();
 	//asteroidTexture.onLostDevice();
@@ -186,6 +207,7 @@ void Papercat::resetAll()
 	menuTexture.onResetDevice();
 	buttonsTexture.onResetDevice();
 	backgroundStageTexture.onResetDevice();
+	mainTexture.onResetDevice();
 	//nebulaTexture.onResetDevice();
 	//shipTexture.onResetDevice();
 	//asteroidTexture.onResetDevice();

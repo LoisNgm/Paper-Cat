@@ -19,7 +19,11 @@ $RECYCLE.BIN/
 
 # Visual Studio Files
 *.opensdf
-
+*.tlog
+*.idb
+*.lastbuildstate
+*.sdf
+*.sdf
 # =========================
 # Operating System Files
 # =========================

@@ -8,7 +8,6 @@
 
 namespace asteroidNS
 {
-
 	const int WIDTH = 40;                   // image width
 	const int HEIGHT = 40;                  // image height
 

@@ -51,6 +51,7 @@ const float MASS_SHIP = 5.0f;
 //const char NEBULA_IMAGE[] =   "pictures\\orion.jpg";     // photo source NASA/courtesy of nasaimages.org 
 //const char SHIP_IMAGE[] = "pictures\\spaceship.png";  // ship texture
 //const char ASTEROID_IMAGE[] = "pictures\\asteroids.png"; //asteroid texture
+const char ELEMENTS_IMAGE[] = "pictures\\paper_cat_textures.png";	//cat, enemy, coin, scissors, state, slime pricness/king, black hole
 const char MENU_IMAGE[] = "pictures\\menu.png";
 const char START_BUTTON_IMAGE[] = "pictures\\start_button.png";
 const char HIGHSCORE_BUTTON_IMAGE[] = "pictures\\highscore_button.png";
