@@ -170,6 +170,12 @@ void Papercat::render()
 	else if (gameStart == 1)
 	{
 		backgroundStage.draw();
+		scissor1.draw();
+	}
+	// exit at any point
+	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
+	{
+		exitGame();
 	}
 	graphics->spriteEnd();                  // end drawing sprites
 }
