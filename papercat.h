@@ -9,6 +9,7 @@
 #include "ship.h"
 #include "asteroid.h"
 #include "buttons.h"
+#include "scissors.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -19,11 +20,14 @@ private:
 	//constants
 	static const int MAX_ASTEROIDS_NO = 3;
 	static const int BUTTON_SPACING = 120;
+	static const int SCISSORS_AMT = 3;
 	// game items
 	TextureManager nebulaTexture;   // nebula texture
 	TextureManager asteroidTexture; //asteroid texture
 	TextureManager shipTexture;    // game texture
 	TextureManager		menuTexture;		// menu texture
+	TextureManager	mainTexture;
+	
 	//TextureManager		startButtonTexture;		// start button texture
 	//TextureManager		highscoreButtonTexture;	// highscore button texture
 	//TextureManager		creditsButtonTexture;	// credits button texture
@@ -32,6 +36,8 @@ private:
 	Buttons startButton;
 	Buttons highscoreButton;
 	Buttons creditsButton;
+	Scissors scissor1;
+	Image	scissorsArray[SCISSORS_AMT];
 	Ship    ship;           // spaceships
 	//Image	startButton;		// start button
 	//Image	highscoreButton;	// highscore button
