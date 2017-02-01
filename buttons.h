@@ -23,6 +23,8 @@ namespace buttonsNS
 // inherits from Entity class
 class Buttons : public Entity
 {
+private:
+	bool clickedstate=false;
 public:
 	// constructor
 	Buttons();
@@ -32,6 +34,8 @@ public:
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
 		TextureManager *textureM);
 	void update(float frameTime);
+	bool getClickedState();
+	void setClickedState();
 
 };
 #endif

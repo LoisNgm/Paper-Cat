@@ -38,7 +38,6 @@ void Papercat::initialize(HWND hwnd)
 	if (!mainTexture.initialize(graphics, ELEMENTS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing main texture"));
 
-
 	//   // nebula texture
 	//   if (!nebulaTexture.initialize(graphics,NEBULA_IMAGE))
 	//       throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
@@ -68,7 +67,7 @@ void Papercat::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing buttons"));
 	startButton.setFrames(buttonsNS::START_FRAME, buttonsNS::START_FRAME);
 	startButton.setCurrentFrame(buttonsNS::START_FRAME);
-	startButton.setX(GAME_WIDTH / 3);
+	startButton.setX(GAME_WIDTH / 3.0);
 	startButton.setY(GAME_HEIGHT / 2.5);
 
 	// highscore
@@ -96,6 +95,22 @@ void Papercat::initialize(HWND hwnd)
 	scissor1.setX(50);
 	scissor1.setY(100);
 	scissor1.setVisible(0);
+
+	// cat
+	if (!cat.initialize(this, mainCharNS::WIDTH, mainCharNS::HEIGHT, mainCharNS::TEXTURE_COLS, &mainTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing cat"));
+	cat.setFrames(mainCharNS::CAT_START_FRAME, mainCharNS::CAT_END_FRAME);
+	cat.setCurrentFrame(mainCharNS::CAT_START_FRAME);
+	cat.setX(50);
+	cat.setY(100);
+	
+	//blackhole
+	if (!blackhole.initialize(this, blackholeNS::WIDTH, blackholeNS::HEIGHT, blackholeNS::TEXTURE_COLS, &mainTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing blackhole"));
+	blackhole.setFrames(blackholeNS::BLACKHOLE_START_FRAME, blackholeNS::BLACKHOLE_END_FRAME);
+	blackhole.setCurrentFrame(blackholeNS::BLACKHOLE_START_FRAME);
+	blackhole.setX(GAME_WIDTH/2);
+	blackhole.setY(GAME_HEIGHT/2);
 	//asteroids
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
@@ -116,9 +131,10 @@ void Papercat::initialize(HWND hwnd)
 //=============================================================================
 void Papercat::update()
 {
-
+	gravity();
+	startButton.update(frameTime);
 	//ship.update(frameTime);
-
+	cat.update(frameTime);
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
 		//asteroidList[i].update(frameTime);
@@ -148,36 +164,54 @@ void Papercat::collisions()
 //=============================================================================
 void Papercat::render()
 {
-	graphics->spriteBegin();                // begin drawing sprites
+	
 	if (gameStart == 0)
 	{
+		graphics->spriteBegin();
 		menu.draw();							// add the menu to the scene
 		startButton.draw();						// add start button to menu scene
 		highscoreButton.draw();					// add highscore button to menu scene
 		creditsButton.draw();					// add credits button to menu scene
 		//nebula.draw();                          // add the orion nebula to the scene
 		//ship.draw();                           // add the spaceship to the scene
+		graphics->spriteEnd();
 
 		for (int i = 0; i < MAX_ASTEROIDS_NO; i++)//add the asteroids to the scene
 		{
 			//asteroidList[i].draw();
 		}
-		if (input->wasKeyPressed(VK_RETURN))
+	//	if (input->wasKeyPressed(VK_RETURN))
+		if (startButton.getClickedState())
 		{
 			gameStart = 1;
 		}
 	}
 	else if (gameStart == 1)
 	{
+		graphics->spriteBegin();
 		backgroundStage.draw();
 		scissor1.draw();
+		cat.draw();
+		graphics->spriteEnd();
+
+		drawing.GetDevice(graphics->get3Ddevice());
+		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
+
+		drawing.Line(0, 10 + 50 + 10, 500, 10 + 50 + 10 + 100, 5, true, graphicsNS::WHITE);//platform 1 (500 for the hortizol distance of the platform)
+
+		drawing.Line(GAME_WIDTH - 500, 10 + 50 + 10 + 100 + 100 + 100, GAME_WIDTH, 10 + 50 + 10 + 100 + 100, 5, true, graphicsNS::WHITE);//platform 2(100 for holdoff betwe)
+
+		drawing.Line(0, 10 + 50 + 10 + 100 + 100 + 100 + 100, 500, 10 + 50 + 10 + 100 + 100 + 100 + 100 + 100, 5, true, graphicsNS::WHITE);//platform 3
+
+
+	//	blackhole.draw();
 	}
 	// exit at any point
 	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
 	{
 		exitGame();
 	}
-	graphics->spriteEnd();                  // end drawing sprites
+	
 }
 
 //=============================================================================
@@ -214,4 +248,32 @@ void Papercat::resetAll()
 
 	Game::resetAll();
 	return;
+}
+
+void Papercat::gravity()
+{/*
+	if (cat.getX()<blackhole.getCenterX())
+		cat.setX(cat.getX()+0.5f);
+	else
+		cat.setX(cat.getX() - 0.5f);
+	if (cat.getY() < blackhole.getCenterY())
+		cat.setY(cat.getY() + 0.5f);
+	else
+		cat.setY(cat.getY() - 0.5f);*/
+
+	//dot product to get the distance between the two point between the cat and the planet
+	//similar to eq d= sqrt(x*x+y*y) whereby d^2 = x^2 + y2
+	FLOAT D3DXVec2Dot(const D3DXVECTOR2 *, const D3DXVECTOR2 *);
+	D3DXVECTOR2 vectorOfCat = D3DXVECTOR2(cat.getX(), cat.getY());
+	D3DXVECTOR2 vectorOfBlackhole = D3DXVECTOR2(blackhole.getX(), blackhole.getY());
+	float distanceBetweenCatAndBlackhole = D3DXVec2Dot(&vectorOfCat, &vectorOfBlackhole);
+
+	//negative distanceBetwwenCatAndBlackhole
+
+	//the closer the chracter to blackhole the more stronger the pull
+	float gravityPull = abs(blackhole.getCenterX()) + abs(blackhole.getCenterY());
+	/*
+	distance*((1 / distance)*planetRadius / finalDistance);
+	planetDistance.Multiply((1 / vecSum)*planetRadius / finalDistance);*/
+	//apply force
 }

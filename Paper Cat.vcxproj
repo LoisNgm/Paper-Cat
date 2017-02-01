@@ -75,14 +75,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="asteroid.h" />
+    <ClInclude Include="blackhole.h" />
     <ClInclude Include="buttons.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="Draw.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="highscore.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="mainChar.h" />
+    <ClInclude Include="Minion.h" />
     <ClInclude Include="papercat.h" />
     <ClInclude Include="scissors.h" />
     <ClInclude Include="ship.h" />
@@ -90,12 +95,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="asteroid.cpp" />
+    <ClCompile Include="blackhole.cpp" />
     <ClCompile Include="buttons.cpp" />
+    <ClCompile Include="Draw.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="highscore.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="mainChar.cpp" />
+    <ClCompile Include="Minion.cpp" />
     <ClCompile Include="papercat.cpp" />
     <ClCompile Include="scissors.cpp" />
     <ClCompile Include="ship.cpp" />
