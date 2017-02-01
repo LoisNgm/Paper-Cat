@@ -54,15 +54,32 @@ void Buttons::draw()
 void Buttons::update(float frameTime)
 {
 	Entity::update(frameTime);
-
+	setClickedState();
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
-	if (spriteData.y > GAME_HEIGHT - buttonsNS::HEIGHT*getScale())
+/*	if (spriteData.y > GAME_HEIGHT - buttonsNS::HEIGHT*getScale())
 	{
 		this->setX(0);
 		this->setY(0);
-	}
+	}*/
 
 }
+void Buttons::setClickedState()
+{
+	//left click start
+	if (input->getMouseLButton())
+	{
+		if (input->getMouseX() > this->getX() && input->getMouseX() < this->getX() + this->getWidth() &&
+			input->getMouseY()> this->getY()-10.0f && input->getMouseY() <this->getY() + this->getHeight()-10.0f) //where by 10.0f is a float to enable the left click function to work more accurately
+		{
+			clickedstate = true;
+		}
+	}
+}
+bool Buttons::getClickedState()
+{
+	return clickedstate;
+}
 
+		
 // End of GPP Common Test

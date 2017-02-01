@@ -10,6 +10,10 @@
 #include "asteroid.h"
 #include "buttons.h"
 #include "scissors.h"
+#include "mainChar.h"
+#include "blackhole.h"
+#include <cmath>
+#include "draw.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -37,6 +41,8 @@ private:
 	Buttons highscoreButton;
 	Buttons creditsButton;
 	Scissors scissor1;
+	MainChar cat;
+	Blackhole blackhole;
 	Image	scissorsArray[SCISSORS_AMT];
 	Ship    ship;           // spaceships
 	//Image	startButton;		// start button
@@ -48,7 +54,7 @@ private:
 	Image	backgroundStage;
 	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
 	int gameStart = 0;
-
+	CDraw drawing;
 public:
 	// Constructor
 	Papercat();
@@ -64,6 +70,7 @@ public:
 	void render();      // "
 	void releaseAll();
 	void resetAll();
+	void gravity();
 };
 
 #endif
