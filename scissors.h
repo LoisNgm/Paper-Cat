@@ -18,8 +18,8 @@ namespace scissorsNS
 
 
 	const int   TEXTURE_COLS = 4;
-	const int   SCISSORS_START_FRAME = 4;
-	const int   SCISSORS_END_FRAME = 5;
+	const int   SCISSORS_START_FRAME = 20;
+	const int   SCISSORS_END_FRAME = 22;
 
 
 	const float SCISSORS_ANIMATION_DELAY = 1.0f;    // time between frames
