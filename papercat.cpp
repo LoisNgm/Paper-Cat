@@ -133,7 +133,11 @@ void Papercat::update()
 {
 	startButton.update(frameTime);
 	//ship.update(frameTime);
-	cat.update(frameTime);
+	if (gameStart == 1)
+	{
+		cat.update(frameTime);
+	}
+	
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
 		//asteroidList[i].update(frameTime);
