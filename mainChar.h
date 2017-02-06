@@ -16,7 +16,7 @@ namespace mainCharNS
 	const float MASS = 100.0f;              // mass
 	const int   TEXTURE_COLS = 4;
 	const int   CAT_START_FRAME = 16;
-	const int   CAT_END_FRAME =19;
+	const int   CAT_END_FRAME = 19;
 	const float CAT_ANIMATION_DELAY = 1.0f;    // time between frames
 }
 

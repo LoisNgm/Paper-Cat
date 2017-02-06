@@ -84,13 +84,15 @@ void MainChar::update(float frameTime)
 	//condition for removing buff state
 	//set state to false;
 	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-	setX(getX() + frameTime*velocity.x);
-	setY(getY() + frameTime*velocity.y);
+	
 	Entity::update(frameTime);
 
 	checkCharacterOnGround();
 	checkDirection();
+	setX(getX() + frameTime*velocity.x);
+	setY(getY() + frameTime*velocity.y);
 	characterOutOfScreen();
+	
 }
 
 //=============================================================================
@@ -141,22 +143,22 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 
 bool MainChar::checkCharacterOnGround()
 {
-	if (getY() > (10 + 50 - getHeight()) && getX() < (100) && getY() < (10 + 50))
+	if (getX() < (100) && getY() > (10 + 50 - getHeight()) && getY() < (10+50))
 	{
 		isJumping = false;
 		velocity.y = 0;
 	}
 	else
 	{
-		if (getY() > (10 + 50 + 10 + 100 - getHeight()) || getX()>500)
+		if (getY() > (10 + 50 + 10 + 100 + getHeight()) || getX()>500)
 		{
-		//	isJumping = true;
-			if (getX() < GAME_WIDTH - 500 - getWidth() || getY() > (10 + 50 + 10 + 100 + 100 + 100))
+			isJumping = true;
+			if (getX() < GAME_WIDTH - 500 - getWidth() || getY() > (10 + 50 + 10 + 100 + 100 + 100 + getWidth()))
 			{
-			//	isJumping = true;
+				isJumping = true;
 				if (getX()>500 || getY() > (10 + 50 + 10 + 100 + 100 + 100 + 100 + 100 + 100))
 				{
-			//		isJumping = true;
+					isJumping = true;
 					if (getY() > (GAME_HEIGHT - getHeight()))
 					{
 						isJumping = false;
@@ -165,32 +167,35 @@ bool MainChar::checkCharacterOnGround()
 				}
 				else
 				{
-					if (getY() > (getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 - getHeight())))
+					if (getY() > (getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100)))
 					{
 						isJumping = false;
 						velocity.y = 0;
-						setY(getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 - getHeight()));
+						setY(getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100));
 					}
 				}
 
 			}
 			else
 			{
-				if (getY() > ((getX()*-0.2) + (406 - getHeight())))
+				if (getY() > ((getX()*-0.2) + (406)))
 				{
 					isJumping = false;
 					velocity.y = 0;
-					setY((getX()*-0.2) + (406 - getHeight()));
+					setY((getX()*-0.2) + (406));
 				}
 			}
+
+
+
 		}
 		else
 		{
-			if (getY() > (getX()*0.2 + (10 + 50 + 10 - getHeight())))
+			if (getY() > (getX()*0.2 + (10 + 50 + 10)))
 			{
 				isJumping = false;
 				velocity.y = 0;
-				setY(getX()*0.2 + (10 + 50 + 10 - getHeight()));
+				setY(getX()*0.2 + (10 + 50 + 10));
 			}
 		}
 

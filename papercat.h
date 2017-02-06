@@ -14,6 +14,8 @@
 #include "blackhole.h"
 #include <cmath>
 #include "draw.h"
+#include "Minion.h"
+
 
 //=============================================================================
 // This class is the core of the game
@@ -55,6 +57,7 @@ private:
 	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
 	int gameStart = 0;
 	CDraw drawing;
+	Minion* minion = new Minion();
 public:
 	// Constructor
 	Papercat();
