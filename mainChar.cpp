@@ -70,13 +70,10 @@ void MainChar::update(float frameTime)
 	//condition for removing buff state
 	//set state to false;
 	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-	
-	Entity::update(frameTime);
-
-	checkCharacterOnGround();
-	checkDirection();
 	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
+	checkCharacterOnGround();
+	checkDirection();
 	characterOutOfScreen();
 	
 }
@@ -111,9 +108,7 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 		input->clearKeyPress(VK_SPACE);
 		
 			velocity.y = -150;
-			isJumping = true;
-		
-
+			isJumping = true;	
 	}
 
 	if (velocity.x > 0)
