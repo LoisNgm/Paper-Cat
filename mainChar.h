@@ -40,10 +40,14 @@ public:
 	void update(float frameTime);
 	void damage(WEAPON);
 	void characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
-	void characterGravity();
 	boolean getActive();
 	bool checkCharacterOnGround();
 	void checkDirection();
+	void characterOutOfScreen();
+	float getVelocityX() { return velocity.x; };
+	void setVelocityX(float velx) { velocity.x = velx; };
+	float getVelocityY() { return velocity.y; };
+	void setVelocityY(float vely) { velocity.y = vely; };
 };
 #endif
 

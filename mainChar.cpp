@@ -88,10 +88,9 @@ void MainChar::update(float frameTime)
 	setY(getY() + frameTime*velocity.y);
 	Entity::update(frameTime);
 
-	characterGravity();
 	checkCharacterOnGround();
 	checkDirection();
-
+	characterOutOfScreen();
 }
 
 //=============================================================================
@@ -111,10 +110,12 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 	if (input->isKeyDown(right))
 	{
 		velocity.x += 2.0f;
+		flipHorizontal(true);
 	}
 	if (input->isKeyDown(left))
 	{
 		velocity.x -= 2.0f;
+		flipHorizontal(false);
 	}
 
 	if (input->wasKeyPressed(VK_SPACE))
@@ -137,10 +138,7 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 		velocity.x += 1.0f;
 	}
 }
-void MainChar::characterGravity()
-{
-	velocity.y += 1.5;
-}
+
 bool MainChar::checkCharacterOnGround()
 {
 	if (getY() > (10 + 50 - getHeight()) && getX() < (100) && getY() < (10 + 50))
@@ -201,11 +199,39 @@ bool MainChar::checkCharacterOnGround()
 	return isJumping;
 }
 
+void MainChar::characterOutOfScreen()
+{
+	if (getX() <= 0 || getX() >= GAME_WIDTH - getWidth())
+	{
+		if (velocity.x >= 0)//increase the responsiveness of the game 
+		{
+			setX(getX() - 1);
+		}
+		else
+		{
+			setX(getX() + 1);
+		}
+		velocity.x = 0;
+	}
+	if (getY() < 0 || getY() > GAME_HEIGHT - getHeight())
+	{
+		if (velocity.y > 0)//increase the responsiveness of the game 
+		{
+			setY(getY() + 1);
+		}
+		else
+		{
+			setY(getY() - 1);
+		}
+		velocity.y = 0;
+	}
+
+}
 void MainChar::checkDirection()
 {
 	if (round(velocity.x) == 0)
 	{
-		if (velocity.x > 0)
+		if (velocity.x >= 0)
 		{
 			flipHorizontal(true);
 		}
