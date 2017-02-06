@@ -72,13 +72,17 @@ void Buttons::setClickedState()
 		if (input->getMouseX() > this->getX() && input->getMouseX() < this->getX() + this->getWidth() &&
 			input->getMouseY()> this->getY()-10.0f && input->getMouseY() <this->getY() + this->getHeight()-10.0f) //where by 10.0f is a float to enable the left click function to work more accurately
 		{
-			clickedstate = true;
+			 this->clickedstate = true;
 		}
+	}
+	else
+	{
+		this->clickedstate = false;
 	}
 }
 bool Buttons::getClickedState()
 {
-	return clickedstate;
+	return this->clickedstate;
 }
 
 		

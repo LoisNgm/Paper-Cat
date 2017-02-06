@@ -51,14 +51,18 @@ const float MASS_SHIP = 5.0f;
 //const char NEBULA_IMAGE[] =   "pictures\\orion.jpg";     // photo source NASA/courtesy of nasaimages.org 
 //const char SHIP_IMAGE[] = "pictures\\spaceship.png";  // ship texture
 //const char ASTEROID_IMAGE[] = "pictures\\asteroids.png"; //asteroid texture
-const char ELEMENTS_IMAGE[] = "pictures\\paper_cat_textures2.png";	//cat, enemy, coin, scissors, state, slime pricness/king, black hole
+const char ELEMENTS_IMAGE[] = "pictures\\paper_cat_textures.png";	//cat, enemy, coin, scissors, state, slime pricness/king, black hole
 const char MENU_IMAGE[] = "pictures\\menu.png";
 //const char START_BUTTON_IMAGE[] = "pictures\\start_button.png";
 //const char HIGHSCORE_BUTTON_IMAGE[] = "pictures\\highscore_button.png";
 //const char CREDITS_BUTTON_IMAGE[] = "pictures\\credits_button.png";
 const char BACKGROUND_STAGE_PAGE_IMAGE[] = "pictures\\background1.png";
+const char BACKGROUND_HIGHSCORE_PAGE_IMAGE[] = "pictures\\Highscore_Page.png";
+const char BACKGROUND_CREDIT_PAGE_IMAGE[] = "pictures\\Credit_Page.png";
 const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
 const char ITEMS_IMAGE[] = "pictures\\runes.png";
+const UINT NUMBER_OF_COINS = 20;
+const UINT arrayOfNumX = 20;
 
 
 

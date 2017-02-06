@@ -1,33 +1,24 @@
-﻿Build started 2/6/2017 8:52:28 PM.
+﻿Build started 2/7/2017 1:25:55 AM.
      1>Project "C:\Users\Jess\Desktop\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt papercat.cpp winmain.cpp
-         winmain.cpp
-     1>c:\users\jess\desktop\paper-cat\buttons.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\items.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.h(67): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt papercat.cpp
          papercat.cpp
      1>c:\users\jess\desktop\paper-cat\buttons.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
      1>c:\users\jess\desktop\paper-cat\items.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.h(67): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\jess\desktop\paper-cat\papercat.cpp(26): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(73): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(74): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(82): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(90): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(100): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(144): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(145): warning C4552: '+' : operator has no effect; expected operator with side-effect
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(156): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(159): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(276): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(278): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(278): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(280): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(366): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(370): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(374): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         Generating Code...
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(92): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(93): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(101): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(109): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(119): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(163): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(328): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(330): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(330): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(332): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(431): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(435): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jess\desktop\paper-cat\papercat.cpp(439): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib winmm.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.lib" /MACHINE:X86 Debug\asteroid.obj
          Debug\blackhole.obj
@@ -48,10 +39,9 @@
          Debug\textDX.obj
          Debug\textureManager.obj
          Debug\winmain.obj
-         LINK : C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe not found or not built by the last incremental link; performing full link
          Paper Cat.vcxproj -> C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe
      1>Done Building Project "C:\Users\Jess\Desktop\Paper-Cat\Paper Cat.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.53
+Time Elapsed 00:00:01.30
