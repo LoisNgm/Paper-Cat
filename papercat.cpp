@@ -149,7 +149,6 @@ void Papercat::update()
 		cat.update(frameTime);
 		
 		scissor1.update(frameTime);
-		minion->update(frameTime);
 	}
 }
 
@@ -215,7 +214,7 @@ void Papercat::render()
 			}
 			else
 			{
-				
+				minion->update(frameTime);
 				minion->draw();
 			}
 		}
