@@ -131,15 +131,13 @@ void Papercat::initialize(HWND hwnd)
 //=============================================================================
 void Papercat::update()
 {
-	gravity();
 	startButton.update(frameTime);
 	//ship.update(frameTime);
-	cat.update(frameTime);
+	//cat.update(frameTime);
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
 		//asteroidList[i].update(frameTime);
 	}
-
 }
 
 //=============================================================================
@@ -153,10 +151,14 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-	VECTOR2 collisionVector;
-
-
-
+	//collision with scissors
+	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
+		(cat.getX() <= (scissor1.getX() + scissorX.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
+		cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
+	{
+		// damage(scissor1)
+	}
 }
 
 //=============================================================================
@@ -190,10 +192,10 @@ void Papercat::render()
 	{
 		graphics->spriteBegin();
 		backgroundStage.draw();
-		scissor1.draw();
+		scissor1.draw();	
 		cat.draw();
 		graphics->spriteEnd();
-
+		gravity();
 		drawing.GetDevice(graphics->get3Ddevice());
 		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
 
@@ -251,15 +253,7 @@ void Papercat::resetAll()
 }
 
 void Papercat::gravity()
-{/*
-	if (cat.getX()<blackhole.getCenterX())
-		cat.setX(cat.getX()+0.5f);
-	else
-		cat.setX(cat.getX() - 0.5f);
-	if (cat.getY() < blackhole.getCenterY())
-		cat.setY(cat.getY() + 0.5f);
-	else
-		cat.setY(cat.getY() - 0.5f);*/
+{
 
 	//dot product to get the distance between the two point between the cat and the planet
 	//similar to eq d= sqrt(x*x+y*y) whereby d^2 = x^2 + y2
@@ -267,13 +261,26 @@ void Papercat::gravity()
 	D3DXVECTOR2 vectorOfCat = D3DXVECTOR2(cat.getX(), cat.getY());
 	D3DXVECTOR2 vectorOfBlackhole = D3DXVECTOR2(blackhole.getX(), blackhole.getY());
 	float distanceBetweenCatAndBlackhole = D3DXVec2Dot(&vectorOfCat, &vectorOfBlackhole);
+	float velocity = 1000.0f;
+	int i = int(velocity + 0.5);
+	int j = int(distanceBetweenCatAndBlackhole + 0.5);
+	j-=1;
+	if (j<= 0 || j == 1)
+	{
+		j = 1;
+	}	
+	if (cat.getX()<blackhole.getCenterX())		
+	      cat.setX(cat.getX() + (i*i / j));
+	else if (cat.getX()>blackhole.getCenterX())
+		cat.setX(cat.getX() - (i*i / j));
+	//cat.setX(cat.getX() + (velocity*velocity / distanceBetweenCatAndBlackhole));
+		//cat.setX(cat.getX() - (velocity*velocity / distanceBetweenCatAndBlackhole));
 
-	//negative distanceBetwwenCatAndBlackhole
+	if (cat.getY() < blackhole.getCenterY())
+		cat.setY(cat.getY() + (i*i / j));		
+	else if (cat.getY() > blackhole.getCenterY())
+		cat.setY(cat.getY() - (i*i / j));
+	//cat.setY(cat.getY() + (velocity*velocity / distanceBetweenCatAndBlackhole));
+	//	cat.setY(cat.getY() - (velocity*velocity / distanceBetweenCatAndBlackhole));
 
-	//the closer the chracter to blackhole the more stronger the pull
-	float gravityPull = abs(blackhole.getCenterX()) + abs(blackhole.getCenterY());
-	/*
-	distance*((1 / distance)*planetRadius / finalDistance);
-	planetDistance.Multiply((1 / vecSum)*planetRadius / finalDistance);*/
-	//apply force
 }
