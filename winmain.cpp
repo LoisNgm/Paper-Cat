@@ -99,7 +99,7 @@ bool CreateMainWindow(HWND &hwnd, HINSTANCE hInstance, int nCmdShow)
 	// Fill in the window class structure with parameters 
 	// that describe the main window. 
 	wcx.cbSize = sizeof(wcx);           // size of structure 
-	wcx.style = CS_HREDRAW | CS_VREDRAW;    // redraw if size changes 
+	wcx.style = WS_OVERLAPPED;    // redraw if size changes 
 	wcx.lpfnWndProc = WinProc;          // points to window procedure 
 	wcx.cbClsExtra = 0;                 // no extra class memory 
 	wcx.cbWndExtra = 0;                 // no extra window memory 
@@ -121,7 +121,7 @@ bool CreateMainWindow(HWND &hwnd, HINSTANCE hInstance, int nCmdShow)
 	if (FULLSCREEN)
 		style = WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP;
 	else
-		style = WS_OVERLAPPEDWINDOW;
+		style = WS_OVERLAPPED;
 
 	// Create window
 	hwnd = CreateWindow(

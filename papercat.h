@@ -15,6 +15,7 @@
 #include <cmath>
 #include "draw.h"
 #include "Minion.h"
+#include "textDX.h"
 
 
 //=============================================================================
@@ -45,7 +46,7 @@ private:
 	Scissors scissor1;
 	MainChar cat;
 	Blackhole blackhole;
-	Image	scissorsArray[SCISSORS_AMT];
+	//Image	scissorsArray[SCISSORS_AMT];
 	Ship    ship;           // spaceships
 	//Image	startButton;		// start button
 	//Image	highscoreButton;	// highscore button
@@ -53,11 +54,13 @@ private:
 	Image   nebula;         // backdrop image
 	Image	menu;			// menu backdrop image
 	//Image	buttons;		// buttons on menu image
-	Image	backgroundStage;
+	Image	backgroundStage;	// stage backdrop image
 	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
-	int gameStart = 0;
-	CDraw drawing;
-	Minion* minion = new Minion();
+	int gameStart = 0;		// for game status
+	CDraw drawing;			// for platform in stages
+	Minion* minion = new Minion();	// minions
+	TextDX *mainFont;		// fonts for e.g. highscore/points 
+	int playerScore;		// player's score in the game
 public:
 	// Constructor
 	Papercat();

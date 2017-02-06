@@ -1,19 +1,20 @@
-﻿Build started 06/02/2017 18:17:37.
+﻿Build started 06/02/2017 19:55:22.
      1>Project "D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt papercat.cpp
          papercat.cpp
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\buttons.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(25): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(72): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(26): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(73): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(81): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(89): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(99): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(226): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(228): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(230): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(74): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(82): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(90): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(100): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(178): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(238): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(240): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(240): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(242): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\Paper Cat.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib winmm.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\Paper Cat.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\Paper Cat.lib" /MACHINE:X86 Debug\asteroid.obj
          Debug\blackhole.obj
@@ -30,6 +31,7 @@
          Debug\papercat.obj
          Debug\scissors.obj
          Debug\ship.obj
+         Debug\textDX.obj
          Debug\textureManager.obj
          Debug\winmain.obj
          Paper Cat.vcxproj -> D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\Paper Cat.exe
@@ -37,4 +39,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.71
+Time Elapsed 00:00:02.10
