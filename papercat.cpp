@@ -96,7 +96,7 @@ void Papercat::initialize(HWND hwnd)
 	scissor1.setCurrentFrame(scissorsNS::SCISSORS_START_FRAME);
 
 	scissor1.setX(0);
-	scissor1.setY(50 * (rand() % 15 + 1));
+	scissor1.setY(50 * (rand() % (GAME_HEIGHT/scissor1.getHeight()-1)));
 	//scissor1.setVisible(0);
 
 	// cat
@@ -117,7 +117,7 @@ void Papercat::initialize(HWND hwnd)
 	//minion
 	if (!minion->initialize(this, minionNS::WIDTH, minionNS::HEIGHT, minionNS::TEXTURE_COLS))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion"));
-	minion->setVelocity(VECTOR2(-100, -35));
+	
 
 	//asteroids
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
@@ -141,6 +141,7 @@ void Papercat::update()
 {
 	startButton.update(frameTime);
 	//ship.update(frameTime);
+
 	if (gameStart == 1)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
@@ -148,10 +149,7 @@ void Papercat::update()
 		cat.update(frameTime);
 		
 		scissor1.update(frameTime);
-	}
-	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
-	{
-		//asteroidList[i].update(frameTime);
+		minion->update(frameTime);
 	}
 }
 
@@ -217,7 +215,7 @@ void Papercat::render()
 			}
 			else
 			{
-				minion->update(frameTime);
+				
 				minion->draw();
 			}
 		}

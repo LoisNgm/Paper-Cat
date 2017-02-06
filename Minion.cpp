@@ -19,6 +19,7 @@ Minion::Minion() : Entity()
 	spriteData.rect.right = minionNS::WIDTH;
 	startFrame = minionNS::START_FRAME;				// start button for menu
 	endFrame = minionNS::END_FRAME;
+	currentFrame = minionNS::START_FRAME;
 	int highscoreFrame = minionNS::HIGHSCORE_FRAME;	// highscore button for menu
 	int creditsFrame = minionNS::CREDITS_FRAME;		// credits button for menu
 	spriteData.scale = 1;
@@ -34,6 +35,20 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 	if (!minionTexture.initialize(gamePtr->getGraphics(), ELEMENTS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minon textures"));
 	minion.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
+	minion2.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
+	minion3.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
+	velocity.x = -100;
+	velocity.y = -20;
+	setX(500);
+	setY(10 + 50 + 10 + 100 + 100 + 100 + 100 + 100);
+	minion2.setX(GAME_WIDTH - 500);
+	minion2.setY(10 + 50 + 10 + 100 + 100 + 100);
+	minion3.setX(500);
+	minion3.setY(10 + 50 + 10 + 100);
+	minion2.setCurrentFrame(minionNS::START_FRAME);
+	minion2.setFrames(minionNS::START_FRAME, minionNS::END_FRAME);
+	minion3.setCurrentFrame(minionNS::START_FRAME);
+	minion3.setFrames(minionNS::START_FRAME, minionNS::END_FRAME);
 	return(Entity::initialize(gamePtr, width, height, ncols, &minionTexture));
 }
 
@@ -42,10 +57,9 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 //=============================================================================
 void Minion::draw()
 {
-
+	minion2.draw();
+	minion3.draw();
 	Image::draw();              // draw comet
-
-
 }
 
 //=============================================================================
@@ -68,6 +82,10 @@ void Minion::update(float frameTime)
 	{
 		velocity.x *= -1;
 	}
+	minion2.setX(minion2.getX() - frameTime * velocity.x);
+	minion2.setY(minion2.getY() + frameTime * velocity.y);
+	minion3.setX(minion3.getX() + frameTime * velocity.x);
+	minion3.setY(minion3.getY() + frameTime * velocity.y);
 
 }
 
