@@ -12,11 +12,11 @@ namespace minionNS
 	const int HEIGHT = 48;                  // image height
 
 
-	const int   TEXTURE_COLS = 7;
+	const int   TEXTURE_COLS = 8;
 	const int X = GAME_WIDTH - WIDTH;
 	const int Y = GAME_HEIGHT-HEIGHT-160;
-	const int   START_FRAME = 4;
-	const int END_FRAME = 6;
+	const int   START_FRAME = 36;
+	const int END_FRAME = 38;
 
 	const int   HIGHSCORE_FRAME = 1;
 	const int	CREDITS_FRAME = 2;

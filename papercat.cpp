@@ -94,15 +94,15 @@ void Papercat::initialize(HWND hwnd)
 	scissor1.setCurrentFrame(scissorsNS::SCISSORS_START_FRAME);
 	scissor1.setX(50);
 	scissor1.setY(100);
-	scissor1.setVisible(0);
+	//scissor1.setVisible(0);
 
 	// cat
 	if (!cat.initialize(this, mainCharNS::WIDTH, mainCharNS::HEIGHT, mainCharNS::TEXTURE_COLS, &mainTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing cat"));
 	cat.setFrames(mainCharNS::CAT_START_FRAME, mainCharNS::CAT_END_FRAME);
 	cat.setCurrentFrame(mainCharNS::CAT_START_FRAME);
-	cat.setX(50);
-	cat.setY(100);
+	/*cat.setX(50);
+	cat.setY(100);*/
 	
 	//blackhole
 	if (!blackhole.initialize(this, blackholeNS::WIDTH, blackholeNS::HEIGHT, blackholeNS::TEXTURE_COLS, &mainTexture))
@@ -111,6 +111,11 @@ void Papercat::initialize(HWND hwnd)
 	blackhole.setCurrentFrame(blackholeNS::BLACKHOLE_START_FRAME);
 	blackhole.setX(GAME_WIDTH/2);
 	blackhole.setY(GAME_HEIGHT/2);
+	//minion
+	if (!minion->initialize(this, minionNS::WIDTH, minionNS::HEIGHT, minionNS::TEXTURE_COLS))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion"));
+	minion->setVelocity(VECTOR2(-100, -35));
+
 	//asteroids
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
@@ -135,8 +140,9 @@ void Papercat::update()
 	//ship.update(frameTime);
 	if (gameStart == 1)
 	{
-		cat.update(frameTime);
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
+		cat.update(frameTime);
+		
 	}
 	
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
@@ -199,16 +205,28 @@ void Papercat::render()
 		backgroundStage.draw();
 		scissor1.draw();	
 		cat.draw();
+		if (minion != nullptr)
+		{
+			if (minion->getY()<0)
+			{
+				SAFE_DELETE(minion);
+			}
+			else
+			{
+				minion->update(frameTime);
+				minion->draw();
+			}
+		}
 		graphics->spriteEnd();
 		//gravity();
 		drawing.GetDevice(graphics->get3Ddevice());
 		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
 
-		drawing.Line(0, 10 + 50 + 10, 500, 10 + 50 + 10 + 100, 5, true, graphicsNS::WHITE);//platform 1 (500 for the hortizol distance of the platform)
+		drawing.Line(0, 10 + 50 + 10 + cat.getHeight(), 500, 10 + 50 + 10 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 1 (500 for the hortizol distance of the platform)
 
-		drawing.Line(GAME_WIDTH - 500, 10 + 50 + 10 + 100 + 100 + 100, GAME_WIDTH, 10 + 50 + 10 + 100 + 100, 5, true, graphicsNS::WHITE);//platform 2(100 for holdoff betwe)
+		drawing.Line(GAME_WIDTH - 500, 10 + 50 + 10 + 100 + 100 + 100 + cat.getHeight(), GAME_WIDTH, 10 + 50 + 10 + 100 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 2(100 for holdoff betwe)
 
-		drawing.Line(0, 10 + 50 + 10 + 100 + 100 + 100 + 100, 500, 10 + 50 + 10 + 100 + 100 + 100 + 100 + 100, 5, true, graphicsNS::WHITE);//platform 3
+		drawing.Line(0, 10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight(), 500, 10 + 50 + 10 + 100 + 100 + 100 + 100 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 3
 
 
 	//	blackhole.draw();
