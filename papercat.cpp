@@ -1,4 +1,3 @@
-
 #include "papercat.h"
 #include "time.h"
 
@@ -6,7 +5,9 @@
 // Constructor
 //=============================================================================
 Papercat::Papercat()
-{}
+{
+	mainFont = new TextDX();
+}
 
 //=============================================================================
 // Destructor
@@ -131,6 +132,10 @@ void Papercat::initialize(HWND hwnd)
 
 	}
 
+	// initialize font
+	if (mainFont->initialize(graphics, 30, true, false, "Courier New") == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
 	return;
 }
 
@@ -169,6 +174,9 @@ void Papercat::collisions()
 		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
 		cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
 	{
+		//playerScore++;
+		//scissor1.setY(50 * rand() % 15 + 1);
+		//scissor1.setX(0);
 		// damage(scissor1)
 	}
 }
@@ -178,7 +186,8 @@ void Papercat::collisions()
 //=============================================================================
 void Papercat::render()
 {
-	
+	const int BUF_SIZE = 50;
+	static char buffer[BUF_SIZE];
 	if (gameStart == 0)
 	{
 		graphics->spriteBegin();
@@ -218,6 +227,9 @@ void Papercat::render()
 				minion->draw();
 			}
 		}
+		mainFont->setFontColor(graphicsNS::WHITE);
+		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
+		mainFont->print(buffer, GAME_WIDTH - 150, 20);
 		graphics->spriteEnd();
 		//gravity();
 		drawing.GetDevice(graphics->get3Ddevice());
@@ -271,7 +283,7 @@ void Papercat::resetAll()
 	//nebulaTexture.onResetDevice();
 	//shipTexture.onResetDevice();
 	//asteroidTexture.onResetDevice();
-
+	mainFont->setFontColor(graphicsNS::WHITE);
 	Game::resetAll();
 	return;
 }
