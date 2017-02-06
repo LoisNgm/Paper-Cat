@@ -12,9 +12,6 @@ Items::Items() :Entity()
 	spriteData.y = itemsNS::Y;
 	spriteData.rect.bottom = itemsNS::HEIGHT;			// rectangle to select parts of an image
 	spriteData.rect.right = itemsNS::WIDTH;
-	/*	startFrame = itemsNS::START_FRAME;
-	int Frame = buttonsNS::HIGHSCORE_FRAME;	// highscore button for menu
-	int cFrame = buttonsNS::CREDITS_FRAME;		// credits button for menu*/
 	spriteData.scale = 1;
 
 }

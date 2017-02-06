@@ -41,6 +41,8 @@ private:
 	//TextureManager		highscoreButtonTexture;	// highscore button texture
 	//TextureManager		creditsButtonTexture;	// credits button texture
 	TextureManager		backgroundStageTexture;	// background for stages
+	TextureManager		highscoreTexture;	// background for highscore
+	TextureManager		creditTexture;	// background for credit
 	TextureManager		buttonsTexture;
 	Buttons startButton;
 	Buttons highscoreButton;
@@ -49,6 +51,7 @@ private:
 	MainChar cat;
 	Blackhole blackhole;
 	Items items[BUFF_NUM];
+	Items coins[NUMBER_OF_COINS];
 	//Image	scissorsArray[SCISSORS_AMT];
 	Ship    ship;           // spaceships
 	//Image	startButton;		// start button
@@ -58,14 +61,15 @@ private:
 	Image	menu;			// menu backdrop image
 	//Image	buttons;		// buttons on menu image
 	Image	backgroundStage;	// stage backdrop image
+	Image	backgroundHighscore;	// highscore backdrop image
+	Image	backgroundCredit;	// Credit backdrop image
 	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
 	int gameStart = 0;		// for game status
 	CDraw drawing;			// for platform in stages
 	Minion* minion = new Minion();	// minions
 	TextDX *mainFont;		// fonts for e.g. highscore/points 
 	int playerScore;		// player's score in the game
-	int arrayOfNumX = GAME_WIDTH / (itemsNS::WIDTH + 0.2f) * items[0].getScale();
-	float arrayOfPosition[10];
+	float arrayOfPosition[arrayOfNumX];
 
 public:
 	// Constructor
@@ -83,7 +87,9 @@ public:
 	void releaseAll();
 	void resetAll();
 	void gravity();
-	void setYvalue(int randLineNum, int arrayNumOfX, float xValue);
+	void setArray(float arrayOfPosition[arrayOfNumX]);
+	void setYvalue(int randLineNum, int arrayNumOfX);
+	bool collisionWithItem(Items item1, Items item2);
 
 };
 

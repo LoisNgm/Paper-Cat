@@ -14,11 +14,12 @@ namespace itemsNS
 	const int X = GAME_WIDTH / 3;   // location on screen
 	const int Y = GAME_HEIGHT / 2.5;
 
-	const int   TEXTURE_COLS = 4;
+	const int   TEXTURE_COLS = 5;
 	const int   STUN_FRAME = 0;
 	const int   TIMES2_FRAME = 1;
 	const int	UPDATE_FRAME = 2;
 	const int	FLASH_FRAME = 3;
+	const int	COIN_FRAME = 4;
 }
 
 // inherits from Entity class
