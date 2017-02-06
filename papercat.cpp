@@ -132,6 +132,39 @@ void Papercat::initialize(HWND hwnd)
 
 	}
 
+	// items
+	for (int i = 0; i < BUFF_NUM; i++)
+	{
+		if (!items[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing items"));
+		items[i].setFrames(i, i);
+		items[i].setCurrentFrame(i);
+
+	}
+	srand(time(0));
+	int randLineNum; rand() % 3 + 1;
+	int arrayNum;
+	Items temp1;
+	Items temp2;
+	int line = 0;						//x coordinate
+
+	for (int i = 0; i < BUFF_NUM; i++)
+	{
+		randLineNum = rand() % 3 + 1;
+		arrayNum = rand() % arrayOfNumX + 0;
+		temp1 = items[i];
+		setYvalue(randLineNum, i, arrayNum);
+		for (int j = i + 1; j < BUFF_NUM; j++)
+		{
+			setYvalue(randLineNum, i, arrayNum);
+			temp2 = items[j];
+			/*while ()
+			{
+			setYvalue(randLineNum, i, arrayNum);
+			}*/
+		}
+	}
+
 	// initialize font
 	if (mainFont->initialize(graphics, 30, true, false, "Courier New") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
@@ -215,6 +248,11 @@ void Papercat::render()
 		backgroundStage.draw();
 		scissor1.draw();	
 		cat.draw();
+		for (int i = 0; i < BUFF_NUM; i++)
+		{
+			items[i].draw();
+		}
+
 		if (minion != nullptr)
 		{
 			if (minion->getY()<0)
@@ -319,5 +357,21 @@ void Papercat::gravity()
 		cat.setY(cat.getY() - (i*i / j));
 	//cat.setY(cat.getY() + (velocity*velocity / distanceBetweenCatAndBlackhole));
 	//	cat.setY(cat.getY() - (velocity*velocity / distanceBetweenCatAndBlackhole));
+
+}
+void Papercat::setYvalue(int randLineNum, int i, float xValue)
+{
+	if (randLineNum == 1)
+	{
+		items[i].setY(items[i].getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 - items[i].getHeight()));
+	}
+	else if (randLineNum == 2)
+	{
+		items[i].setY((items[i].getX()*-0.2) + (406 - items[i].getHeight()));
+	}
+	else
+	{
+		items[i].setY(items[i].getX()*0.2 + (10 + 50 + 10 - items[i].getHeight()));
+	}
 
 }

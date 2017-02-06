@@ -58,6 +58,8 @@ const char MENU_IMAGE[] = "pictures\\menu.png";
 //const char CREDITS_BUTTON_IMAGE[] = "pictures\\credits_button.png";
 const char BACKGROUND_STAGE_PAGE_IMAGE[] = "pictures\\background1.png";
 const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
+const char ITEMS_IMAGE[] = "pictures\\runes.png";
+
 
 
 // key mappings

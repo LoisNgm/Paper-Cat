@@ -15,6 +15,7 @@
 #include <cmath>
 #include "draw.h"
 #include "Minion.h"
+#include "items.h"
 #include "textDX.h"
 
 
@@ -34,7 +35,8 @@ private:
 	TextureManager shipTexture;    // game texture
 	TextureManager	menuTexture;		// menu texture
 	TextureManager	mainTexture;
-	
+	TextureManager	itemTexture;
+
 	//TextureManager		startButtonTexture;		// start button texture
 	//TextureManager		highscoreButtonTexture;	// highscore button texture
 	//TextureManager		creditsButtonTexture;	// credits button texture
@@ -46,6 +48,7 @@ private:
 	Scissors scissor1;
 	MainChar cat;
 	Blackhole blackhole;
+	Items items[BUFF_NUM];
 	//Image	scissorsArray[SCISSORS_AMT];
 	Ship    ship;           // spaceships
 	//Image	startButton;		// start button
@@ -61,6 +64,9 @@ private:
 	Minion* minion = new Minion();	// minions
 	TextDX *mainFont;		// fonts for e.g. highscore/points 
 	int playerScore;		// player's score in the game
+	int arrayOfNumX = GAME_WIDTH / (itemsNS::WIDTH + 0.2f) * items[0].getScale();
+	float arrayOfPosition[10];
+
 public:
 	// Constructor
 	Papercat();
@@ -77,6 +83,8 @@ public:
 	void releaseAll();
 	void resetAll();
 	void gravity();
+	void setYvalue(int randLineNum, int arrayNumOfX, float xValue);
+
 };
 
 #endif
