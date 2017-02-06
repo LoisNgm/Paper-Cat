@@ -28,6 +28,8 @@ class Minion : public Entity
 private:
 	TextureManager minionTexture;
 	Image minion;
+	Image minion2;
+	Image minion3;
 public:
 	// constructor
 	Minion();
