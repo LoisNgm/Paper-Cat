@@ -31,7 +31,7 @@ private:
 	TextureManager nebulaTexture;   // nebula texture
 	TextureManager asteroidTexture; //asteroid texture
 	TextureManager shipTexture;    // game texture
-	TextureManager		menuTexture;		// menu texture
+	TextureManager	menuTexture;		// menu texture
 	TextureManager	mainTexture;
 	
 	//TextureManager		startButtonTexture;		// start button texture

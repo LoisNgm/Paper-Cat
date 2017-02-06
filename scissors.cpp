@@ -11,7 +11,7 @@ Scissors::Scissors() : Entity()
 	spriteData.y = scissorsNS::Y;
 	spriteData.rect.bottom = scissorsNS::HEIGHT;    // rectangle to select parts of an image
 	spriteData.rect.right = scissorsNS::WIDTH;
-	velocity.x = 0;                             // velocity X
+	velocity.x = 300;                             // velocity X
 	velocity.y = 0;                             // velocity Y
 	frameDelay = scissorsNS::SCISSORS_ANIMATION_DELAY;
 	startFrame = scissorsNS::SCISSORS_START_FRAME;     // first frame of asteroid animation
@@ -51,9 +51,14 @@ void Scissors::draw()
 //=============================================================================
 void Scissors::update(float frameTime)
 {
+
+	setX(getX() + frameTime*velocity.x);
 	Entity::update(frameTime);
-
-
+	if (getX() > GAME_WIDTH)
+	{
+		setX(0);
+		setY(50 * (rand() % 15 + 1));
+	}
 }
 
 boolean Scissors::getActive()
