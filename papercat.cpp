@@ -116,7 +116,7 @@ void Papercat::initialize(HWND hwnd)
 	blackhole.setX(GAME_WIDTH/2);
 	blackhole.setY(GAME_HEIGHT/2);
 	//minion
-	if (!minion->initialize(this, minionNS::WIDTH, minionNS::HEIGHT, minionNS::TEXTURE_COLS))
+	if (!minion->initialize(this, minionNS::SMALL_MINION_WIDTH, minionNS::SMALL_MINION_HEIGHT, minionNS::SMALL_MINION_TEXTURE_COLS))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion"));
 	
 

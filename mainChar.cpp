@@ -66,21 +66,7 @@ void MainChar::draw()
 void MainChar::update(float frameTime)
 {
 	Entity::update(frameTime);
-	if (isJumping)
-	{
-		velocity.y = -10;
-		this->setY(spriteData.y + velocity.y);
-		velocity.y += 0.1f;// velocity.y *0.9 + frameTime;
-		if (velocity.y > 8)
-			velocity.y = 8;
-		if (velocity.y < 0)
-			velocity.y = 8;
-		if (checkCharacterOnGround())//if character not on ground
-		{
-			isJumping = false;
-			velocity.y = 0;
-		}
-	}
+	
 	//condition for removing buff state
 	//set state to false;
 	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
@@ -122,12 +108,11 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 
 	if (input->wasKeyPressed(VK_SPACE))
 	{
-	//	input->clearKeyPress(VK_SPACE);
-		if (isJumping == false)
-		{
-	//		velocity.y = -150;
+		input->clearKeyPress(VK_SPACE);
+		
+			velocity.y = -150;
 			isJumping = true;
-		}
+		
 
 	}
 
