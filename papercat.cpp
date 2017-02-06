@@ -1,5 +1,6 @@
 
 #include "papercat.h"
+#include "time.h"
 
 //=============================================================================
 // Constructor
@@ -21,6 +22,7 @@ Papercat::~Papercat()
 //=============================================================================
 void Papercat::initialize(HWND hwnd)
 {
+	srand(time(NULL));
 	Game::initialize(hwnd); // throws GameError
 
 	// menu texture
@@ -92,9 +94,9 @@ void Papercat::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing scissors"));
 	scissor1.setFrames(scissorsNS::SCISSORS_START_FRAME, scissorsNS::SCISSORS_END_FRAME);
 	scissor1.setCurrentFrame(scissorsNS::SCISSORS_START_FRAME);
-	scissor1.setX(50);
-	scissor1.setY(100);
-	scissor1.setVisible(0);
+	scissor1.setX(0);
+	scissor1.setY(50 * (rand() % 15 + 1));
+	//scissor1.setVisible(0);
 
 	// cat
 	if (!cat.initialize(this, mainCharNS::WIDTH, mainCharNS::HEIGHT, mainCharNS::TEXTURE_COLS, &mainTexture))
@@ -137,8 +139,8 @@ void Papercat::update()
 	{
 		cat.update(frameTime);
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
+		scissor1.update(frameTime);
 	}
-	
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
 		//asteroidList[i].update(frameTime);
