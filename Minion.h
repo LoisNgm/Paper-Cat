@@ -8,18 +8,20 @@
 namespace minionNS
 {
 
-	const int WIDTH = 48;                   // image width
-	const int HEIGHT = 48;                  // image height
+	const int SMALL_MINION_WIDTH = 48;                   // image width
+	const int SMALL_MINION_HEIGHT = 48;                  // image height
 
+	const int LARGE_MINION_WIDTH = 192;                   // image width
+	const int LARGE_MINION_HEIGHT = 192;                  // image height
 
-	const int   TEXTURE_COLS = 8;
-	const int X = GAME_WIDTH - WIDTH;
-	const int Y = GAME_HEIGHT-HEIGHT-160;
-	const int   START_FRAME = 36;
-	const int END_FRAME = 38;
+	const int X = GAME_WIDTH - SMALL_MINION_WIDTH;
+	const int Y = GAME_HEIGHT - SMALL_MINION_HEIGHT - 160;
 
-	const int   HIGHSCORE_FRAME = 1;
-	const int	CREDITS_FRAME = 2;
+	const int   SMALL_MINION_TEXTURE_COLS = 8;
+	
+	const int   SMALL_MINION_START_FRAME = 36;
+	const int	SMALL_MINION_END_FRAME = 38;
+
 }
 
 // inherits from Entity class
@@ -27,6 +29,8 @@ class Minion : public Entity
 {
 private:
 	TextureManager minionTexture;
+	TextureManager minionBossTexture;
+	Image minionBoss;
 	Image minion;
 	Image minion2;
 	Image minion3;

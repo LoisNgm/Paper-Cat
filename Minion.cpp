@@ -11,17 +11,15 @@
 //=============================================================================
 Minion::Minion() : Entity()
 {
-	spriteData.width = minionNS::WIDTH;		        // size of comet
-	spriteData.height = minionNS::HEIGHT;
+	spriteData.width = minionNS::SMALL_MINION_WIDTH;		        // size of comet
+	spriteData.height = minionNS::SMALL_MINION_HEIGHT;
 	spriteData.x = minionNS::X;						// location on screen
 	spriteData.y = minionNS::Y;
-	spriteData.rect.bottom = minionNS::HEIGHT;			// rectangle to select parts of an image
-	spriteData.rect.right = minionNS::WIDTH;
-	startFrame = minionNS::START_FRAME;				// start button for menu
-	endFrame = minionNS::END_FRAME;
-	currentFrame = minionNS::START_FRAME;
-	int highscoreFrame = minionNS::HIGHSCORE_FRAME;	// highscore button for menu
-	int creditsFrame = minionNS::CREDITS_FRAME;		// credits button for menu
+	spriteData.rect.bottom = minionNS::SMALL_MINION_HEIGHT;			// rectangle to select parts of an image
+	spriteData.rect.right = minionNS::SMALL_MINION_WIDTH;
+	startFrame = minionNS::SMALL_MINION_START_FRAME;				// start button for menu
+	endFrame = minionNS::SMALL_MINION_END_FRAME;
+	currentFrame = minionNS::SMALL_MINION_START_FRAME;
 	spriteData.scale = 1;
 }
 
@@ -33,23 +31,28 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 {
 	//character textures
 	if (!minionTexture.initialize(gamePtr->getGraphics(), ELEMENTS_IMAGE))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minon textures"));
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion textures"));
+	if (!minionBossTexture.initialize(gamePtr->getGraphics(), ELEMENTS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minionBoss textures"));
+	minionBoss.initialize(gamePtr->getGraphics(), minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, 0, &minionTexture);
 	minion.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
 	minion2.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
 	minion3.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
 	velocity.x = -100;
 	velocity.y = -20;
-	setX(500);
-	setY(10 + 50 + 10 + 100 + 100 + 100 + 100 + 100);
+	minion.setX(500);
+	minion.setY(10 + 50 + 10 + 100 + 100 + 100 + 100 + 100);
 	minion2.setX(GAME_WIDTH - 500);
 	minion2.setY(10 + 50 + 10 + 100 + 100 + 100);
 	minion3.setX(500);
 	minion3.setY(10 + 50 + 10 + 100);
-	minion2.setCurrentFrame(minionNS::START_FRAME);
-	minion2.setFrames(minionNS::START_FRAME, minionNS::END_FRAME);
-	minion3.setCurrentFrame(minionNS::START_FRAME);
-	minion3.setFrames(minionNS::START_FRAME, minionNS::END_FRAME);
-	return(Entity::initialize(gamePtr, width, height, ncols, &minionTexture));
+	minion.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
+	minion.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
+	minion2.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
+	minion2.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
+	minion3.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
+	minion3.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
+	return(Entity::initialize(gamePtr, width, height, ncols, &minionBossTexture));
 }
 
 //=============================================================================
@@ -57,6 +60,7 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 //=============================================================================
 void Minion::draw()
 {
+	minion.draw();
 	minion2.draw();
 	minion3.draw();
 	Image::draw();              // draw comet
@@ -71,9 +75,8 @@ void Minion::update(float frameTime)
 {
 	Entity::update(frameTime);
 
-	spriteData.x += frameTime * velocity.x;         // move ship along X 
-	spriteData.y += frameTime * velocity.y;         // move ship along Y
-	if (spriteData.y > GAME_HEIGHT - minionNS::HEIGHT*getScale())
+	
+	if (spriteData.y > GAME_HEIGHT - minionNS::SMALL_MINION_HEIGHT*getScale())
 	{
 		this->setX(0);
 		this->setY(0);
@@ -82,6 +85,8 @@ void Minion::update(float frameTime)
 	{
 		velocity.x *= -1;
 	}
+	minion.setX(minion.getX() + frameTime * velocity.x);
+	minion.setY(minion.getY() + frameTime * velocity.y);
 	minion2.setX(minion2.getX() - frameTime * velocity.x);
 	minion2.setY(minion2.getY() + frameTime * velocity.y);
 	minion3.setX(minion3.getX() + frameTime * velocity.x);
