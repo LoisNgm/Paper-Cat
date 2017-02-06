@@ -133,7 +133,7 @@ void Papercat::update()
 {
 	startButton.update(frameTime);
 	//ship.update(frameTime);
-	//cat.update(frameTime);
+	cat.update(frameTime);
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
 	{
 		//asteroidList[i].update(frameTime);
@@ -153,7 +153,7 @@ void Papercat::collisions()
 {
 	//collision with scissors
 	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
-		(cat.getX() <= (scissor1.getX() + scissorX.getWidth()) &&
+		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
 		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
 		cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
 	{
@@ -195,7 +195,7 @@ void Papercat::render()
 		scissor1.draw();	
 		cat.draw();
 		graphics->spriteEnd();
-		gravity();
+		//gravity();
 		drawing.GetDevice(graphics->get3Ddevice());
 		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
 
