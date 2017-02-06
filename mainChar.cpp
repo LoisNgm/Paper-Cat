@@ -66,19 +66,20 @@ void MainChar::draw()
 void MainChar::update(float frameTime)
 {
 	Entity::update(frameTime);
-	movement(VK_SPACE, VK_LEFT, VK_RIGHT , frameTime);
 	if (isJumping)
 	{
 		velocity.y = -10;
-		//do
-		//{
-			this->setY(spriteData.y + velocity.y);
-			velocity.y += 0.1f;// velocity.y *0.9 + frameTime;
-			if (velocity.y > 8)
-				velocity.y = 8;
-		//} while (frameTime<100);//on collision with platform
-		//if (this->getY() > 50) if collide with platform
-			//isJumping = false;
+		this->setY(spriteData.y + velocity.y);
+		velocity.y += 0.1f;// velocity.y *0.9 + frameTime;
+		if (velocity.y > 8)
+			velocity.y = 8;
+		if (velocity.y < 0)
+			velocity.y = 8;
+		if (checkCharacterOnGround())//if character not on ground
+		{
+			isJumping = false;
+			velocity.y = 0;
+		}
 	}
 	//condition for removing buff state
 	//set state to false;
@@ -101,22 +102,10 @@ void MainChar::damage(WEAPON weapon)
 	//if damage with collision type 
 	states[0] = true;// to be change ltr
 }
+
 //=============================================================================
 //Movement
 //=============================================================================
-void MainChar::movement(UCHAR jump, UCHAR left, UCHAR right,float frameTime)
-{
-	//jump
-	if (input->wasKeyPressed(jump))
-	{
-		isJumping = true;
-		//put jumping method here for cat character to keep jumping
-	}
-	if (input->wasKeyPressed(right))
-	{
-	}
-
-}
 void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)
 {
 	if (input->isKeyDown(right))
@@ -130,10 +119,10 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 
 	if (input->wasKeyPressed(VK_SPACE))
 	{
-		input->clearKeyPress(VK_SPACE);
+	//	input->clearKeyPress(VK_SPACE);
 		if (isJumping == false)
 		{
-			velocity.y = -150;
+	//		velocity.y = -150;
 			isJumping = true;
 		}
 
@@ -152,7 +141,7 @@ void MainChar::characterGravity()
 {
 	velocity.y += 1.5;
 }
-void MainChar::checkCharacterOnGround()
+bool MainChar::checkCharacterOnGround()
 {
 	if (getY() > (10 + 50 - getHeight()) && getX() < (100) && getY() < (10 + 50))
 	{
@@ -163,13 +152,13 @@ void MainChar::checkCharacterOnGround()
 	{
 		if (getY() > (10 + 50 + 10 + 100 - getHeight()) || getX()>500)
 		{
-			isJumping = true;
+		//	isJumping = true;
 			if (getX() < GAME_WIDTH - 500 - getWidth() || getY() > (10 + 50 + 10 + 100 + 100 + 100))
 			{
-				isJumping = true;
+			//	isJumping = true;
 				if (getX()>500 || getY() > (10 + 50 + 10 + 100 + 100 + 100 + 100 + 100 + 100))
 				{
-					isJumping = true;
+			//		isJumping = true;
 					if (getY() > (GAME_HEIGHT - getHeight()))
 					{
 						isJumping = false;
@@ -196,9 +185,6 @@ void MainChar::checkCharacterOnGround()
 					setY((getX()*-0.2) + (406 - getHeight()));
 				}
 			}
-
-
-
 		}
 		else
 		{
@@ -212,7 +198,7 @@ void MainChar::checkCharacterOnGround()
 
 
 	}
-
+	return isJumping;
 }
 
 void MainChar::checkDirection()
