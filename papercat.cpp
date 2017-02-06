@@ -136,6 +136,7 @@ void Papercat::update()
 	if (gameStart == 1)
 	{
 		cat.update(frameTime);
+		cat.setVelocityY(cat.getVelocityY() + 2.5f);
 	}
 	
 	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
@@ -259,6 +260,7 @@ void Papercat::resetAll()
 void Papercat::gravity()
 {
 
+	
 	//dot product to get the distance between the two point between the cat and the planet
 	//similar to eq d= sqrt(x*x+y*y) whereby d^2 = x^2 + y2
 	FLOAT D3DXVec2Dot(const D3DXVECTOR2 *, const D3DXVECTOR2 *);
