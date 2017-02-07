@@ -407,6 +407,9 @@ void Papercat::releaseAll()
 	buttonsTexture.onLostDevice();
 	backgroundStageTexture.onLostDevice();
 	mainTexture.onLostDevice();
+	creditTexture.onLostDevice();
+	highscoreTexture.onLostDevice();
+	tutorialTexture.onLostDevice();
 	//nebulaTexture.onLostDevice();
 	//shipTexture.onLostDevice();
 	//asteroidTexture.onLostDevice();
@@ -425,6 +428,9 @@ void Papercat::resetAll()
 	buttonsTexture.onResetDevice();
 	backgroundStageTexture.onResetDevice();
 	mainTexture.onResetDevice();
+	creditTexture.onResetDevice();
+	highscoreTexture.onResetDevice();
+	tutorialTexture.onResetDevice();
 	//nebulaTexture.onResetDevice();
 	//shipTexture.onResetDevice();
 	//asteroidTexture.onResetDevice();
