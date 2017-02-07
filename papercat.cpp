@@ -7,6 +7,7 @@
 Papercat::Papercat()
 {
 	mainFont = new TextDX();
+	pausedFont = new TextDX();
 }
 
 //=============================================================================
@@ -210,7 +211,8 @@ void Papercat::initialize(HWND hwnd)
 	// initialize font
 	if (mainFont->initialize(graphics, 30, true, false, "Courier New") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
-
+	if (pausedFont->initialize(graphics, 100, true, false, "Courier New") == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font 2"));
 	return;
 }
 
@@ -320,6 +322,20 @@ void Papercat::render()
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
 		mainFont->print(buffer, GAME_WIDTH - 150, 20);
+
+		if (input->wasKeyPressed(VK_ESCAPE)){
+			paused = true;
+		}
+		if (paused)
+		{
+			pausedFont->setFontColor(graphicsNS::WHITE);
+			pausedFont->print("PAUSED\n", GAME_WIDTH/4, 200);
+			pausedFont->print("Hit \"Enter\" \nto resume", GAME_WIDTH / 10, 300);
+			if (input->wasKeyPressed(VK_RETURN))
+				paused = false;
+		}
+
+
 		graphics->spriteEnd();
 		//gravity();
 		drawing.GetDevice(graphics->get3Ddevice());
