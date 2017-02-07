@@ -24,10 +24,8 @@ namespace mainCharNS
 class MainChar : public Entity
 {
 private:
-	bool    shieldOn;
-	Image   shield;
-	bool states[BUFF_NUM];
 	Image buff[BUFF_NUM];
+	int state=-1;
 	bool isJumping;
 public:
 	// constructor
@@ -48,6 +46,8 @@ public:
 	void setVelocityX(float velx) { velocity.x = velx; };
 	float getVelocityY() { return velocity.y; };
 	void setVelocityY(float vely) { velocity.y = vely; };
+	void setState(int a){ state = a; };
+	int getState(){ return state; };
 };
 #endif
 

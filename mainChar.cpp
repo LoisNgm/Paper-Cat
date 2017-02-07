@@ -40,14 +40,15 @@ bool MainChar::initialize(Game *gamePtr, int width, int height, int ncols,
 }
 
 //=============================================================================
-// draw the ship
+// draw the cat
 //=============================================================================
 void MainChar::draw()
 {
-	Image::draw();              // draw ship
+	Image::draw();              // draw cat
 	for (int i = 0; i < BUFF_NUM; i++)
 	{
 		buff[i].draw();
+		buff[i].setVisible(false);
 	}
 	
 }
@@ -59,17 +60,17 @@ void MainChar::draw()
 //=============================================================================
 void MainChar::update(float frameTime)
 {
-	Entity::update(frameTime);
-	for (int i = 0; i < BUFF_NUM; i++)
+	Entity::update(frameTime);		
+	if (getState() != -1)
 	{
-		buff[i].setX(this->getX());
-		buff[i].setY(this->getY() - this->getHeight());
-		buff[i].update(frameTime);
-	}
-
+		buff[getState()].setVisible(true);
+		buff[getState()].setX(this->getX());
+		buff[getState()].setY(this->getY() - this->getHeight());
+		buff[getState()].update(frameTime);
+	}	
 	//condition for removing buff state
 	//set state to false;
-	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
+   characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
 	checkCharacterOnGround();
