@@ -68,6 +68,7 @@ private:
 	CDraw drawing;			// for platform in stages
 	Minion* minion = new Minion();	// minions
 	TextDX *mainFont;		// fonts for e.g. highscore/points 
+	TextDX *pausedFont;
 	int playerScore;		// player's score in the game
 	float arrayOfPosition[arrayOfNumX];
 
