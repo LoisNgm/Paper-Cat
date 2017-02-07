@@ -18,6 +18,8 @@
 #include "items.h"
 #include "textDX.h"
 
+using namespace std;
+
 
 //=============================================================================
 // This class is the core of the game
@@ -44,6 +46,7 @@ private:
 	TextureManager		highscoreTexture;	// background for highscore
 	TextureManager		creditTexture;	// background for credit
 	TextureManager		buttonsTexture;
+	TextureManager		tutorialTexture;
 	Buttons startButton;
 	Buttons highscoreButton;
 	Buttons creditsButton;
@@ -63,6 +66,7 @@ private:
 	Image	backgroundStage;	// stage backdrop image
 	Image	backgroundHighscore;	// highscore backdrop image
 	Image	backgroundCredit;	// Credit backdrop image
+	Image	backgroundTutorial;
 	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
 	int gameStart = 0;		// for game status
 	CDraw drawing;			// for platform in stages
@@ -91,7 +95,7 @@ public:
 	void setArray(float arrayOfPosition[arrayOfNumX]);
 	void setYvalue(int randLineNum, int arrayNumOfX);
 	bool collisionWithItem(Items item1, Items item2);
-
+	void playBGM();
 };
 
 #endif
