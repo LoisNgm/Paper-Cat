@@ -1,6 +1,7 @@
 #include "papercat.h"
 #include "time.h"
 
+
 //=============================================================================
 // Constructor
 //=============================================================================
@@ -42,6 +43,11 @@ void Papercat::initialize(HWND hwnd)
 	// Credits texture
 	if (!creditTexture.initialize(graphics, BACKGROUND_CREDIT_PAGE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround credit texture"));
+
+	//tutorial texture
+	if (!tutorialTexture.initialize(graphics, BACKGROUND_TUTORIAL_PAGE_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround tutorial texture"));
+
 	//buttons
 	if (!buttonsTexture.initialize(graphics, BUTTONS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing button texture"));
@@ -83,6 +89,10 @@ void Papercat::initialize(HWND hwnd)
 	// background credit image
 	if (!backgroundCredit.initialize(graphics, 0, 0, 0, &creditTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing background stage"));
+	// background tutorial image
+	if (!backgroundTutorial.initialize(graphics, 0, 0, 0, &tutorialTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing tutorial page"));
+
 
 	// buttons
 	// start
@@ -215,6 +225,10 @@ void Papercat::initialize(HWND hwnd)
 	if (pausedFont->initialize(graphics, 100, true, false, "Courier New") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font 2"));
 	return;
+
+	// play sound
+	//std::thread t(&Papercat::playBGM, this);
+	//t.join();
 }
 
 //=============================================================================
@@ -258,6 +272,7 @@ void Papercat::collisions()
 		//scissor1.setY(50 * rand() % 15 + 1);
 		//scissor1.setX(0);
 		// damage(scissor1)
+		mciSendString("play sounds\\game_over.wav", NULL, 0, NULL);
 	}
 }
 
@@ -285,7 +300,7 @@ void Papercat::render()
 		}
 		if (startButton.getClickedState())
 		{
-			gameStart = 1;
+			gameStart = 4;
 		}
      	else if (highscoreButton.getClickedState())
 		{
@@ -363,6 +378,16 @@ void Papercat::render()
 		backgroundCredit.draw();		
 		graphics->spriteEnd();
 	}
+	else if (gameStart == 4)
+	{
+		graphics->spriteBegin();
+		backgroundTutorial.draw();
+		graphics->spriteEnd();
+		if (input->wasKeyPressed(VK_RETURN))
+		{
+			gameStart = 1;
+		}
+	}
 
 	// exit at any point
 	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
@@ -382,6 +407,9 @@ void Papercat::releaseAll()
 	buttonsTexture.onLostDevice();
 	backgroundStageTexture.onLostDevice();
 	mainTexture.onLostDevice();
+	creditTexture.onLostDevice();
+	highscoreTexture.onLostDevice();
+	tutorialTexture.onLostDevice();
 	//nebulaTexture.onLostDevice();
 	//shipTexture.onLostDevice();
 	//asteroidTexture.onLostDevice();
@@ -400,6 +428,9 @@ void Papercat::resetAll()
 	buttonsTexture.onResetDevice();
 	backgroundStageTexture.onResetDevice();
 	mainTexture.onResetDevice();
+	creditTexture.onResetDevice();
+	highscoreTexture.onResetDevice();
+	tutorialTexture.onResetDevice();
 	//nebulaTexture.onResetDevice();
 	//shipTexture.onResetDevice();
 	//asteroidTexture.onResetDevice();
@@ -473,4 +504,10 @@ void Papercat::setArray(float arrayOfposition[arrayOfNumX])
 	{
 		arrayOfPosition[i] = items[0].getWidth()*i + 0.2f / 2;
 	}
+}
+
+void Papercat::playBGM()
+
+{
+	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 }
