@@ -29,6 +29,13 @@ MainChar::MainChar() : Entity()
 bool MainChar::initialize(Game *gamePtr, int width, int height, int ncols,
 	TextureManager *textureM)
 {
+	for (int i = 0; i < BUFF_NUM; i++)
+	{
+		buff[i].initialize(gamePtr->getGraphics(), width, height, ncols, textureM);
+		buff[i].setFrames(44 + i, 44 + i);
+		buff[i].setCurrentFrame(44 + i);
+	}
+
 	return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
@@ -38,24 +45,11 @@ bool MainChar::initialize(Game *gamePtr, int width, int height, int ncols,
 void MainChar::draw()
 {
 	Image::draw();              // draw ship
-	int stateNum = -1;
-	//check if collision between buff is true and draw states	
-	for (int i = 0; i++; i < BUFF_NUM - 1)
+	for (int i = 0; i < BUFF_NUM; i++)
 	{
-		if (states[i])
-		{  // draw buffs using colorFilter 50% alpha
-			buff[i].draw(spriteData, graphicsNS::ALPHA50 & colorFilter);
-			//reset buff timing
-			stateNum = i;
-		}	
+		buff[i].draw();
 	}
-	for (int i = 0; i++; i < BUFF_NUM - 1)
-	{
-		if (i != stateNum)
-		{
-			states[i] = false;
-		}
-	}	
+	
 }
 
 //=============================================================================
@@ -66,7 +60,13 @@ void MainChar::draw()
 void MainChar::update(float frameTime)
 {
 	Entity::update(frameTime);
-	
+	for (int i = 0; i < BUFF_NUM; i++)
+	{
+		buff[i].setX(this->getX());
+		buff[i].setY(this->getY() - this->getHeight());
+		buff[i].update(frameTime);
+	}
+
 	//condition for removing buff state
 	//set state to false;
 	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
@@ -83,8 +83,7 @@ void MainChar::update(float frameTime)
 //=============================================================================
 void MainChar::damage(WEAPON weapon)
 {
-	//if damage with collision type 
-	states[0] = true;// to be change ltr
+
 }
 
 //=============================================================================
