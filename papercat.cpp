@@ -186,6 +186,7 @@ void Papercat::initialize(HWND hwnd)
 			 arrayNum = rand() % arrayOfNumX + 0;
 			 items[i].setX(arrayOfPosition[arrayNum]);
 			setYvalue(randLineNum, i);
+			temp2 = items[j];
 			}
 		}
 	}
