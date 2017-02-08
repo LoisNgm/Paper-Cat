@@ -337,8 +337,7 @@ void Papercat::initialize(HWND hwnd)
 	for (int i = 0; i < BUFF_NUM; i++)
 	{
 		randLineNum = rand() % 3 + 1;
-		arrayNum = rand() % arrayOfNumX + 0;
-
+		arrayNum =SetRandomNum(randLineNum);
 		items[i].setX(arrayOfPosition[arrayNum]);
 		temp1 = items[i];
 		setYvalue(randLineNum, i, 1);
@@ -350,7 +349,7 @@ void Papercat::initialize(HWND hwnd)
 			while (collisionWithItem(temp1, temp2))
 			{
 				randLineNum = rand() % 3 + 1;
-				arrayNum = rand() % arrayOfNumX + 0;
+				arrayNum = SetRandomNum(randLineNum);
 				items[i].setX(arrayOfPosition[arrayNum]);
 				setYvalue(randLineNum, i,1);
 				temp2 = items[j];
@@ -444,8 +443,12 @@ void Papercat::update()
 		scissor1.update(frameTime);
 	}
 	else if (gameStart == 4)
-	{
-		gravity();
+	{	
+		cat.update(frameTime);
+		if (cat.getVelocityX() == 0&&cat.getVelocityY() == 0)
+		{
+			gravity();
+		}
 	}
 	else if (gameStart == 5)
 	{
@@ -467,23 +470,28 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-	//collision with scissors
-	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
-		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
-		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
-		cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
-	{
-		if (cat.getState() != 1)
-		{//playerScore++;
-			//scissor1.setY(50 * rand() % 15 + 1);
-			//scissor1.setX(0);
-			// damage(scissor1)
-		}
-		else
+	bool triggered = false;
+	if (cat.getState() != 1)
+	{//collision with scissors
+		if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
+			(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
+			(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
+			cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
 		{
-			cat.setState(-1);			
+			{//playerScore++;
+				//scissor1.setY(50 * rand() % 15 + 1);
+				//scissor1.setX(0);
+				// damage(scissor1)
+
+
+			}
 		}
 	}
+	if (triggered)
+	{
+		cat.setState(-1);
+	}
+
 	//collision with coins
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
 	{
@@ -492,18 +500,15 @@ void Papercat::collisions()
 			(cat.getY() + cat.getHeight()) >= coins[i].getY()) &&
 			cat.getY() <= (coins[i].getY() + coins[i].getHeight()))
 		{
-			if (cat.getState() != 2)
+			if (cat.getState() == 1)
 			{
 				playerScore++;
-			}
-			else
-			{
-				playerScore+= 1*2;
 				numberOfCoinsCollected++;
-			}
+			}	
+			playerScore++;
 				coins[i].setVisible(false);
-				coins[i].setX(-1);
-				coins[i].setY(-1);		
+				coins[i].setX(-100.0f);
+				coins[i].setY(-100.0f);
 				if (numberOfCoinsCollected > 10)
 				{
 					cat.setState(-1);
@@ -520,9 +525,9 @@ void Papercat::collisions()
 			cat.getY() <= (items[i].getY() + items[i].getHeight()))
 		{
 			items[i].setVisible(false);
-			items[i].setX(-1);
-			items[i].setY(-1);
-			cat.setState(i + 1);
+			items[i].setX(-100.0f);
+			items[i].setY(-100.0f);
+			cat.setState(i);
 		}
 		//mciSendString("play sounds\\game_over.wav", NULL, 0, NULL); this is for game_over sound
 	}
@@ -542,10 +547,7 @@ void Papercat::render()
 		startButton.draw();						// add start button to menu scene
 		highscoreButton.draw();					// add highscore button to menu scene
 		creditsButton.draw();					// add credits button to menu scene
-		//nebula.draw();                          // add the orion nebula to the scene
-		//ship.draw();                           // add the spaceship to the scene
-		graphics->spriteEnd();
-		
+		graphics->spriteEnd();		
 		for (int i = 0; i < MAX_ASTEROIDS_NO; i++)//add the asteroids to the scene
 		{
 			//asteroidList[i].draw();
@@ -685,10 +687,12 @@ void Papercat::render()
 		}
 		if (playerName.size() > 7)
 		{		
-			input->getTextIn() = playerName;
+			input->clearAll();
+			input->getTextIn() = playerName.substr(5);
 			if (input->wasKeyPressed(VK_BACK))
 				playerName = input->getTextIn();					
 		}
+		
 		pausedFont->print(playerName, GAME_WIDTH / 4, GAME_HEIGHT/2);
 		if (input->isKeyDown(VK_RETURN) && playerName != "")
 		{
@@ -786,24 +790,25 @@ void Papercat::resetAll()
 
 void Papercat::gravity()
 {
-	cat.setVelocity(D3DXVECTOR2(10.0f, 10.0f));
+
 	//distance between the two point 
-	float squareDistanceX = pow((cat.getX()- blackhole.getX()),2);
-	float squareDistanceY =pow( (cat.getY()- blackhole.getY()),2);
-	float distanceBetweenCatAndBlackhole = sqrt(squareDistanceX + squareDistanceY);	
-	//get acceleration whereby a = velocity^2/distance
-	float acceleration = pow(cat.getVelocityX(),2)/distanceBetweenCatAndBlackhole;
-	//update x value of cat
-	float constantVelocity = 0.5f;
-	if (cat.getX()<blackhole.getCenterX())		
-		cat.setX(cat.getX()+constantVelocity + acceleration);
-	else if (cat.getX()>blackhole.getCenterX())
-		cat.setX(cat.getX()-constantVelocity - acceleration);
-	if (cat.getY() < blackhole.getCenterY())
-		cat.setY(cat.getY() + constantVelocity+ acceleration);
-	else if (cat.getY() > blackhole.getCenterY())
-		cat.setY(cat.getY() - constantVelocity- acceleration);
-		
+		float squareDistanceX = pow((cat.getX() - blackhole.getX()), 2);
+		float squareDistanceY = pow((cat.getY() - blackhole.getY()), 2);
+		float distanceBetweenCatAndBlackhole = sqrt(squareDistanceX + squareDistanceY);
+		//get acceleration whereby a = velocity^2/distance
+		float acceleration = pow(10.0f, 2) / distanceBetweenCatAndBlackhole;
+		//update x value of cat
+		float constantVelocity = 0.0f;
+		if (cat.getX()<blackhole.getCenterX())
+			cat.setX(cat.getX() + constantVelocity + acceleration);
+		else if (cat.getX()>blackhole.getCenterX())
+			cat.setX(cat.getX() - constantVelocity - acceleration);
+
+		//update y value of cat
+		if (cat.getY() < blackhole.getCenterY())
+			cat.setY(cat.getY() + constantVelocity + acceleration);
+		else if (cat.getY() > blackhole.getCenterY())
+			cat.setY(cat.getY() - constantVelocity - acceleration);		
 }
 
 
@@ -850,7 +855,19 @@ void Papercat::setArray(float arrayOfposition[arrayOfNumX])
 		arrayOfPosition[i] = items[0].getWidth()*i + 0.2f / 2;
 	}
 }
-
+int Papercat::SetRandomNum(int lineNum)
+{
+	int randNum;
+	if (lineNum == 1 || lineNum ==3)
+	{
+		randNum = rand() % arrayOfNumX / 2 + 0;
+	}
+	else if (lineNum == 2)
+	{
+		randNum = rand() % arrayOfNumX + arrayOfNumX / 2;
+	}
+	return randNum;
+}
 void Papercat::playBGM()
 
 {
