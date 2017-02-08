@@ -26,7 +26,7 @@ namespace itemsNS
 class Items : public Entity
 {
 private:
-	bool clickedstate = false;
+	int state = -1;
 public:
 	// constructor
 	Items();
@@ -36,6 +36,7 @@ public:
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
 		TextureManager *textureM);
 	void update(float frameTime);
+
 
 
 };

@@ -1,41 +1,48 @@
 
-#ifndef _HIGHSCORE_H                 // Prevent multiple definitions if this 
-#define _HIGHSCORE_H                 // file is included in more than one place
-#define WIN32_LEAN_AND_MEAN
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
+#ifndef _HIGHSCORE_H_
+#define _HIGHSCORE_H_
 
 #include "image.h"
 #include "input.h"
 #include "game.h"
 #include "textDX.h"
+#include <fstream>
+#include <string>
+#include <string.h>
+#include <iostream>
+#include <vector>
 
-namespace highscoreNS
-{
-	const int WIDTH = 48;                   // image width
-	const int HEIGHT = 48;                  // image height
-	const int X = 0;   // location on screen
-	const int Y = 0;
-	const float SPEED = 0;                  // 0 pixels per second
-	const float MASS = 100.0f;              // mass
-	const int   TEXTURE_COLS = 4;
-	const int   _START_FRAME = 0;
-	const int   CAT_END_FRAME = 3;
-	const float CAT_ANIMATION_DELAY = 1.0f;    // time between frames
-}
+using namespace std;
 
-class Highscore: public Image
+class Highscore
 {
 private:
-	Input   *input;         // pointer to the input system
-	TextDX *nameText;
+	bool displaying;
+	string *scoreName = new string[numOfTopScore];
+	TextureManager highscore2Texture;
+	Image backgroundHighscore2;
+	TextDX* dxFontForScore;
+	int highScore[numOfTopScore];
+	int currentNumberOfHighScorers=0;
 public:
-	// constructor
 	Highscore();
-
-	// inherited member functions
 	virtual void draw();
-	virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
-		TextureManager *textureM);
-	void update(float frameTime);
+	virtual void initialize(Graphics *graphics);
+	void getScores();
+	void setScores(int playerScore, string playerName);
+	void display();
+	void disableDisplay();
+	void setDisplayStatus(bool ifDisplaying);
+	bool getDisplayStatus();
+	void recordingScore(int score, string name);
+	bool checkingScore(int score);
 };
 #endif
+
+
 

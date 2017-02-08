@@ -10,7 +10,7 @@ namespace minionNS
 
 	const int SMALL_MINION_WIDTH = 48;                   // image width
 	const int SMALL_MINION_HEIGHT = 48;                  // image height
-
+	 
 	const int LARGE_MINION_WIDTH = 192;                   // image width
 	const int LARGE_MINION_HEIGHT = 192;                  // image height
 

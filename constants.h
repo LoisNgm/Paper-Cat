@@ -57,14 +57,16 @@ const char MENU_IMAGE[] = "pictures\\menu.png";
 //const char HIGHSCORE_BUTTON_IMAGE[] = "pictures\\highscore_button.png";
 //const char CREDITS_BUTTON_IMAGE[] = "pictures\\credits_button.png";
 const char BACKGROUND_STAGE_PAGE_IMAGE[] = "pictures\\background1.png";
+const char BACKGROUND_STAGE2_PAGE_IMAGE[] = "pictures\\background2.png";
 const char BACKGROUND_HIGHSCORE_PAGE_IMAGE[] = "pictures\\Highscore_Page.png";
+const char BACKGROUND_HIGHSCORE_PAGE2_IMAGE[] = "pictures\\HighscoreLog.png";
 const char BACKGROUND_CREDIT_PAGE_IMAGE[] = "pictures\\Credit_Page.png";
 const char BACKGROUND_TUTORIAL_PAGE_IMAGE[] = "pictures\\tutorial.png";
 const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
 const char ITEMS_IMAGE[] = "pictures\\runes.png";
-const UINT NUMBER_OF_COINS = 20;
+const UINT NUMBER_OF_COINS = 40;
 const UINT arrayOfNumX = 20;
-
+const UINT numOfTopScore = 10;
 
 
 // key mappings
