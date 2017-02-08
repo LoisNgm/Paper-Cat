@@ -3,6 +3,11 @@
 // Charles Kelly
 // Chapter 6 graphics.cpp v1.1
 
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
 #include "graphics.h"
 
 //=============================================================================

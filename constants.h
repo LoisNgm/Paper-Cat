@@ -3,6 +3,11 @@
 // Charles Kelly
 // Chapter 6 constants.h v1.0
 
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
 #ifndef _CONSTANTS_H            // Prevent multiple definitions if this 
 #define _CONSTANTS_H            // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
@@ -48,14 +53,8 @@ const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
 
 // graphic images
-//const char NEBULA_IMAGE[] =   "pictures\\orion.jpg";     // photo source NASA/courtesy of nasaimages.org 
-//const char SHIP_IMAGE[] = "pictures\\spaceship.png";  // ship texture
-//const char ASTEROID_IMAGE[] = "pictures\\asteroids.png"; //asteroid texture
 const char ELEMENTS_IMAGE[] = "pictures\\paper_cat_textures.png";	//cat, enemy, coin, scissors, state, slime pricness/king, black hole
 const char MENU_IMAGE[] = "pictures\\menu.png";
-//const char START_BUTTON_IMAGE[] = "pictures\\start_button.png";
-//const char HIGHSCORE_BUTTON_IMAGE[] = "pictures\\highscore_button.png";
-//const char CREDITS_BUTTON_IMAGE[] = "pictures\\credits_button.png";
 const char BACKGROUND_STAGE_PAGE_IMAGE[] = "pictures\\background1.png";
 const char BACKGROUND_STAGE2_PAGE_IMAGE[] = "pictures\\background2.png";
 const char BACKGROUND_HIGHSCORE_PAGE_IMAGE[] = "pictures\\Highscore_Page.png";

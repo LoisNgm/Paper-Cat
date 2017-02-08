@@ -74,7 +74,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="asteroid.h" />
     <ClInclude Include="blackhole.h" />
     <ClInclude Include="buttons.h" />
     <ClInclude Include="constants.h" />
@@ -91,12 +90,10 @@
     <ClInclude Include="Minion.h" />
     <ClInclude Include="papercat.h" />
     <ClInclude Include="scissors.h" />
-    <ClInclude Include="ship.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="asteroid.cpp" />
     <ClCompile Include="blackhole.cpp" />
     <ClCompile Include="buttons.cpp" />
     <ClCompile Include="Draw.cpp" />
@@ -111,7 +108,6 @@
     <ClCompile Include="Minion.cpp" />
     <ClCompile Include="papercat.cpp" />
     <ClCompile Include="scissors.cpp" />
-    <ClCompile Include="ship.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />

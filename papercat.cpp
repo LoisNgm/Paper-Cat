@@ -1,3 +1,9 @@
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
+
 #include "papercat.h"
 #include "time.h"
 
@@ -211,22 +217,6 @@ void Papercat::initialize(HWND hwnd)
 	// item textures
 	if (!itemTexture.initialize(graphics, ITEMS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing item texture"));
-
-	//   // nebula texture
-	//   if (!nebulaTexture.initialize(graphics,NEBULA_IMAGE))
-	//       throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
-
-	//   // main game textures
-	//   if (!shipTexture.initialize(graphics,SHIP_IMAGE))
-	//       throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ship texture"));
-	//// main game textures
-	//if (!asteroidTexture.initialize(graphics, ASTEROID_IMAGE))
-	//	throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing asteroid texture"));
-
-	//   // nebula image
-	//   if (!nebula.initialize(graphics,0,0,0,&nebulaTexture))
-	//       throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula"));
-
 	// menu image
 	if (!menu.initialize(graphics, 0, 0, 0, &menuTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menu"));
@@ -300,25 +290,11 @@ void Papercat::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing blackhole"));
 	blackhole.setFrames(blackholeNS::BLACKHOLE_START_FRAME, blackholeNS::BLACKHOLE_END_FRAME);
 	blackhole.setCurrentFrame(blackholeNS::BLACKHOLE_START_FRAME);
-	blackhole.setX(GAME_WIDTH / 2);
-	blackhole.setY(GAME_HEIGHT / 2);
+	blackhole.setX(GAME_WIDTH / 3);
+	blackhole.setY(GAME_HEIGHT / 3);
 	//minion
 	if (!minion->initialize(this, minionNS::SMALL_MINION_WIDTH, minionNS::SMALL_MINION_HEIGHT, minionNS::SMALL_MINION_TEXTURE_COLS))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion"));
-
-
-	//asteroids
-	for (int i = 0; i < MAX_ASTEROIDS_NO; i++)
-	{
-		//if (!asteroidList[i].initialize(this, asteroidNS::WIDTH, asteroidNS::HEIGHT, asteroidNS::TEXTURE_COLS, &asteroidTexture))
-		//throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing asteroid"));
-		//asteroidList[i].setFrames(asteroidNS::ASTEROID_START_FRAME, asteroidNS::ASTEROID_END_FRAME);
-		//asteroidList[i].setCurrentFrame(asteroidNS::ASTEROID_START_FRAME);
-		//asteroidList[i].setX(GAME_WIDTH/4);
-		//asteroidList[i].setY(GAME_HEIGHT/4 * (i+1));
-
-	}
-
 	// items
 	for (int i = 0; i < BUFF_NUM; i++)
 	{
@@ -470,7 +446,7 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-<<<<<<< HEAD
+	/*
 	bool triggered = false;
 	if (cat.getState() != 1)
 	{//collision with scissors
@@ -478,7 +454,7 @@ void Papercat::collisions()
 			(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
 			(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
 			cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
-=======
+			
 	//collision with scissors
 	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
 		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
@@ -487,8 +463,8 @@ void Papercat::collisions()
 	{
 		if (cat.getState() != 1)
 		{//playerScore++;
-			/*scissor1.setY(50 * rand() % 15 + 1);
-			scissor1.setX(0);*/
+			scissor1.setY(50 * rand() % 15 + 1);
+			scissor1.setX(0);
 			scissor1.setVisible(false);
 			cat.setHealth(cat.getHealth() - 1);
 		
@@ -498,7 +474,6 @@ void Papercat::collisions()
 		}
 		}
 		else
->>>>>>> d3eaa5b5fdac9dfc0f8c848807c369b34f3cf66f
 		{
 			{//playerScore++;
 				//scissor1.setY(50 * rand() % 15 + 1);
@@ -513,7 +488,7 @@ void Papercat::collisions()
 	{
 		cat.setState(-1);
 	}
-
+	*/
 	//collision with coins
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
 	{
@@ -569,7 +544,7 @@ void Papercat::render()
 		startButton.draw();						// add start button to menu scene
 		highscoreButton.draw();					// add highscore button to menu scene
 		creditsButton.draw();					// add credits button to menu scene
-		graphics->spriteEnd();		
+		graphics->spriteEnd();
 		for (int i = 0; i < MAX_ASTEROIDS_NO; i++)//add the asteroids to the scene
 		{
 			//asteroidList[i].draw();
@@ -579,27 +554,30 @@ void Papercat::render()
 			for (int i = 0; i < NUMBER_OF_COINS; i++)
 			{
 				coins[i].setVisible(true);
+				//while (collision())
+				//{
 				coins[i].setX(rand() % GAME_WIDTH + 0);
 				coins[i].setX(rand() % GAME_HEIGHT + 0);
+				//}
 				coins[i].draw();
 				coins[i].update(frameTime);
 			}
-			
+
 			//attack to be spawned here
 			gameStart = 4;
 		}
 		if (input->wasKeyPressed(VK_F10))
 		{
-			if(highscoreLogging->checkingScore(playerScore));
+			if (highscoreLogging->checkingScore(playerScore));
 			gameStart = 5;
 		}
 		if (startButton.getClickedState())
 		{
 			gameStart = 6;
 		}
-     	else if (highscoreButton.getClickedState())
+		else if (highscoreButton.getClickedState())
 		{
-			gameStart = 2;			
+			gameStart = 2;
 		}
 		else if (creditsButton.getClickedState())
 		{
@@ -883,11 +861,11 @@ int Papercat::SetRandomNum(int lineNum)
 	int randNum;
 	if (lineNum == 1 || lineNum ==3)
 	{
-		randNum = rand() % arrayOfNumX / 2 + 0;
+		randNum = rand() % (arrayOfNumX / 2) + 0;
 	}
 	else if (lineNum == 2)
 	{
-		randNum = rand() % arrayOfNumX + arrayOfNumX / 2;
+		randNum = rand() % arrayOfNumX + (arrayOfNumX / 2);
 	}
 	return randNum;
 }

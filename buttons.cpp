@@ -1,7 +1,7 @@
-// Gameplay Programming Common Test Oct 2016
-// Student Name: Ngm Hui Min, Lois
-// Student Number: S10158786C
-// Class: P02
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
 
 // GPP Common Test
 #include "buttons.h"

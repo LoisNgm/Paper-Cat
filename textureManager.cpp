@@ -4,6 +4,11 @@
 // textureManager.cpp v1.0
 // A TextureManager object loads and maintains one texture file. 
 // Create a TextureManager object for each texture file in the game.
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
 
 #include "textureManager.h"
 
