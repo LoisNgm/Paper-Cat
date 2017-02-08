@@ -18,6 +18,154 @@ Papercat::~Papercat()
 {
 	releaseAll();           // call onLostDevice() for every graphics item
 }
+void Papercat::characterPlatformCheckingForStage1()
+{
+
+	if (cat.getX() <= (100) && cat.getY() + cat.getHeight() >= (10 + 50) && cat.getY() <= (10 + 50))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= 60)
+		{
+			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(60 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+
+	if (cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight()) && cat.getY() <= (cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight()) && cat.getX()<500)
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight())
+		{
+			cat.setY(cat.getY() + cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight() - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight() - cat.getHeight());
+		}
+		cat.setVelocityY(0);
+	}
+	if (cat.getX() >= GAME_WIDTH - 500 - cat.getWidth() && cat.getY() + cat.getHeight() >= ((cat.getX()*-0.2) + (454)) && cat.getY() <= ((cat.getX()*-0.2) + (454)))
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+		if ((cat.getY() + cat.getHeight() / 2) >= ((cat.getX()*-0.2) + (454)))
+		{
+			cat.setY(cat.getY() + ((cat.getX()*-0.2) + (454)) - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(((cat.getX()*-0.2) + (454)) - cat.getHeight());
+		}
+		cat.setVelocityY(0);
+	}
+	if (cat.getX()<500 && cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) && cat.getY() <= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())))
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+		if ((cat.getY() + cat.getHeight() / 2) >= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())))
+		{
+			cat.setY(cat.getY() + (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) - cat.getHeight());
+		}
+		cat.setVelocityY(0);
+	}
+}
+void Papercat::characterPlatformCheckingForBonusStage()
+{
+	if (cat.getX() <= (100) && cat.getY() + cat.getHeight() >= (10 + 50) && cat.getY() <= (10 + 50))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= 60)
+		{
+			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(60 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+
+	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60) / 3) && cat.getY() <= ((GAME_HEIGHT - 60) / 3))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60) / 3)
+		{
+			cat.setY(cat.getY() + (GAME_HEIGHT - 60) / 3 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((GAME_HEIGHT - 60) / 3 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60) / 3 * 2) && cat.getY() <= ((GAME_HEIGHT - 60) / 3 * 2))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60) / 3 * 2)
+		{
+			cat.setY(cat.getY() + (GAME_HEIGHT - 60) / 3 * 2 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((GAME_HEIGHT - 60) / 3 * 2 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60)) && cat.getY() <= ((GAME_HEIGHT - 60)))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60))
+		{
+			cat.setY(cat.getY() + (GAME_HEIGHT - 60) - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((GAME_HEIGHT - 60) - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+}
 
 //=============================================================================
 // Initializes the game
@@ -244,10 +392,19 @@ void Papercat::update()
 	if (gameStart == 1)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
-
+		characterPlatformCheckingForStage1();
 		cat.update(frameTime);
-		
+		if (minion != nullptr)
+		{
+			minion->update(frameTime);
+		}
 		scissor1.update(frameTime);
+	}
+	else if (gameStart == 5)
+	{
+		cat.setVelocityY(cat.getVelocityY() + 2.5f);
+		characterPlatformCheckingForBonusStage();
+		cat.update(frameTime);
 	}
 }
 
@@ -387,6 +544,22 @@ void Papercat::render()
 		{
 			gameStart = 1;
 		}
+	}
+	else if (gameStart == 5)
+	{
+		graphics->spriteBegin();
+		backgroundStage.draw();
+		cat.draw();
+		graphics->spriteEnd();
+		drawing.GetDevice(graphics->get3Ddevice());
+		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - 60) / 3, 500, (GAME_HEIGHT - 60) / 3, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - 60) / 3 * 2, 500, (GAME_HEIGHT - 60) / 3 * 2, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - 60), 500, (GAME_HEIGHT - 60), 5, true, graphicsNS::WHITE);
+
 	}
 
 	// exit at any point

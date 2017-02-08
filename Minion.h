@@ -14,13 +14,16 @@ namespace minionNS
 	const int LARGE_MINION_WIDTH = 192;                   // image width
 	const int LARGE_MINION_HEIGHT = 192;                  // image height
 
-	const int X = GAME_WIDTH - SMALL_MINION_WIDTH;
-	const int Y = GAME_HEIGHT - SMALL_MINION_HEIGHT - 160;
+	const int X = GAME_WIDTH - LARGE_MINION_WIDTH;
+	const int Y = GAME_HEIGHT - LARGE_MINION_HEIGHT;
+	const int	LARGE_MINION_TEXTURE_COLS = 2;
+	const int LARGE_MINION_FRAME = 0;
 
 	const int   SMALL_MINION_TEXTURE_COLS = 8;
-	
+
 	const int   SMALL_MINION_START_FRAME = 36;
 	const int	SMALL_MINION_END_FRAME = 38;
+
 
 }
 
@@ -42,6 +45,6 @@ public:
 	virtual void draw();
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols);
 	void update(float frameTime);
-
+	void collisionDetectionWithCharacter(Entity cat);
 };
 #endif
