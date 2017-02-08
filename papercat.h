@@ -77,6 +77,9 @@ private:
 	int playerScore;		// player's score in the game
 	float arrayOfPosition[arrayOfNumX];
 	int numberOfCoinsCollected = 0;
+	TextureManager doorTexture;
+	Image doorFinal;
+	Image doorBonus;
 
 public:
 	// Constructor

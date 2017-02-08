@@ -64,6 +64,7 @@ void Scissors::update(float frameTime)
 	{
 		setX(0);
 		setY(50 * (rand() % 15 + 1));
+		setVisible(true);
 	}
 }
 
