@@ -96,28 +96,32 @@ void Minion::update(float frameTime)
 	minion3.setY(minion3.getY() + frameTime * velocity.y);
 
 }
-void Minion::collisionDetectionWithCharacter(Entity cat)
+bool Minion::collisionDetectionWithCharacter(Entity cat)
 {
 	if ((cat.getX() + cat.getWidth()) >= (minion.getX()) &&
 		(cat.getX() <= (minion.getX() + minion.getWidth()) &&
 		(cat.getY() + cat.getHeight()) >= minion.getY()) &&
-		cat.getY() <= (minion.getY() + minion.getHeight()))
+		cat.getY() <= (minion.getY() + minion.getHeight()) && minion.getVisible())
 	{
 		minion.setVisible(false);
+		return true;
 	}
 	if ((cat.getX() + cat.getWidth()) >= (minion2.getX()) &&
 		(cat.getX() <= (minion2.getX() + minion2.getWidth()) &&
 		(cat.getY() + cat.getHeight()) >= minion2.getY()) &&
-		cat.getY() <= (minion2.getY() + minion2.getHeight()))
+		cat.getY() <= (minion2.getY() + minion2.getHeight()) && minion2.getVisible())
 	{
 		minion2.setVisible(false);
+		return true;
 	}
 	if ((cat.getX() + cat.getWidth()) >= (minion3.getX()) &&
 		(cat.getX() <= (minion3.getX() + minion3.getWidth()) &&
 		(cat.getY() + cat.getHeight()) >= minion3.getY()) &&
-		cat.getY() <= (minion3.getY() + minion3.getHeight()))
+		cat.getY() <= (minion3.getY() + minion3.getHeight()) && minion3.getVisible())
 	{
 		minion3.setVisible(false);
+		return true;
 	}
+	return false;
 }
 // End of GPP Common Test

@@ -427,6 +427,15 @@ void Papercat::update()
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
 		characterPlatformCheckingForStage1();
+		bool collision = minion->collisionDetectionWithCharacter(cat);
+		if (collision)
+		{
+			cat.setHealth(cat.getHealth() - 1);
+		}
+		if (cat.getHealth() <= 0)
+		{
+			gameStart = 7;
+		}
 		cat.update(frameTime);
 		if (minion != nullptr)
 		{
@@ -444,6 +453,7 @@ void Papercat::update()
 		characterPlatformCheckingForBonusStage();
 		cat.update(frameTime);
 	}
+	
 }
 
 //=============================================================================
@@ -550,6 +560,7 @@ void Papercat::render()
 				coins[i].draw();
 				coins[i].update(frameTime);
 			}
+			
 			//attack to be spawned here
 			gameStart = 4;
 		}
@@ -604,6 +615,9 @@ void Papercat::render()
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
 		mainFont->print(buffer, GAME_WIDTH - 150, 20);
+		mainFont->setFontColor(graphicsNS::WHITE);
+		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
+		mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
 
 		if (input->wasKeyPressed(VK_ESCAPE)){
 			paused = true;
@@ -710,7 +724,16 @@ void Papercat::render()
 		drawing.Line(0, (GAME_HEIGHT - 60), 500, (GAME_HEIGHT - 60), 5, true, graphicsNS::WHITE);
 
 	}
+	else if (gameStart == 7)
+	{
+		graphics->spriteBegin();
+		backgroundStage.draw();
+		mainFont->setFontColor(graphicsNS::WHITE);
+		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
+		mainFont->print(buffer, GAME_WIDTH - 150, 20);
+		graphics->spriteEnd();
 
+	}
 	// exit at any point
 	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
 	{

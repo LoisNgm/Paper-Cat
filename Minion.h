@@ -37,6 +37,7 @@ private:
 	Image minion;
 	Image minion2;
 	Image minion3;
+	
 public:
 	// constructor
 	Minion();
@@ -45,6 +46,6 @@ public:
 	virtual void draw();
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols);
 	void update(float frameTime);
-	void collisionDetectionWithCharacter(Entity cat);
+	bool collisionDetectionWithCharacter(Entity cat);
 };
 #endif

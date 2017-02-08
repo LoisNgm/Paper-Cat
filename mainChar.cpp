@@ -73,7 +73,6 @@ void MainChar::update(float frameTime)
    characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
-	checkCharacterOnGround();
 	checkDirection();
 	characterOutOfScreen();
 	
@@ -107,8 +106,7 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 	{
 		input->clearKeyPress(VK_SPACE);
 		
-			velocity.y = -150;
-			isJumping = true;	
+			velocity.y = -150;	
 	}
 
 	if (velocity.x > 0)
@@ -121,96 +119,29 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 	}
 }
 
-bool MainChar::checkCharacterOnGround()
-{
-	if (getX() < (100) && getY() > (10 + 50 - getHeight()) && getY() < (10+50))
-	{
-		isJumping = false;
-		velocity.y = 0;
-	}
-	else
-	{
-		if (getY() > (10 + 50 + 10 + 100 + getHeight()) || getX()>500)
-		{
-			isJumping = true;
-			if (getX() < GAME_WIDTH - 500 - getWidth() || getY() > (10 + 50 + 10 + 100 + 100 + 100 + getWidth()))
-			{
-				isJumping = true;
-				if (getX()>500 || getY() > (10 + 50 + 10 + 100 + 100 + 100 + 100 + 100 + 100))
-				{
-					isJumping = true;
-					if (getY() > (GAME_HEIGHT - getHeight()))
-					{
-						isJumping = false;
-						velocity.y = 0;
-					}
-				}
-				else
-				{
-					if (getY() > (getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100)))
-					{
-						isJumping = false;
-						velocity.y = 0;
-						setY(getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100));
-					}
-				}
-
-			}
-			else
-			{
-				if (getY() > ((getX()*-0.2) + (406)))
-				{
-					isJumping = false;
-					velocity.y = 0;
-					setY((getX()*-0.2) + (406));
-				}
-			}
-
-
-
-		}
-		else
-		{
-			if (getY() > (getX()*0.2 + (10 + 50 + 10)))
-			{
-				isJumping = false;
-				velocity.y = 0;
-				setY(getX()*0.2 + (10 + 50 + 10));
-			}
-		}
-
-
-	}
-	return isJumping;
-}
 
 void MainChar::characterOutOfScreen()
 {
-	if (getX() <= 0 || getX() >= GAME_WIDTH - getWidth())
+	if (getX() <= 0)//increase the responsiveness of the game 
 	{
-		if (velocity.x >= 0)//increase the responsiveness of the game 
-		{
-			setX(getX() - 1);
-		}
-		else
-		{
-			setX(getX() + 1);
-		}
 		velocity.x = 0;
+		setX(getX() + 1);
 	}
-	if (getY() < 0 || getY() > GAME_HEIGHT - getHeight())
+	if (getX() >= GAME_WIDTH - getWidth())
 	{
-		if (velocity.y > 0)//increase the responsiveness of the game 
-		{
-			setY(getY() + 1);
-		}
-		else
-		{
-			setY(getY() - 1);
-		}
-		velocity.y = 0;
+		velocity.x = 0;
+		setX(getX() - 1);
 	}
-
+	if (getY() <= 0)//increase the responsiveness of the game 
+	{
+		velocity.y = 0;
+		setY(getY() + 1);
+	}
+	if (getY() >= GAME_HEIGHT - getHeight())
+	{
+		velocity.y = 0;
+		setY(getY() - 1);
+	}
 }
 void MainChar::checkDirection()
 {

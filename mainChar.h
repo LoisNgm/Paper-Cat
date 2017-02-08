@@ -26,7 +26,7 @@ class MainChar : public Entity
 private:
 	Image buff[BUFF_NUM];
 	int state=-1;
-	bool isJumping;
+	int health = 3;
 public:
 	// constructor
 	MainChar();
@@ -39,7 +39,6 @@ public:
 	void damage(WEAPON);
 	void characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
 	boolean getActive();
-	bool checkCharacterOnGround();
 	void checkDirection();
 	void characterOutOfScreen();
 	float getVelocityX() { return velocity.x; };
@@ -48,6 +47,8 @@ public:
 	void setVelocityY(float vely) { velocity.y = vely; };
 	void setState(int a){ state = a; };
 	int getState(){ return state; };
+	void setHealth(int a){ health = a; };
+	int getHealth(){ return health; };
 };
 #endif
 
