@@ -405,6 +405,21 @@ void Papercat::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 	if (pausedFont->initialize(graphics, 100, true, false, "Courier New") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font 2"));
+	// menu texture
+	if (!doorTexture.initialize(graphics, ELEMENTS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door texture"));
+	// menu image
+	if (!doorFinal.initialize(graphics, 48, 48, 8, &doorTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door"));
+	doorFinal.setCurrentFrame(39);
+	doorFinal.setX(0);
+	doorFinal.setY(GAME_HEIGHT - 48);
+	// menu image
+	if (!doorBonus.initialize(graphics, 48, 48, 8, &doorTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door"));
+	doorBonus.setCurrentFrame(39);
+	doorBonus.setX(200);
+	doorBonus.setY(366);
 	return;
 
 	// play sound
@@ -470,15 +485,7 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-<<<<<<< HEAD
-	bool triggered = false;
-	if (cat.getState() != 1)
-	{//collision with scissors
-		if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
-			(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
-			(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
-			cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
-=======
+
 	//collision with scissors
 	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
 		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
@@ -498,22 +505,9 @@ void Papercat::collisions()
 		}
 		}
 		else
->>>>>>> d3eaa5b5fdac9dfc0f8c848807c369b34f3cf66f
 		{
-			{//playerScore++;
-				//scissor1.setY(50 * rand() % 15 + 1);
-				//scissor1.setX(0);
-				// damage(scissor1)
-
-
-			}
 		}
 	}
-	if (triggered)
-	{
-		cat.setState(-1);
-	}
-
 	//collision with coins
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
 	{
@@ -612,6 +606,8 @@ void Papercat::render()
 		backgroundStage.draw();
 		scissor1.draw();	
 		cat.draw();
+		doorFinal.draw();
+		doorBonus.draw();
 		for (int i = 0; i < BUFF_NUM; i++)
 		{
 			items[i].draw();
