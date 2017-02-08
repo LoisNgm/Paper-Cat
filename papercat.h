@@ -96,6 +96,8 @@ public:
 	void setYvalue(int randLineNum, int arrayNumOfX);
 	bool collisionWithItem(Items item1, Items item2);
 	void playBGM();
+	void characterPlatformCheckingForStage1();
+	void characterPlatformCheckingForBonusStage();
 };
 
 #endif
