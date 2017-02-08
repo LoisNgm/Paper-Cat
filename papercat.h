@@ -84,6 +84,10 @@ private:
 	float arrayOfPosition[arrayOfNumX];
 	int numberOfCoinsCollected = 0;
 
+	bool enableKey = true;
+	float gameTime = 0;
+	float unstunnedTimer = 0;
+	
 public:
 	// Constructor
 	Papercat();

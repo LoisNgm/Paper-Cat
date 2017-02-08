@@ -417,6 +417,7 @@ void Papercat::initialize(HWND hwnd)
 //=============================================================================
 void Papercat::update()
 {
+	gameTime += frameTime;
 	startButton.update(frameTime);
 	highscoreButton.update(frameTime);
 	creditsButton.update(frameTime);
@@ -425,6 +426,7 @@ void Papercat::update()
 	if (gameStart == 1)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
+		
 		characterPlatformCheckingForStage1();
 		bool collision = minion->collisionDetectionWithCharacter(cat);
 		if (collision)
@@ -435,7 +437,8 @@ void Papercat::update()
 		{
 			gameStart = 7;
 		}
-		cat.update(frameTime);
+		if (enableKey)
+			cat.update(frameTime);
 		if (minion != nullptr)
 		{
 			minion->update(frameTime);
@@ -470,15 +473,7 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-<<<<<<< HEAD
 	bool triggered = false;
-	if (cat.getState() != 1)
-	{//collision with scissors
-		if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
-			(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
-			(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
-			cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
-=======
 	//collision with scissors
 	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
 		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
@@ -491,22 +486,10 @@ void Papercat::collisions()
 			scissor1.setX(0);*/
 			scissor1.setVisible(false);
 			cat.setHealth(cat.getHealth() - 1);
-		
+		}
 		if (cat.getHealth() <= 0)
 		{
 			gameStart = 7;
-		}
-		}
-		else
->>>>>>> d3eaa5b5fdac9dfc0f8c848807c369b34f3cf66f
-		{
-			{//playerScore++;
-				//scissor1.setY(50 * rand() % 15 + 1);
-				//scissor1.setX(0);
-				// damage(scissor1)
-
-
-			}
 		}
 	}
 	if (triggered)
@@ -553,6 +536,15 @@ void Papercat::collisions()
 		}
 		//mciSendString("play sounds\\game_over.wav", NULL, 0, NULL); this is for game_over sound
 	}
+	if (cat.getState() == 1)
+	{
+		enableKey = false;
+		unstunnedTimer = gameTime;
+		if ((gameTime - unstunnedTimer) >= STUNNEDTIME){
+			enableKey = true;
+			unstunnedTimer = gameTime;
+		}
+	}
 }
 
 //=============================================================================
@@ -569,11 +561,7 @@ void Papercat::render()
 		startButton.draw();						// add start button to menu scene
 		highscoreButton.draw();					// add highscore button to menu scene
 		creditsButton.draw();					// add credits button to menu scene
-		graphics->spriteEnd();		
-		for (int i = 0; i < MAX_ASTEROIDS_NO; i++)//add the asteroids to the scene
-		{
-			//asteroidList[i].draw();
-		}
+		graphics->spriteEnd();
 		if (input->wasKeyPressed(VK_UP))
 		{
 			for (int i = 0; i < NUMBER_OF_COINS; i++)
@@ -584,22 +572,22 @@ void Papercat::render()
 				coins[i].draw();
 				coins[i].update(frameTime);
 			}
-			
+
 			//attack to be spawned here
 			gameStart = 4;
 		}
 		if (input->wasKeyPressed(VK_F10))
 		{
-			if(highscoreLogging->checkingScore(playerScore));
+			if (highscoreLogging->checkingScore(playerScore));
 			gameStart = 5;
 		}
 		if (startButton.getClickedState())
 		{
 			gameStart = 6;
 		}
-     	else if (highscoreButton.getClickedState())
+		else if (highscoreButton.getClickedState())
 		{
-			gameStart = 2;			
+			gameStart = 2;
 		}
 		else if (creditsButton.getClickedState())
 		{
@@ -610,14 +598,14 @@ void Papercat::render()
 	{
 		graphics->spriteBegin();
 		backgroundStage.draw();
-		scissor1.draw();	
+		scissor1.draw();
 		cat.draw();
 		for (int i = 0; i < BUFF_NUM; i++)
 		{
 			items[i].draw();
 			items[i].update(frameTime);
 		}
-		
+
 		for (int i = 0; i < NUMBER_OF_COINS; i++)
 		{
 			coins[i].draw();
@@ -649,12 +637,12 @@ void Papercat::render()
 		if (paused)
 		{
 			pausedFont->setFontColor(graphicsNS::WHITE);
-			pausedFont->print("PAUSED\n", GAME_WIDTH/4, 200);
+			pausedFont->print("PAUSED\n", GAME_WIDTH / 4, 200);
 			pausedFont->print("Hit \"Enter\" \nto resume", GAME_WIDTH / 10, 300);
 			if (input->wasKeyPressed(VK_RETURN))
 				paused = false;
 		}
-		graphics->spriteEnd();		
+		graphics->spriteEnd();
 		drawing.GetDevice(graphics->get3Ddevice());
 		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
 
@@ -892,7 +880,6 @@ int Papercat::SetRandomNum(int lineNum)
 	return randNum;
 }
 void Papercat::playBGM()
-
 {
 	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 }
