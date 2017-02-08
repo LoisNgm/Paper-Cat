@@ -17,9 +17,12 @@
 #include "Minion.h"
 #include "items.h"
 #include "textDX.h"
+#include <cstring>
+#include <iostream>
+#include <fstream>
+#include "highscore.h"
 
 using namespace std;
-
 
 //=============================================================================
 // This class is the core of the game
@@ -46,6 +49,7 @@ private:
 	TextureManager		highscoreTexture;	// background for highscore
 	TextureManager		creditTexture;	// background for credit
 	TextureManager		buttonsTexture;
+	TextureManager      backgroundStage2Texture;
 	TextureManager		tutorialTexture;
 	Buttons startButton;
 	Buttons highscoreButton;
@@ -53,6 +57,7 @@ private:
 	Scissors scissor1;
 	MainChar cat;
 	Blackhole blackhole;
+	string playerName = "";
 	Items items[BUFF_NUM];
 	Items coins[NUMBER_OF_COINS];
 	//Image	scissorsArray[SCISSORS_AMT];
@@ -64,7 +69,9 @@ private:
 	Image	menu;			// menu backdrop image
 	//Image	buttons;		// buttons on menu image
 	Image	backgroundStage;	// stage backdrop image
+	Image	backgroundStage2;	// stage 2 backdrop image
 	Image	backgroundHighscore;	// highscore backdrop image
+	Highscore* highscoreLogging;
 	Image	backgroundCredit;	// Credit backdrop image
 	Image	backgroundTutorial;
 	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
@@ -75,6 +82,7 @@ private:
 	TextDX *pausedFont;
 	int playerScore;		// player's score in the game
 	float arrayOfPosition[arrayOfNumX];
+	int numberOfCoinsCollected = 0;
 
 public:
 	// Constructor
@@ -93,7 +101,7 @@ public:
 	void resetAll();
 	void gravity();
 	void setArray(float arrayOfPosition[arrayOfNumX]);
-	void setYvalue(int randLineNum, int arrayNumOfX);
+	void setYvalue(int lineNum, int position, int type);
 	bool collisionWithItem(Items item1, Items item2);
 	void playBGM();
 	void characterPlatformCheckingForStage1();
