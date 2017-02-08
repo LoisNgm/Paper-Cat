@@ -1,6 +1,7 @@
 #include "papercat.h"
 #include "time.h"
 
+
 //=============================================================================
 // Constructor
 //=============================================================================
@@ -17,6 +18,154 @@ Papercat::Papercat()
 Papercat::~Papercat()
 {
 	releaseAll();           // call onLostDevice() for every graphics item
+}
+void Papercat::characterPlatformCheckingForStage1()
+{
+
+	if (cat.getX() <= (100) && cat.getY() + cat.getHeight() >= (10 + 50) && cat.getY() <= (10 + 50))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= 60)
+		{
+			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(60 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+
+	if (cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight()) && cat.getY() <= (cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight()) && cat.getX()<500)
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight())
+		{
+			cat.setY(cat.getY() + cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight() - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight() - cat.getHeight());
+		}
+		cat.setVelocityY(0);
+	}
+	if (cat.getX() >= GAME_WIDTH - 500 - cat.getWidth() && cat.getY() + cat.getHeight() >= ((cat.getX()*-0.2) + (454)) && cat.getY() <= ((cat.getX()*-0.2) + (454)))
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+		if ((cat.getY() + cat.getHeight() / 2) >= ((cat.getX()*-0.2) + (454)))
+		{
+			cat.setY(cat.getY() + ((cat.getX()*-0.2) + (454)) - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(((cat.getX()*-0.2) + (454)) - cat.getHeight());
+		}
+		cat.setVelocityY(0);
+	}
+	if (cat.getX()<500 && cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) && cat.getY() <= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())))
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+		if ((cat.getY() + cat.getHeight() / 2) >= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())))
+		{
+			cat.setY(cat.getY() + (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) - cat.getHeight());
+		}
+		cat.setVelocityY(0);
+	}
+}
+void Papercat::characterPlatformCheckingForBonusStage()
+{
+	if (cat.getX() <= (100) && cat.getY() + cat.getHeight() >= (10 + 50) && cat.getY() <= (10 + 50))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= 60)
+		{
+			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY(60 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+
+	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60) / 3) && cat.getY() <= ((GAME_HEIGHT - 60) / 3))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60) / 3)
+		{
+			cat.setY(cat.getY() + (GAME_HEIGHT - 60) / 3 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((GAME_HEIGHT - 60) / 3 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60) / 3 * 2) && cat.getY() <= ((GAME_HEIGHT - 60) / 3 * 2))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60) / 3 * 2)
+		{
+			cat.setY(cat.getY() + (GAME_HEIGHT - 60) / 3 * 2 - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((GAME_HEIGHT - 60) / 3 * 2 - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
+	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60)) && cat.getY() <= ((GAME_HEIGHT - 60)))//starting platform
+	{
+		if (cat.getVelocityY()<0)
+		{
+			cat.setY(cat.getY() + 1);
+		}
+
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60))
+		{
+			cat.setY(cat.getY() + (GAME_HEIGHT - 60) - cat.getY() + (cat.getHeight() / 2));
+		}
+		else
+		{
+			cat.setY((GAME_HEIGHT - 60) - cat.getHeight());
+		}
+
+		cat.setVelocityY(0);
+	}
 }
 
 //=============================================================================
@@ -46,6 +195,11 @@ void Papercat::initialize(HWND hwnd)
 	// Credits texture
 	if (!creditTexture.initialize(graphics, BACKGROUND_CREDIT_PAGE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround credit texture"));
+
+	//tutorial texture
+	if (!tutorialTexture.initialize(graphics, BACKGROUND_TUTORIAL_PAGE_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround tutorial texture"));
+
 	//buttons
 	if (!buttonsTexture.initialize(graphics, BUTTONS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing button texture"));
@@ -92,6 +246,10 @@ void Papercat::initialize(HWND hwnd)
 	// background credit image
 	if (!backgroundCredit.initialize(graphics, 0, 0, 0, &creditTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing background stage"));
+	// background tutorial image
+	if (!backgroundTutorial.initialize(graphics, 0, 0, 0, &tutorialTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing tutorial page"));
+
 
 	// buttons
 	// start
@@ -249,6 +407,10 @@ void Papercat::initialize(HWND hwnd)
 	if (pausedFont->initialize(graphics, 100, true, false, "Courier New") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font 2"));
 	return;
+
+	// play sound
+	//std::thread t(&Papercat::playBGM, this);
+	//t.join();
 }
 
 //=============================================================================
@@ -264,14 +426,22 @@ void Papercat::update()
 	if (gameStart == 1)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
-
+		characterPlatformCheckingForStage1();
 		cat.update(frameTime);
-		
+		if (minion != nullptr)
+		{
+			minion->update(frameTime);
+		}
 		scissor1.update(frameTime);
 	}
-	if (gameStart == 4)
+	else if (gameStart == 4)
 	{
 		gravity();
+	}
+	else if (gameStart == 5)
+	{
+		cat.setVelocityY(cat.getVelocityY() + 2.5f);
+		characterPlatformCheckingForBonusStage();
 		cat.update(frameTime);
 	}
 }
@@ -342,8 +512,9 @@ void Papercat::collisions()
 			items[i].setVisible(false);
 			items[i].setX(-1);
 			items[i].setY(-1);
-			cat.setState(i+1);
+			cat.setState(i + 1);
 		}
+		//mciSendString("play sounds\\game_over.wav", NULL, 0, NULL); this is for game_over sound
 	}
 }
 
@@ -389,7 +560,7 @@ void Papercat::render()
 		}
 		if (startButton.getClickedState())
 		{
-			gameStart = 1;
+			gameStart = 6;
 		}
      	else if (highscoreButton.getClickedState())
 		{
@@ -513,6 +684,32 @@ void Papercat::render()
 
 		graphics->spriteEnd();
 	}
+	else if (gameStart == 6)
+	{
+		graphics->spriteBegin();
+		backgroundTutorial.draw();
+		graphics->spriteEnd();
+		if (input->wasKeyPressed(VK_RETURN))
+		{
+			gameStart = 1;
+		}
+	}
+	else if (gameStart == 5)
+	{
+		graphics->spriteBegin();
+		backgroundStage.draw();
+		cat.draw();
+		graphics->spriteEnd();
+		drawing.GetDevice(graphics->get3Ddevice());
+		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - 60) / 3, 500, (GAME_HEIGHT - 60) / 3, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - 60) / 3 * 2, 500, (GAME_HEIGHT - 60) / 3 * 2, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - 60), 500, (GAME_HEIGHT - 60), 5, true, graphicsNS::WHITE);
+
+	}
 
 	// exit at any point
 	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
@@ -532,6 +729,9 @@ void Papercat::releaseAll()
 	buttonsTexture.onLostDevice();
 	backgroundStageTexture.onLostDevice();
 	mainTexture.onLostDevice();
+	creditTexture.onLostDevice();
+	highscoreTexture.onLostDevice();
+	tutorialTexture.onLostDevice();
 	//nebulaTexture.onLostDevice();
 	//shipTexture.onLostDevice();
 	//asteroidTexture.onLostDevice();
@@ -550,6 +750,9 @@ void Papercat::resetAll()
 	buttonsTexture.onResetDevice();
 	backgroundStageTexture.onResetDevice();
 	mainTexture.onResetDevice();
+	creditTexture.onResetDevice();
+	highscoreTexture.onResetDevice();
+	tutorialTexture.onResetDevice();
 	//nebulaTexture.onResetDevice();
 	//shipTexture.onResetDevice();
 	//asteroidTexture.onResetDevice();
@@ -623,4 +826,10 @@ void Papercat::setArray(float arrayOfposition[arrayOfNumX])
 	{
 		arrayOfPosition[i] = items[0].getWidth()*i + 0.2f / 2;
 	}
+}
+
+void Papercat::playBGM()
+
+{
+	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 }

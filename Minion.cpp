@@ -11,15 +11,13 @@
 //=============================================================================
 Minion::Minion() : Entity()
 {
-	spriteData.width = minionNS::SMALL_MINION_WIDTH;		        // size of comet
-	spriteData.height = minionNS::SMALL_MINION_HEIGHT;
+	spriteData.width = minionNS::LARGE_MINION_WIDTH;		        // size of comet
+	spriteData.height = minionNS::LARGE_MINION_HEIGHT;
 	spriteData.x = minionNS::X;						// location on screen
 	spriteData.y = minionNS::Y;
-	spriteData.rect.bottom = minionNS::SMALL_MINION_HEIGHT;			// rectangle to select parts of an image
-	spriteData.rect.right = minionNS::SMALL_MINION_WIDTH;
-	startFrame = minionNS::SMALL_MINION_START_FRAME;				// start button for menu
-	endFrame = minionNS::SMALL_MINION_END_FRAME;
-	currentFrame = minionNS::SMALL_MINION_START_FRAME;
+	spriteData.rect.bottom = minionNS::LARGE_MINION_HEIGHT;			// rectangle to select parts of an image
+	spriteData.rect.right = minionNS::LARGE_MINION_WIDTH;
+	currentFrame = minionNS::LARGE_MINION_FRAME;
 	spriteData.scale = 1;
 }
 
@@ -29,12 +27,14 @@ Minion::Minion() : Entity()
 //=============================================================================
 bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 {
-	//character textures
 	if (!minionTexture.initialize(gamePtr->getGraphics(), ELEMENTS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion textures"));
+
 	if (!minionBossTexture.initialize(gamePtr->getGraphics(), ELEMENTS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minionBoss textures"));
-	minionBoss.initialize(gamePtr->getGraphics(), minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, 0, &minionTexture);
+
+	minionBoss.initialize(gamePtr->getGraphics(), minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, minionNS::LARGE_MINION_TEXTURE_COLS, &minionBossTexture);
+
 	minion.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
 	minion2.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
 	minion3.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
@@ -52,9 +52,8 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 	minion2.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
 	minion3.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
 	minion3.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
-	return(Entity::initialize(gamePtr, width, height, ncols, &minionBossTexture));
+	return(Entity::initialize(gamePtr, minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, minionNS::LARGE_MINION_TEXTURE_COLS, &minionBossTexture));
 }
-
 //=============================================================================
 // draw the comet
 //=============================================================================
@@ -75,15 +74,19 @@ void Minion::update(float frameTime)
 {
 	Entity::update(frameTime);
 
-	
+
 	if (spriteData.y > GAME_HEIGHT - minionNS::SMALL_MINION_HEIGHT*getScale())
 	{
 		this->setX(0);
 		this->setY(0);
 	}
-	if (getX() < 0 || getX() > GAME_WIDTH-getWidth())
+	if (minion.getX() < 0 || minion.getX() > GAME_WIDTH - minion.getWidth())
 	{
 		velocity.x *= -1;
+		velocity.y *= -1;
+		minion.setVisible(true);
+		minion2.setVisible(true);
+		minion3.setVisible(true);
 	}
 	minion.setX(minion.getX() + frameTime * velocity.x);
 	minion.setY(minion.getY() + frameTime * velocity.y);
@@ -93,5 +96,28 @@ void Minion::update(float frameTime)
 	minion3.setY(minion3.getY() + frameTime * velocity.y);
 
 }
-
+void Minion::collisionDetectionWithCharacter(Entity cat)
+{
+	if ((cat.getX() + cat.getWidth()) >= (minion.getX()) &&
+		(cat.getX() <= (minion.getX() + minion.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= minion.getY()) &&
+		cat.getY() <= (minion.getY() + minion.getHeight()))
+	{
+		minion.setVisible(false);
+	}
+	if ((cat.getX() + cat.getWidth()) >= (minion2.getX()) &&
+		(cat.getX() <= (minion2.getX() + minion2.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= minion2.getY()) &&
+		cat.getY() <= (minion2.getY() + minion2.getHeight()))
+	{
+		minion2.setVisible(false);
+	}
+	if ((cat.getX() + cat.getWidth()) >= (minion3.getX()) &&
+		(cat.getX() <= (minion3.getX() + minion3.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= minion3.getY()) &&
+		cat.getY() <= (minion3.getY() + minion3.getHeight()))
+	{
+		minion3.setVisible(false);
+	}
+}
 // End of GPP Common Test

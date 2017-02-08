@@ -61,6 +61,7 @@ const char BACKGROUND_STAGE2_PAGE_IMAGE[] = "pictures\\background2.png";
 const char BACKGROUND_HIGHSCORE_PAGE_IMAGE[] = "pictures\\Highscore_Page.png";
 const char BACKGROUND_HIGHSCORE_PAGE2_IMAGE[] = "pictures\\HighscoreLog.png";
 const char BACKGROUND_CREDIT_PAGE_IMAGE[] = "pictures\\Credit_Page.png";
+const char BACKGROUND_TUTORIAL_PAGE_IMAGE[] = "pictures\\tutorial.png";
 const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
 const char ITEMS_IMAGE[] = "pictures\\runes.png";
 const UINT NUMBER_OF_COINS = 40;
