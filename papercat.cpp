@@ -883,3 +883,35 @@ void Papercat::playBGM()
 {
 	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 }
+bool Papercat::checkCollision(){
+	// coin and blackhole
+
+	for (int i = 0; i < NUMBER_OF_COINS; i++)
+	{
+		if ((coins[i].getX() + coins[i].getWidth()) >= (blackhole.getX()) &&
+			(coins[i].getX() <= (blackhole.getX() + blackhole.getWidth()) &&
+			(coins[i].getY() + coins[i].getHeight()) >= blackhole.getY()) &&
+			coins[i].getY() <= (blackhole.getY() + blackhole.getHeight()))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	// items and items
+	for (int i = 0; i < BUFF_NUM; i++)
+	{
+		for (int j = 0; j < BUFF_NUM; i++)
+		{
+			if ((items[i].getX() + items[i].getWidth()) >= (items[j].getX()) &&
+				(items[i].getX() <= (items[j].getX() + items[j].getWidth()) &&
+				(items[i].getY() + items[i].getHeight()) >= items[j].getY()) &&
+				items[i].getY() <= (items[j].getY() + items[j].getHeight()))
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+	}
+}

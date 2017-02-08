@@ -104,6 +104,7 @@ public:
 	void characterPlatformCheckingForStage1();
 	void characterPlatformCheckingForBonusStage();
 	int SetRandomNum(int lineNum);
+	bool checkCollision();
 };
 
 #endif

@@ -1,43 +1,83 @@
-﻿Build started 08-Feb-17 11:44:37 AM.
-     1>Project "C:\Users\Jess\Desktop\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
+﻿Build started 08/02/2017 14:56:09.
+     1>Project "D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Paper Cat.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Items.cpp papercat.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt blackhole.cpp buttons.cpp Draw.cpp entity.cpp game.cpp graphics.cpp highscore.cpp image.cpp input.cpp Items.cpp mainChar.cpp Minion.cpp papercat.cpp scissors.cpp textDX.cpp textureManager.cpp winmain.cpp
+         winmain.cpp
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\buttons.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\items.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+         textureManager.cpp
+         textDX.cpp
+         scissors.cpp
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\scissors.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          papercat.cpp
-     1>c:\users\jess\desktop\paper-cat\buttons.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\items.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(44): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(59): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(63): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(75): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(91): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(95): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(115): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(134): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(152): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(170): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(183): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(250): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(251): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(259): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(267): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(277): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(307): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(566): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(567): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(579): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(648): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(650): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(650): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(652): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(838): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(842): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\jess\desktop\paper-cat\papercat.cpp(846): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\buttons.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\items.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(44): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(59): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(63): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(75): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(91): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(95): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(115): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(134): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(152): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(170): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(183): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(250): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(251): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(259): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(267): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(277): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(307): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(566): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(567): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(579): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(648): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(650): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(650): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(652): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(838): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(842): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(846): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         Minion.cpp
+         mainChar.cpp
          Items.cpp
-     1>c:\users\jess\desktop\paper-cat\items.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\items.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+         image.cpp
+         highscore.cpp
+         graphics.cpp
+         game.cpp
+         entity.cpp
+         Draw.cpp
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(14): warning C4244: '=' : conversion from 'DWORD' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(15): warning C4244: '=' : conversion from 'DWORD' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(286): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(288): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(290): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(292): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(295): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(301): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(303): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(305): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(307): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(310): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(316): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(318): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(320): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(322): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(325): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(333): warning C4244: 'initializing' : conversion from 'float' to 'LONG', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\draw.cpp(407): warning C4244: 'argument' : conversion from 'float' to 'INT', possible loss of data
          Generating Code...
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\highscore.cpp(169): warning C4715: 'Highscore::checkingScore' : not all control paths return a value
+         Skipping... (no relevant changes detected)
+         input.cpp
+         buttons.cpp
+         blackhole.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib winmm.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.lib" /MACHINE:X86 Debug\blackhole.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib winmm.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.lib" /MACHINE:X86 Debug\blackhole.obj
          Debug\buttons.obj
          Debug\Draw.obj
          Debug\entity.obj
@@ -54,10 +94,9 @@
          Debug\textDX.obj
          Debug\textureManager.obj
          Debug\winmain.obj
-         LINK : C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe not found or not built by the last incremental link; performing full link
-         Paper Cat.vcxproj -> C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe
-     1>Done Building Project "C:\Users\Jess\Desktop\Paper-Cat\Paper Cat.vcxproj" (Build target(s)).
+         Paper Cat.vcxproj -> D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.exe
+     1>Done Building Project "D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Paper Cat.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.86
+Time Elapsed 00:00:12.54
