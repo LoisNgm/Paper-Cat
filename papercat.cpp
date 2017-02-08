@@ -470,6 +470,7 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
+<<<<<<< HEAD
 	bool triggered = false;
 	if (cat.getState() != 1)
 	{//collision with scissors
@@ -477,6 +478,27 @@ void Papercat::collisions()
 			(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
 			(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
 			cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
+=======
+	//collision with scissors
+	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
+		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
+		cat.getY() <= (scissor1.getY() + scissor1.getHeight()) && scissor1.getVisible())
+	{
+		if (cat.getState() != 1)
+		{//playerScore++;
+			/*scissor1.setY(50 * rand() % 15 + 1);
+			scissor1.setX(0);*/
+			scissor1.setVisible(false);
+			cat.setHealth(cat.getHealth() - 1);
+		
+		if (cat.getHealth() <= 0)
+		{
+			gameStart = 7;
+		}
+		}
+		else
+>>>>>>> d3eaa5b5fdac9dfc0f8c848807c369b34f3cf66f
 		{
 			{//playerScore++;
 				//scissor1.setY(50 * rand() % 15 + 1);
@@ -732,9 +754,10 @@ void Papercat::render()
 	{
 		graphics->spriteBegin();
 		backgroundStage.draw();
+		
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
-		mainFont->print(buffer, GAME_WIDTH - 150, 20);
+		mainFont->print(buffer, GAME_WIDTH/2 - 60, GAME_HEIGHT/2 + 30);
 		graphics->spriteEnd();
 
 	}
