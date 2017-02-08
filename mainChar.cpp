@@ -63,7 +63,7 @@ void MainChar::update(float frameTime)
 	Entity::update(frameTime);		
 	if (getState() != -1)
 	{
-		buff[getState()].setVisible(true);
+  		buff[getState()].setVisible(true);
 		buff[getState()].setX(this->getX());
 		buff[getState()].setY(this->getY() - this->getHeight());
 		buff[getState()].update(frameTime);
@@ -71,7 +71,7 @@ void MainChar::update(float frameTime)
 	//condition for removing buff state
 	//set state to false;
    characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-	setX(getX() + frameTime*velocity.x);
+   setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
 	checkDirection();
 	characterOutOfScreen();

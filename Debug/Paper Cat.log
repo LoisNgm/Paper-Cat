@@ -1,61 +1,9 @@
-﻿Build started 08/02/2017 10:45:31 AM.
-     1>Project "C:\Users\NPStudent\Documents\GitHub\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt papercat.cpp
-         papercat.cpp
-     1>c:\users\npstudent\documents\github\paper-cat\buttons.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\items.h(15): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(38): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(53): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(69): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(73): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(85): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(89): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(109): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(128): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(146): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(164): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(177): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(260): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(261): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(269): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(277): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(287): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(331): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(564): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(565): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(576): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(643): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(645): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(645): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(647): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(830): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(834): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\npstudent\documents\github\paper-cat\papercat.cpp(838): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\NPStudent\Documents\GitHub\Paper-Cat\Debug\Paper Cat.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib winmm.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\NPStudent\Documents\GitHub\Paper-Cat\Debug\Paper Cat.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\NPStudent\Documents\GitHub\Paper-Cat\Debug\Paper Cat.lib" /MACHINE:X86 Debug\asteroid.obj
-         Debug\blackhole.obj
-         Debug\buttons.obj
-         Debug\Draw.obj
-         Debug\entity.obj
-         Debug\game.obj
-         Debug\graphics.obj
-         Debug\highscore.obj
-         Debug\image.obj
-         Debug\input.obj
-         Debug\Items.obj
-         Debug\mainChar.obj
-         Debug\Minion.obj
-         Debug\papercat.obj
-         Debug\scissors.obj
-         Debug\ship.obj
-         Debug\textDX.obj
-         Debug\textureManager.obj
-         Debug\winmain.obj
-         Paper Cat.vcxproj -> C:\Users\NPStudent\Documents\GitHub\Paper-Cat\Debug\Paper Cat.exe
-     1>Done Building Project "C:\Users\NPStudent\Documents\GitHub\Paper-Cat\Paper Cat.vcxproj" (Build target(s)).
+﻿Build started 08-Feb-17 10:57:54 AM.
+     1>Project "C:\Users\Jess\Desktop\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         Paper Cat.vcxproj -> C:\Users\Jess\Desktop\Paper-Cat\Debug\Paper Cat.exe
+     1>Done Building Project "C:\Users\Jess\Desktop\Paper-Cat\Paper Cat.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.54
+Time Elapsed 00:00:00.26

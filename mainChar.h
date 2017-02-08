@@ -10,8 +10,8 @@ namespace mainCharNS
 {
 	const int WIDTH = 48;                   // image width
 	const int HEIGHT = 48;                  // image height
-	const int X = 0;   // location on screen
-	const int Y = 0;
+	const int X = 1;   // location on screen
+	const int Y = 1;
 	const float SPEED = 10.0f;                  // 0 pixels per second
 	const float MASS = 100.0f;              // mass
 	const int   TEXTURE_COLS = 8;

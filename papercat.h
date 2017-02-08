@@ -106,6 +106,7 @@ public:
 	void playBGM();
 	void characterPlatformCheckingForStage1();
 	void characterPlatformCheckingForBonusStage();
+	int SetRandomNum(int lineNum);
 };
 
 #endif
