@@ -1,3 +1,8 @@
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
 
 #ifndef _MAINCHAR_H                 // Prevent multiple definitions if this 
 #define _MAINCHAR_H                 // file is included in more than one place
@@ -27,6 +32,7 @@ private:
 	Image buff[BUFF_NUM];
 	int state=-1;
 	int health = 3;
+	bool shield = false;
 public:
 	// constructor
 	MainChar();
@@ -49,6 +55,8 @@ public:
 	int getState(){ return state; };
 	void setHealth(int a){ health = a; };
 	int getHealth(){ return health; };
+	void setShield(bool a){ shield = a; };
+	int getShield(){ return shield; };
 };
 #endif
 

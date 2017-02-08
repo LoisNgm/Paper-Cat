@@ -1,4 +1,9 @@
 
+//  Module:             Gameplay Programming
+//  Assignment2:		Paper cat the hero
+//  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
+//  Student Number:     S10158786C			| S10156827G				| S10157119D
+
 #ifndef _PAPERCAT_H             // Prevent multiple definitions if this 
 #define _PAPERCAT_H             // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
@@ -6,8 +11,6 @@
 #include "game.h"
 #include "textureManager.h"
 #include "image.h"
-#include "ship.h"
-#include "asteroid.h"
 #include "buttons.h"
 #include "scissors.h"
 #include "mainChar.h"
@@ -34,10 +37,7 @@ private:
 	static const int MAX_ASTEROIDS_NO = 3;
 	static const int BUTTON_SPACING = 120;
 	static const int SCISSORS_AMT = 3;
-	// game items
-	TextureManager nebulaTexture;   // nebula texture
-	TextureManager asteroidTexture; //asteroid texture
-	TextureManager shipTexture;    // game texture
+	// game items	
 	TextureManager	menuTexture;		// menu texture
 	TextureManager	mainTexture;
 	TextureManager	itemTexture;
@@ -61,20 +61,14 @@ private:
 	Items items[BUFF_NUM];
 	Items coins[NUMBER_OF_COINS];
 	//Image	scissorsArray[SCISSORS_AMT];
-	Ship    ship;           // spaceships
-	//Image	startButton;		// start button
-	//Image	highscoreButton;	// highscore button
-	//Image	creditsButton;		// credits button
 	Image   nebula;         // backdrop image
 	Image	menu;			// menu backdrop image
-	//Image	buttons;		// buttons on menu image
 	Image	backgroundStage;	// stage backdrop image
 	Image	backgroundStage2;	// stage 2 backdrop image
 	Image	backgroundHighscore;	// highscore backdrop image
 	Highscore* highscoreLogging;
 	Image	backgroundCredit;	// Credit backdrop image
 	Image	backgroundTutorial;
-	Asteroid asteroidList[MAX_ASTEROIDS_NO]; //asteroids
 	int gameStart = 0;		// for game status
 	CDraw drawing;			// for platform in stages
 	Minion* minion = new Minion();	// minions
