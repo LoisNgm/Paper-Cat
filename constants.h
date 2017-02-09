@@ -63,8 +63,8 @@ const char BACKGROUND_CREDIT_PAGE_IMAGE[] = "pictures\\Credit_Page.png";
 const char BACKGROUND_TUTORIAL_PAGE_IMAGE[] = "pictures\\tutorial.png";
 const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
 const char ITEMS_IMAGE[] = "pictures\\runes.png";
-const UINT NUMBER_OF_COINS = 40;
-const UINT arrayOfNumX = 20;
+const UINT NUMBER_OF_COINS = 37;
+const UINT arrayOfNumX = 21;
 const UINT numOfTopScore = 10;
 
 
@@ -75,8 +75,5 @@ const UCHAR ESC_KEY = VK_ESCAPE;       // escape key
 const UCHAR ALT_KEY = VK_MENU;         // Alt key
 const UCHAR ENTER_KEY = VK_RETURN;       // Enter key
 const UINT BUFF_NUM = 4;
-
-// weapon types
-enum WEAPON { TORPEDO, SHIP, PLANET };
 
 #endif

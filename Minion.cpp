@@ -111,7 +111,7 @@ bool Minion::collisionDetectionWithCharacter(Entity cat)
 		(cat.getY() + cat.getHeight()) >= minion2.getY()) &&
 		cat.getY() <= (minion2.getY() + minion2.getHeight()) && minion2.getVisible())
 	{
-		minion2.setVisible(false);
+		minion2.setVisible(false);	
 		return true;
 	}
 	if ((cat.getX() + cat.getWidth()) >= (minion3.getX()) &&
