@@ -38,6 +38,7 @@ void Papercat::characterPlatformCheckingForStage1()
 		if ((cat.getY() + cat.getHeight() / 2) >= 60)
 		{
 			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
+
 		}
 		else
 		{
@@ -183,6 +184,7 @@ void Papercat::initialize(HWND hwnd)
 	srand(time(NULL));
 	Game::initialize(hwnd); // throws GameError
 
+	//Pages for the games 
 	// menu texture
 	if (!menuTexture.initialize(graphics, MENU_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menu texture"));
@@ -194,10 +196,12 @@ void Papercat::initialize(HWND hwnd)
 	// background stage 2 texture
 	if (!backgroundStage2Texture.initialize(graphics, BACKGROUND_STAGE2_PAGE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround stage texture"));
+
 	// Highscore texture
 	if (!highscoreTexture.initialize(graphics, BACKGROUND_HIGHSCORE_PAGE2_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround highscore texture"));
 	highscoreLogging->initialize(graphics);
+
 	// Credits texture
 	if (!creditTexture.initialize(graphics, BACKGROUND_CREDIT_PAGE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround credit texture"));
@@ -210,6 +214,7 @@ void Papercat::initialize(HWND hwnd)
 	if (!buttonsTexture.initialize(graphics, BUTTONS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing button texture"));
 
+	//for characters and items
 	// main textures
 	if (!mainTexture.initialize(graphics, ELEMENTS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing main texture"));
@@ -217,6 +222,8 @@ void Papercat::initialize(HWND hwnd)
 	// item textures
 	if (!itemTexture.initialize(graphics, ITEMS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing item texture"));
+	
+	//Images
 	// menu image
 	if (!menu.initialize(graphics, 0, 0, 0, &menuTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menu"));
@@ -224,10 +231,10 @@ void Papercat::initialize(HWND hwnd)
 	// background stage image
 	if (!backgroundStage.initialize(graphics, 0, 0, 0, &backgroundStageTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing background stage"));
+
 	// background stage 2 image
 	if (!backgroundStage2.initialize(graphics, 0, 0, 0, &backgroundStage2Texture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing background stage"));
-
 	
 	// background highscore image
 	if (!backgroundHighscore.initialize(graphics, 0, 0, 0, &highscoreTexture))
@@ -317,18 +324,16 @@ void Papercat::initialize(HWND hwnd)
 		items[i].setX(arrayOfPosition[arrayNum]);
 		temp1 = items[i];
 		setYvalue(randLineNum, i, 1);
-		for (int j = i +1; j < BUFF_NUM; j++)//?
+		for (int j = 0; j < BUFF_NUM; j++)
 		{
-			items[i].setX(arrayOfPosition[arrayNum]);
-			setYvalue(randLineNum, i,1);
 			temp2 = items[j];
-			while (collisionWithItem(temp1, temp2))
+			if (collisionWithItem(temp1, temp2))
 			{
 				randLineNum = rand() % 3 + 1;
 				arrayNum = SetRandomNum(randLineNum);
 				items[i].setX(arrayOfPosition[arrayNum]);
 				setYvalue(randLineNum, i,1);
-				temp2 = items[j];
+				temp1 = items[i];				
 			}
 		}
 	}
@@ -336,21 +341,32 @@ void Papercat::initialize(HWND hwnd)
 	//coins initialization	
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
 	{
-
 		if (!coins[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing coins"));
 		coins[i].setFrames(BUFF_NUM, BUFF_NUM);
 		coins[i].setCurrentFrame(BUFF_NUM);
 	}
+
+
 	int currentLine = 1;
 	arrayNum = 0;
-	bool stopWhileLoop = true;
+	int cutOff = (3 * arrayOfNumX / 4) - 1;
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
 	{
-		if (arrayNum == arrayOfNumX-1)
+		if (arrayNum == cutOff)
 		{
 			arrayNum = 0;
 			currentLine++;
+			if (currentLine == 2)
+			{
+				arrayNum = arrayOfNumX / 3;
+				cutOff = arrayOfNumX - 1;
+			}
+			else
+			{
+				arrayNum = 0;
+				cutOff = (3 * arrayOfNumX / 4) - 1;
+			}
 		}
 		coins[i].setX(arrayOfPosition[arrayNum]);
 		setYvalue(currentLine, i,2);
@@ -358,22 +374,32 @@ void Papercat::initialize(HWND hwnd)
 		{
 			if (collisionWithItem(coins[i], items[j]))
 			{
-				if (arrayNum != arrayOfNumX - 1)
-				{
-					arrayNum++;
-				}
-				else
+				if (arrayNum == cutOff)
 				{
 					arrayNum = 0;
 					currentLine++;
+					if (currentLine == 2)
+					{
+						arrayNum = arrayOfNumX / 3;
+						cutOff = arrayOfNumX - 1;
+					}
+					else
+					{
+						arrayNum = 0;
+						cutOff = (3*arrayOfNumX / 4)-1;						
+					}
 				}
+				else
+				{
+					arrayNum++;
+				}								
 				coins[i].setX(arrayOfPosition[arrayNum]);
-				setYvalue(currentLine, i,2);
+				setYvalue(currentLine, i, 2);
 				j = 0;
 			}
 		}
 		arrayNum++;	
-		if (currentLine == 3 && arrayNum==arrayOfNumX)
+		if (currentLine == 3 && arrayNum == cutOff)
 			i = NUMBER_OF_COINS;
 	}
 	// initialize font
@@ -388,8 +414,8 @@ void Papercat::initialize(HWND hwnd)
 	if (!doorFinal.initialize(graphics, 48, 48, 8, &doorTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door"));
 	doorFinal.setCurrentFrame(39);
-	doorFinal.setX(0);
-	doorFinal.setY(GAME_HEIGHT - 48);
+	doorFinal.setX(doorFinal.getWidth());
+	doorFinal.setY(GAME_HEIGHT-(3*doorFinal.getHeight()));
 	// menu image
 	if (!doorBonus.initialize(graphics, 48, 48, 8, &doorTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door"));
@@ -411,8 +437,6 @@ void Papercat::update()
 	startButton.update(frameTime);
 	highscoreButton.update(frameTime);
 	creditsButton.update(frameTime);
-	//ship.update(frameTime);
-
 	if (gameStart == 1)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
@@ -461,21 +485,26 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-	/*
-	bool triggered = false;
-	if (cat.getState() != 1)
-	{//collision with scissors
-		if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
-			(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
-			(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
-			cat.getY() <= (scissor1.getY() + scissor1.getHeight()))
+	
+	//collision with enemy boss
+	if (cat.getState() != 3)
+	{
+		if ((cat.getX() + cat.getWidth()) >= (minion->getX()) &&
+			(cat.getX() <= (minion->getX() + minion->getWidth()) &&
+			(cat.getY() + cat.getHeight()) >= minion->getY()) &&
+			cat.getY() <= (minion->getY() + minion->getHeight()))
+		{
+	     	minion->setVisible(false);
+			cat.setHealth(cat.getHealth() - 1);
+		}
+	}
 	//collision with scissors
 	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
 		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
 		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
 		cat.getY() <= (scissor1.getY() + scissor1.getHeight()) && scissor1.getVisible())
 	{
-		if (cat.getState() != 1)
+		if (cat.getState() != 3)
 		{//playerScore++;
 			scissor1.setY(50 * rand() % 15 + 1);
 			scissor1.setX(0);
@@ -489,13 +518,10 @@ void Papercat::collisions()
 		}
 		else
 		{
+			cat.setState(-1);
 		}
 	}
-	if (triggered)
-	{
-		cat.setState(-1);
-	}
-	*/
+
 	//collision with coins
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
 	{
@@ -552,27 +578,6 @@ void Papercat::render()
 		highscoreButton.draw();					// add highscore button to menu scene
 		creditsButton.draw();					// add credits button to menu scene
 		graphics->spriteEnd();
-		for (int i = 0; i < MAX_ASTEROIDS_NO; i++)//add the asteroids to the scene
-		{
-			//asteroidList[i].draw();
-		}
-		if (input->wasKeyPressed(VK_UP))
-		{
-			for (int i = 0; i < NUMBER_OF_COINS; i++)
-			{
-				coins[i].setVisible(true);
-				//while (collision())
-				//{
-				coins[i].setX(rand() % GAME_WIDTH + 0);
-				coins[i].setX(rand() % GAME_HEIGHT + 0);
-				//}
-				coins[i].draw();
-				coins[i].update(frameTime);
-			}
-
-			//attack to be spawned here
-			gameStart = 4;
-		}
 		if (input->wasKeyPressed(VK_F10))
 		{
 			if (highscoreLogging->checkingScore(playerScore));
@@ -623,6 +628,7 @@ void Papercat::render()
 				minion->draw();
 			}
 		}
+
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
 		mainFont->print(buffer, GAME_WIDTH - 150, 20);
@@ -640,6 +646,23 @@ void Papercat::render()
 			pausedFont->print("Hit \"Enter\" \nto resume", GAME_WIDTH / 10, 300);
 			if (input->wasKeyPressed(VK_RETURN))
 				paused = false;
+		}
+		if (/*(cat.getX() + cat.getWidth()) >= (doorFinal.getX()) &&
+			(cat.getX() <= (doorFinal.getX() + doorFinal.getWidth()) &&
+			(cat.getY() + cat.getHeight()) >= doorFinal.getY()) &&
+			cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) &&*/ input->wasKeyPressed(VK_UP))
+		{
+			for (int i = 0; i < NUMBER_OF_COINS; i++)
+			{
+				coins[i].setX(rand() % GAME_WIDTH + 0);
+				coins[i].setY(rand() % GAME_HEIGHT + 0);
+				while (checkCollision())
+				{
+					coins[i].setX(rand() % GAME_WIDTH + 0);
+					coins[i].setY(rand() % GAME_HEIGHT + 0);
+				}
+			}
+			gameStart = 4;
 		}
 		graphics->spriteEnd();		
 		drawing.GetDevice(graphics->get3Ddevice());
@@ -676,14 +699,12 @@ void Papercat::render()
 		graphics->spriteBegin();
 		backgroundStage2.draw();
 		blackhole.draw();
-		cat.draw();
 		for (int i = 0; i < NUMBER_OF_COINS; i++)
 		{
-			coins[i].setVisible(true);	
 			coins[i].draw();
-			coins[i].update(frameTime);
+			coins[i].setVisible(true);
 		}
-
+		cat.draw();
 		graphics->spriteEnd();
 	}
 	else if (gameStart == 5)
@@ -769,10 +790,6 @@ void Papercat::releaseAll()
 	creditTexture.onLostDevice();
 	highscoreTexture.onLostDevice();
 	tutorialTexture.onLostDevice();
-	//nebulaTexture.onLostDevice();
-	//shipTexture.onLostDevice();
-	//asteroidTexture.onLostDevice();
-
 	Game::releaseAll();
 	return;
 }
@@ -790,9 +807,6 @@ void Papercat::resetAll()
 	creditTexture.onResetDevice();
 	highscoreTexture.onResetDevice();
 	tutorialTexture.onResetDevice();
-	//nebulaTexture.onResetDevice();
-	//shipTexture.onResetDevice();
-	//asteroidTexture.onResetDevice();
 	mainFont->setFontColor(graphicsNS::WHITE);
 	Game::resetAll();
 	return;
@@ -835,22 +849,26 @@ void Papercat::setYvalue(int randLineNum, int i, int type)
 	}
 	if (randLineNum == 1)
 	{		
-		obj[i].setY(obj[i].getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100));
+		obj[i].setY(obj[i].getX()*0.2 + (10 + 50 + 10));	
 	}
 	else if (randLineNum == 2)
 	{
-		obj[i].setY((obj[i].getX()*-0.2) + (454 - obj[i].getHeight()));
+		 obj[i].setY((obj[i].getX()*-0.2) + (454 - obj[i].getHeight()));
+
 	}
 	else
-	{
-		obj[i].setY(obj[i].getX()*0.2 + (10 + 50 + 10));
+	{		
+		obj[i].setY(obj[i].getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100));
 	}
+	
 }
 
 bool Papercat::collisionWithItem(Items item1,Items item2)
 {
-	if ((item1.getX() + item1.getWidth()) >= (item2.getX()) &&
-		(item1.getX() <= (item2.getX() + item2.getWidth()) &&
+	//to prevent items from getting detected even when they are not touching each other,
+	//0.2f is set to reduce the range whereby the coins are being detected
+	if ((item1.getX() + item1.getWidth()-0.2f) >= (item2.getX()) &&
+		(item1.getX() <= (item2.getX() + item2.getWidth() - 0.2f) &&
 		(item1.getY() + item1.getHeight()) >= item2.getY()) &&
 		item1.getY() <= (item2.getY() + item2.getHeight()))
 	{
@@ -862,19 +880,19 @@ void Papercat::setArray(float arrayOfposition[arrayOfNumX])
 {
 	for (int i = 0; i < arrayOfNumX; i++)
 	{
-		arrayOfPosition[i] = items[0].getWidth()*i + 0.2f / 2;
+		arrayOfPosition[i] =  items[0].getWidth()*i + 0.2f / 2;
 	}
 }
 int Papercat::SetRandomNum(int lineNum)
 {
 	int randNum;
-	if (lineNum == 1 || lineNum ==3)
+	if (lineNum == 1 || lineNum ==3|| lineNum==2)
 	{
-		randNum = rand() % (arrayOfNumX / 2) + 0;
+		randNum = rand() % (arrayOfNumX / 2);
 	}
 	else if (lineNum == 2)
 	{
-		randNum = rand() % arrayOfNumX + (arrayOfNumX / 2);
+		randNum = rand() % (arrayOfNumX - (arrayOfNumX / 2) )+ (arrayOfNumX / 2);
 	}
 	return randNum;
 }
@@ -882,7 +900,7 @@ void Papercat::playBGM()
 
 {
 	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
-}
+} 
 bool Papercat::checkCollision(){
 	// coin and blackhole
 

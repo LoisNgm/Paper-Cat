@@ -42,7 +42,6 @@ public:
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
 		TextureManager *textureM);
 	void update(float frameTime);
-	void damage(WEAPON);
 	void characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
 	boolean getActive();
 	void checkDirection();
