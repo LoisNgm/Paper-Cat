@@ -65,11 +65,22 @@ void MainChar::draw()
 //=============================================================================
 void MainChar::update(float frameTime)
 {
-	Entity::update(frameTime);		
+	Entity::update(frameTime);
+	if (getState() != -1)
+	{
+  		buff[getState()].setVisible(true);
+		buff[getState()].setX(this->getX());
+		buff[getState()].setY(this->getY() - this->getHeight());
+		buff[getState()].update(frameTime);
+	}	
+	//condition for removing buff state
+	//set state to false;
+	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
 	checkDirection();
-	characterOutOfScreen();	
+	characterOutOfScreen();
+	checkStunned(state);
 }
 
 //=============================================================================
@@ -141,6 +152,21 @@ void MainChar::checkDirection()
 			flipHorizontal(false);
 		}
 	}
+}
+void MainChar::checkStunned(int state)
+{
+	if (state == 0){
+		unstunnedTimer -= 0.03;
+		stunState = true;
+		if ((gameTime - unstunnedTimer) >= STUNNEDTIME)
+		{
+			setState(-1);
+			unstunnedTimer = gameTime;
+			stunState = false;
+		}
+	}
+	else
+		stunState = false;
 }
 
 void MainChar::characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)

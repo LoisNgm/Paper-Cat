@@ -33,6 +33,10 @@ private:
 	int state=-1;
 	int health = 3;
 	bool shield = false;
+	bool stunState = false;
+	float unstunnedTimer = 0;
+	float gameTime = 0;
+
 public:
 	int stage = 0;
 	// constructor
@@ -58,6 +62,8 @@ public:
 	int getHealth(){ return health; };
 	void setShield(bool a){ shield = a; };
 	int getShield(){ return shield; };
+	bool stunned(){ return stunState; };
+	void checkStunned(int state);
 	void checkBuff(float frameTime);
 };
 #endif

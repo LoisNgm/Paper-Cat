@@ -437,8 +437,10 @@ void Papercat::update()
 	startButton.update(frameTime);
 	highscoreButton.update(frameTime);
 	creditsButton.update(frameTime);
+	// normal game stage
 	if (gameStart == 1)
 	{
+		cat.checkStunned(cat.getState());
 		cat.checkBuff(frameTime);
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
 		characterPlatformCheckingForStage1();
@@ -452,13 +454,17 @@ void Papercat::update()
 		{
 			gameStart = 7;
 		}
-		cat.update(frameTime);
+		if (cat.stunned() == false){
+			cat.update(frameTime);
+			cat.checkStunned(cat.getState());
+		}
 		if (minion != nullptr)
 		{
 			minion->update(frameTime);
 		}
 		scissor1.update(frameTime);
 	}
+	// boss stage
 	else if (gameStart == 4)
 	{	
 		cat.update(frameTime);
@@ -471,6 +477,7 @@ void Papercat::update()
 			cat.characterMovement2(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 		}
 	}
+	// bonus stage
 	else if (gameStart == 5)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
@@ -491,7 +498,6 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-	
 	//collision with enemy boss
 	if (cat.getState() != 3)
 	{
@@ -517,10 +523,10 @@ void Papercat::collisions()
 			scissor1.setVisible(false);
 			cat.setHealth(cat.getHealth() - 1);
 		
-		if (cat.getHealth() <= 0)
-		{
-			gameStart = 7;
-		}
+			if (cat.getHealth() <= 0)
+			{
+				gameStart = 7;
+			}
 		}
 		else
 		{
