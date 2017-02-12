@@ -75,12 +75,12 @@ void MainChar::update(float frameTime)
 	}	
 	//condition for removing buff state
 	//set state to false;
-   characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-   setX(getX() + frameTime*velocity.x);
+	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
+	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
 	checkDirection();
 	characterOutOfScreen();
-	
+	checkStunned(state);
 }
 
 //=============================================================================
@@ -153,4 +153,19 @@ void MainChar::checkDirection()
 			flipHorizontal(false);
 		}
 	}
+}
+void MainChar::checkStunned(int state)
+{
+	if (state == 0){
+		unstunnedTimer -= 0.03;
+		stunState = true;
+		if ((gameTime - unstunnedTimer) >= STUNNEDTIME)
+		{
+			setState(-1);
+			unstunnedTimer = gameTime;
+			stunState = false;
+		}
+	}
+	else
+		stunState = false;
 }

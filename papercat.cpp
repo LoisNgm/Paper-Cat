@@ -437,8 +437,10 @@ void Papercat::update()
 	startButton.update(frameTime);
 	highscoreButton.update(frameTime);
 	creditsButton.update(frameTime);
+	// normal game stage
 	if (gameStart == 1)
 	{
+		cat.checkStunned(cat.getState());
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
 		characterPlatformCheckingForStage1();
 		bool collision = minion->collisionDetectionWithCharacter(cat);
@@ -450,13 +452,17 @@ void Papercat::update()
 		{
 			gameStart = 7;
 		}
-		cat.update(frameTime);
+		if (cat.stunned() == false){
+			cat.update(frameTime);
+			cat.checkStunned(cat.getState());
+		}
 		if (minion != nullptr)
 		{
 			minion->update(frameTime);
 		}
 		scissor1.update(frameTime);
 	}
+	// boss stage
 	else if (gameStart == 4)
 	{	
 		cat.update(frameTime);
@@ -465,6 +471,7 @@ void Papercat::update()
 			gravity();
 		}
 	}
+	// bonus stage
 	else if (gameStart == 5)
 	{
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
@@ -485,7 +492,6 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-	
 	//collision with enemy boss
 	if (cat.getState() != 3)
 	{
@@ -511,10 +517,10 @@ void Papercat::collisions()
 			scissor1.setVisible(false);
 			cat.setHealth(cat.getHealth() - 1);
 		
-		if (cat.getHealth() <= 0)
-		{
-			gameStart = 7;
-		}
+			if (cat.getHealth() <= 0)
+			{
+				gameStart = 7;
+			}
 		}
 		else
 		{
@@ -630,7 +636,7 @@ void Papercat::render()
 		}
 
 		mainFont->setFontColor(graphicsNS::WHITE);
-		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
+		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)cat.getState());
 		mainFont->print(buffer, GAME_WIDTH - 150, 20);
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
