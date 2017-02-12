@@ -66,21 +66,10 @@ void MainChar::draw()
 void MainChar::update(float frameTime)
 {
 	Entity::update(frameTime);		
-	if (getState() != -1)
-	{
-  		buff[getState()].setVisible(true);
-		buff[getState()].setX(this->getX());
-		buff[getState()].setY(this->getY() - this->getHeight());
-		buff[getState()].update(frameTime);
-	}	
-	//condition for removing buff state
-	//set state to false;
-   characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-   setX(getX() + frameTime*velocity.x);
+	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
 	checkDirection();
-	characterOutOfScreen();
-	
+	characterOutOfScreen();	
 }
 
 //=============================================================================
@@ -101,9 +90,8 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 
 	if (input->wasKeyPressed(VK_SPACE))
 	{
-		input->clearKeyPress(VK_SPACE);
-		
-			velocity.y = -150;	
+		input->clearKeyPress(VK_SPACE);		
+		velocity.y = -150;	
 	}
 
 	if (velocity.x > 0)
@@ -152,5 +140,46 @@ void MainChar::checkDirection()
 		{
 			flipHorizontal(false);
 		}
+	}
+}
+
+void MainChar::characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)
+{
+	if (input->isKeyDown(right))
+	{
+		velocity.x += 2.0f;
+		flipHorizontal(true);
+	}
+	if (input->isKeyDown(left))
+	{
+		velocity.x -= 2.0f;
+		flipHorizontal(false);
+	}
+
+	if (input->wasKeyPressed(up))
+	{
+		velocity.y -= 2.0f;
+	}
+	if (input->wasKeyPressed(down))
+	{
+		velocity.y += 2.0f;
+	}
+	if (velocity.x > 0)
+	{
+		velocity.x -= 1.0f;
+	}
+	else
+	{
+		velocity.x += 1.0f;
+	}
+}
+void MainChar::checkBuff(float frameTime)
+{
+	if (getState() != -1)
+	{
+		buff[getState()].setVisible(true);
+		buff[getState()].setX(this->getX());
+		buff[getState()].setY(this->getY() - this->getHeight());
+		buff[getState()].update(frameTime);
 	}
 }
