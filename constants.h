@@ -67,6 +67,7 @@ const UINT NUMBER_OF_COINS = 37;
 const UINT arrayOfNumX = 21;
 const UINT numOfTopScore = 10;
 const UINT STUNNEDTIME = 10;
+const UINT FLASHTIME = 70;
 
 
 // key mappings

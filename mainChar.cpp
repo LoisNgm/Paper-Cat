@@ -81,6 +81,7 @@ void MainChar::update(float frameTime)
 	checkDirection();
 	characterOutOfScreen();
 	checkStunned(state);
+	checkRainbow(state);
 }
 
 //=============================================================================
@@ -156,12 +157,12 @@ void MainChar::checkDirection()
 void MainChar::checkStunned(int state)
 {
 	if (state == 0){
-		unstunnedTimer -= 0.03;
+		Timer += 0.03;
 		stunState = true;
-		if ((gameTime - unstunnedTimer) >= STUNNEDTIME)
+		if (Timer >= STUNNEDTIME)
 		{
 			setState(-1);
-			unstunnedTimer = gameTime;
+			Timer = 0;
 			stunState = false;
 		}
 	}
@@ -207,5 +208,17 @@ void MainChar::checkBuff(float frameTime)
 		buff[getState()].setX(this->getX());
 		buff[getState()].setY(this->getY() - this->getHeight());
 		buff[getState()].update(frameTime);
+	}
+}
+void MainChar::checkRainbow(int state){
+	if (state == 3){
+		Timer += 0.5;
+		if ((int)Timer % 10 == 0)
+			graphics->setBackColor(D3DCOLOR_XRGB(rand() % 255, rand() % 255, rand() % 255));
+		if (Timer >= FLASHTIME)
+		{
+			setState(-1);
+			Timer = 0;
+		}
 	}
 }

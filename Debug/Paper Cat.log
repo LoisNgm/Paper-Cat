@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿Build started 12/02/2017 23:49:55.
      1>Project "D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Paper Cat.vcxproj).  This can lead to incorrect clean and rebuild behavior.
@@ -10,6 +11,13 @@
          textDX.cpp
          scissors.cpp
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\scissors.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+=======
+﻿Build started 12/02/2017 21:21:29.
+     1>Project "D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Paper Cat.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt papercat.cpp
+>>>>>>> Stashed changes
          papercat.cpp
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\buttons.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\items.h(20): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
@@ -33,6 +41,7 @@
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(314): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(417): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(418): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+<<<<<<< Updated upstream
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(521): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(596): warning C4390: ';' : empty controlled statement found; is this the intent?
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(669): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
@@ -63,6 +72,22 @@
          Generating Code...
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\highscore.cpp(169): warning C4715: 'Highscore::checkingScore' : not all control paths return a value
      1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(958): warning C4715: 'Papercat::checkCollisionforStage2' : not all control paths return a value
+=======
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(517): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(592): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(665): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(666): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(669): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(670): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(679): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(681): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(681): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(683): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(860): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(864): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(869): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ngee ann\semester 3.2\gpp\assignment 2\paper-cat\papercat.cpp(943): warning C4715: 'Papercat::checkCollision' : not all control paths return a value
+>>>>>>> Stashed changes
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib winmm.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Debug\5.lib" /MACHINE:X86 Debug\blackhole.obj
          Debug\buttons.obj
@@ -86,4 +111,8 @@
 
 Build succeeded.
 
+<<<<<<< Updated upstream
 Time Elapsed 00:00:15.64
+=======
+Time Elapsed 00:00:01.92
+>>>>>>> Stashed changes
