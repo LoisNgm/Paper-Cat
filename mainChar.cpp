@@ -65,7 +65,7 @@ void MainChar::draw()
 //=============================================================================
 void MainChar::update(float frameTime)
 {
-	Entity::update(frameTime);		
+	Entity::update(frameTime);
 	if (getState() != -1)
 	{
   		buff[getState()].setVisible(true);
@@ -101,9 +101,8 @@ void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left,
 
 	if (input->wasKeyPressed(VK_SPACE))
 	{
-		input->clearKeyPress(VK_SPACE);
-		
-			velocity.y = -150;	
+		input->clearKeyPress(VK_SPACE);		
+		velocity.y = -150;	
 	}
 
 	if (velocity.x > 0)
@@ -168,4 +167,45 @@ void MainChar::checkStunned(int state)
 	}
 	else
 		stunState = false;
+}
+
+void MainChar::characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)
+{
+	if (input->isKeyDown(right))
+	{
+		velocity.x += 2.0f;
+		flipHorizontal(true);
+	}
+	if (input->isKeyDown(left))
+	{
+		velocity.x -= 2.0f;
+		flipHorizontal(false);
+	}
+
+	if (input->wasKeyPressed(up))
+	{
+		velocity.y -= 2.0f;
+	}
+	if (input->wasKeyPressed(down))
+	{
+		velocity.y += 2.0f;
+	}
+	if (velocity.x > 0)
+	{
+		velocity.x -= 1.0f;
+	}
+	else
+	{
+		velocity.x += 1.0f;
+	}
+}
+void MainChar::checkBuff(float frameTime)
+{
+	if (getState() != -1)
+	{
+		buff[getState()].setVisible(true);
+		buff[getState()].setX(this->getX());
+		buff[getState()].setY(this->getY() - this->getHeight());
+		buff[getState()].update(frameTime);
+	}
 }

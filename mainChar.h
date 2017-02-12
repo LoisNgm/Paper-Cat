@@ -38,6 +38,7 @@ private:
 	float gameTime = 0;
 
 public:
+	int stage = 0;
 	// constructor
 	MainChar();
 
@@ -47,6 +48,7 @@ public:
 		TextureManager *textureM);
 	void update(float frameTime);
 	void characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
+	void characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
 	boolean getActive();
 	void checkDirection();
 	void characterOutOfScreen();
@@ -62,6 +64,7 @@ public:
 	int getShield(){ return shield; };
 	bool stunned(){ return stunState; };
 	void checkStunned(int state);
+	void checkBuff(float frameTime);
 };
 #endif
 
