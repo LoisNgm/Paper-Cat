@@ -439,8 +439,10 @@ void Papercat::update()
 	creditsButton.update(frameTime);
 	if (gameStart == 1)
 	{
+		cat.checkBuff(frameTime);
 		cat.setVelocityY(cat.getVelocityY() + 2.5f);
 		characterPlatformCheckingForStage1();
+		cat.characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 		bool collision = minion->collisionDetectionWithCharacter(cat);
 		if (collision)
 		{
@@ -463,6 +465,10 @@ void Papercat::update()
 		if (cat.getVelocityX() == 0&&cat.getVelocityY() == 0)
 		{
 			gravity();
+		}
+		else
+		{
+			cat.characterMovement2(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 		}
 	}
 	else if (gameStart == 5)
@@ -647,16 +653,16 @@ void Papercat::render()
 			if (input->wasKeyPressed(VK_RETURN))
 				paused = false;
 		}
-		if (/*(cat.getX() + cat.getWidth()) >= (doorFinal.getX()) &&
+		if ((cat.getX() + cat.getWidth()) >= (doorFinal.getX()) &&
 			(cat.getX() <= (doorFinal.getX() + doorFinal.getWidth()) &&
 			(cat.getY() + cat.getHeight()) >= doorFinal.getY()) &&
-			cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) &&*/ input->wasKeyPressed(VK_UP))
+			cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) && input->wasKeyPressed(VK_UP))
 		{
 			for (int i = 0; i < NUMBER_OF_COINS; i++)
 			{
 				coins[i].setX(rand() % GAME_WIDTH + 0);
 				coins[i].setY(rand() % GAME_HEIGHT + 0);
-				while (checkCollision())
+				while (checkCollisionforStage2())
 				{
 					coins[i].setX(rand() % GAME_WIDTH + 0);
 					coins[i].setY(rand() % GAME_HEIGHT + 0);
@@ -673,6 +679,7 @@ void Papercat::render()
 		drawing.Line(GAME_WIDTH - 500, 10 + 50 + 10 + 100 + 100 + 100 + cat.getHeight(), GAME_WIDTH, 10 + 50 + 10 + 100 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 2(100 for holdoff betwe)
 
 		drawing.Line(0, 10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight(), 500, 10 + 50 + 10 + 100 + 100 + 100 + 100 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 3
+
 	}
 	else if (gameStart == 2)
 	{
@@ -705,6 +712,12 @@ void Papercat::render()
 			coins[i].setVisible(true);
 		}
 		cat.draw();
+		mainFont->setFontColor(graphicsNS::WHITE);
+		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
+		mainFont->print(buffer, GAME_WIDTH - 150, 20);
+		mainFont->setFontColor(graphicsNS::WHITE);
+		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
+		mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
 		graphics->spriteEnd();
 	}
 	else if (gameStart == 5)
@@ -901,7 +914,7 @@ void Papercat::playBGM()
 {
 	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 } 
-bool Papercat::checkCollision(){
+bool Papercat::checkCollisionforStage2(){
 	// coin and blackhole
 
 	for (int i = 0; i < NUMBER_OF_COINS; i++)
@@ -911,25 +924,29 @@ bool Papercat::checkCollision(){
 			(coins[i].getY() + coins[i].getHeight()) >= blackhole.getY()) &&
 			coins[i].getY() <= (blackhole.getY() + blackhole.getHeight()))
 		{
+			i--;
 			return true;
 		}
 		else
 			return false;
 	}
 	// items and items
-	for (int i = 0; i < BUFF_NUM; i++)
+	for (int i = 0; i <NUMBER_OF_COINS; i++)
 	{
-		for (int j = 0; j < BUFF_NUM; i++)
+		for (int j = 0; j < NUMBER_OF_COINS; i++)
 		{
-			if ((items[i].getX() + items[i].getWidth()) >= (items[j].getX()) &&
-				(items[i].getX() <= (items[j].getX() + items[j].getWidth()) &&
-				(items[i].getY() + items[i].getHeight()) >= items[j].getY()) &&
-				items[i].getY() <= (items[j].getY() + items[j].getHeight()))
+			if ((coins[i].getX() + coins[i].getWidth()) >= (coins[j].getX()) &&
+				(coins[i].getX() <= (coins[j].getX() + coins[j].getWidth()) &&
+				(coins[i].getY() + coins[i].getHeight()) >= coins[j].getY()) &&
+				coins[i].getY() <= (coins[j].getY() + coins[j].getHeight()))
 			{
+				i--;
 				return true;
-			}
+			}		
 			else
+			{
 				return false;
+			}
 		}
 	}
 }

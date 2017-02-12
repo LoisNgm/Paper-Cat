@@ -3,7 +3,6 @@
 //  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
 //  Student Number:     S10158786C			| S10156827G				| S10157119D
 
-// GPP Common Test
 #include "Items.h"
 
 //=============================================================================
@@ -11,7 +10,7 @@
 //=============================================================================
 Items::Items() :Entity()
 {
-	spriteData.width = itemsNS::WIDTH;		        // size of comet
+	spriteData.width = itemsNS::WIDTH;		        // size of item
 	spriteData.height = itemsNS::HEIGHT;
 	spriteData.x = itemsNS::X;						// location on screen
 	spriteData.y = itemsNS::Y;
@@ -22,22 +21,21 @@ Items::Items() :Entity()
 }
 
 //=============================================================================
-// Initialize the Comet.
+// Initialize the item
 // Post: returns true if successful, false if failed
 //=============================================================================
 bool Items::initialize(Game *gamePtr, int width, int height, int ncols,
 	TextureManager *textureM)
-{
-
+{	
 	return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
 //=============================================================================
-// draw the comet
+// draw the item
 //=============================================================================
 void Items::draw()
 {
-	Image::draw();              // draw comet
+	Image::draw();              // draw item
 }
 
 //=============================================================================
@@ -49,8 +47,4 @@ void Items::update(float frameTime)
 {
 	Entity::update(frameTime);
 }
-
-
-
-// End of GPP Common Test
 

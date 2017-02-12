@@ -41,10 +41,6 @@ private:
 	TextureManager	menuTexture;		// menu texture
 	TextureManager	mainTexture;
 	TextureManager	itemTexture;
-
-	//TextureManager		startButtonTexture;		// start button texture
-	//TextureManager		highscoreButtonTexture;	// highscore button texture
-	//TextureManager		creditsButtonTexture;	// credits button texture
 	TextureManager		backgroundStageTexture;	// background for stages
 	TextureManager		highscoreTexture;	// background for highscore
 	TextureManager		creditTexture;	// background for credit
@@ -104,7 +100,7 @@ public:
 	void characterPlatformCheckingForStage1();
 	void characterPlatformCheckingForBonusStage();
 	int SetRandomNum(int lineNum);
-	bool checkCollision();
+	bool checkCollisionforStage2();
 };
 
 #endif

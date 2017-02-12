@@ -34,6 +34,7 @@ private:
 	int health = 3;
 	bool shield = false;
 public:
+	int stage = 0;
 	// constructor
 	MainChar();
 
@@ -43,6 +44,7 @@ public:
 		TextureManager *textureM);
 	void update(float frameTime);
 	void characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
+	void characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
 	boolean getActive();
 	void checkDirection();
 	void characterOutOfScreen();
@@ -56,6 +58,7 @@ public:
 	int getHealth(){ return health; };
 	void setShield(bool a){ shield = a; };
 	int getShield(){ return shield; };
+	void checkBuff(float frameTime);
 };
 #endif
 
