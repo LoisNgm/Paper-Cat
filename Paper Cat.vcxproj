@@ -91,6 +91,7 @@
     <ClInclude Include="Minion.h" />
     <ClInclude Include="papercat.h" />
     <ClInclude Include="scissors.h" />
+    <ClInclude Include="star.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
@@ -109,6 +110,7 @@
     <ClCompile Include="Minion.cpp" />
     <ClCompile Include="papercat.cpp" />
     <ClCompile Include="scissors.cpp" />
+    <ClCompile Include="star.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />

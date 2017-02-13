@@ -65,6 +65,7 @@ const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
 const char ITEMS_IMAGE[] = "pictures\\runes.png";
 const char RAINBOW_IMAGE[] = "pictures\\rainbow.png";
 const UINT NUMBER_OF_COINS = 37;
+const UINT NUMBER_OF_STARS = 4;
 const UINT arrayOfNumX = 21;
 const UINT numOfTopScore = 10;
 const UINT STUNNEDTIME = 10;
