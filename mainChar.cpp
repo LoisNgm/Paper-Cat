@@ -156,12 +156,12 @@ void MainChar::checkDirection()
 void MainChar::checkStunned(int state)
 {
 	if (state == 0){
-		unstunnedTimer -= 0.03;
+		Timer += 0.03;
 		stunState = true;
-		if ((gameTime - unstunnedTimer) >= STUNNEDTIME)
+		if (Timer >= STUNNEDTIME)
 		{
 			setState(-1);
-			unstunnedTimer = gameTime;
+			Timer = 0;
 			stunState = false;
 		}
 	}

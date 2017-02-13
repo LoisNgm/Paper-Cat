@@ -6,7 +6,7 @@
 
 #include "papercat.h"
 #include "time.h"
-
+#include <thread>
 
 //=============================================================================
 // Constructor
@@ -210,6 +210,9 @@ void Papercat::initialize(HWND hwnd)
 	if (!tutorialTexture.initialize(graphics, BACKGROUND_TUTORIAL_PAGE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround tutorial texture"));
 
+	// rainbow texture
+	if (!rainbowTexture.initialize(graphics, RAINBOW_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing backround rainbow texture"));
 	//buttons
 	if (!buttonsTexture.initialize(graphics, BUTTONS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing button texture"));
@@ -246,7 +249,9 @@ void Papercat::initialize(HWND hwnd)
 	// background tutorial image
 	if (!backgroundTutorial.initialize(graphics, 0, 0, 0, &tutorialTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing tutorial page"));
-
+	// rainbow flashing image
+	if (!rainbow.initialize(graphics, 0, 0, 0, &rainbowTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing rainbow flashing"));
 
 	// buttons
 	// start
@@ -425,8 +430,8 @@ void Papercat::initialize(HWND hwnd)
 	return;
 
 	// play sound
-	//std::thread t(&Papercat::playBGM, this);
-	//t.join();
+	thread t(&Papercat::playBGM, this);
+	t.join();
 }
 
 //=============================================================================
@@ -437,6 +442,7 @@ void Papercat::update()
 	startButton.update(frameTime);
 	highscoreButton.update(frameTime);
 	creditsButton.update(frameTime);
+	mciSendString("play sounds\\theme_song.wav", NULL, 0, NULL);
 	// normal game stage
 	if (gameStart == 1)
 	{
@@ -448,6 +454,7 @@ void Papercat::update()
 		bool collision = minion->collisionDetectionWithCharacter(cat);
 		if (collision)
 		{
+			PlaySound(TEXT("sounds\\meow.wav"), NULL, SND_ASYNC);
 			cat.setHealth(cat.getHealth() - 1);
 		}
 		if (cat.getHealth() <= 0)
@@ -516,6 +523,7 @@ void Papercat::collisions()
 		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
 		cat.getY() <= (scissor1.getY() + scissor1.getHeight()) && scissor1.getVisible())
 	{
+		PlaySound(TEXT("sounds\\meow.wav"), NULL, SND_ASYNC);
 		if (cat.getState() != 3)
 		{//playerScore++;
 			scissor1.setY(50 * rand() % 15 + 1);
@@ -542,6 +550,7 @@ void Papercat::collisions()
 			(cat.getY() + cat.getHeight()) >= coins[i].getY()) &&
 			cat.getY() <= (coins[i].getY() + coins[i].getHeight()))
 		{
+			PlaySound(TEXT("sounds\\coin.wav"), NULL, SND_ASYNC);
 			if (cat.getState() == 1)
 			{
 				playerScore++;
@@ -566,12 +575,12 @@ void Papercat::collisions()
 			(cat.getY() + cat.getHeight()) >= items[i].getY()) &&
 			cat.getY() <= (items[i].getY() + items[i].getHeight()))
 		{
+			PlaySound(TEXT("sounds\\rune.wav"), NULL, SND_ASYNC);
 			items[i].setVisible(false);
 			items[i].setX(-100.0f);
 			items[i].setY(-100.0f);
 			cat.setState(i);
 		}
-		//mciSendString("play sounds\\game_over.wav", NULL, 0, NULL); this is for game_over sound
 	}
 }
 
@@ -647,7 +656,7 @@ void Papercat::render()
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
 		mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
-
+		rainbow.draw();
 		if (input->wasKeyPressed(VK_ESCAPE)){
 			paused = true;
 		}
@@ -676,6 +685,20 @@ void Papercat::render()
 			}
 			gameStart = 4;
 		}
+		if (cat.getState() == 3){
+			flashTimer += 0.05;
+			if ((int)flashTimer % 10 == 0)
+				rainbow.setVisible(true);
+			else
+				rainbow.setVisible(false);
+			if (flashTimer >= FLASHTIME)
+			{
+				cat.setState(-1);
+				flashTimer = 0;
+			}
+		}
+		else
+			rainbow.setVisible(false);
 		graphics->spriteEnd();		
 		drawing.GetDevice(graphics->get3Ddevice());
 		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
@@ -779,6 +802,7 @@ void Papercat::render()
 	}
 	else if (gameStart == 7)
 	{
+		mciSendString("play sounds\\game_over.wav", NULL, 0, NULL);
 		graphics->spriteBegin();
 		backgroundStage.draw();
 		
@@ -809,6 +833,7 @@ void Papercat::releaseAll()
 	creditTexture.onLostDevice();
 	highscoreTexture.onLostDevice();
 	tutorialTexture.onLostDevice();
+	rainbowTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -826,6 +851,7 @@ void Papercat::resetAll()
 	creditTexture.onResetDevice();
 	highscoreTexture.onResetDevice();
 	tutorialTexture.onResetDevice();
+	rainbowTexture.onResetDevice();
 	mainFont->setFontColor(graphicsNS::WHITE);
 	Game::resetAll();
 	return;
@@ -916,7 +942,6 @@ int Papercat::SetRandomNum(int lineNum)
 	return randNum;
 }
 void Papercat::playBGM()
-
 {
 	PlaySound(TEXT("sounds\\theme_song.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 } 

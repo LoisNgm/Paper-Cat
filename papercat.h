@@ -47,6 +47,7 @@ private:
 	TextureManager		buttonsTexture;
 	TextureManager      backgroundStage2Texture;
 	TextureManager		tutorialTexture;
+	TextureManager		rainbowTexture;
 	Buttons startButton;
 	Buttons highscoreButton;
 	Buttons creditsButton;
@@ -62,6 +63,7 @@ private:
 	Image	backgroundStage;	// stage backdrop image
 	Image	backgroundStage2;	// stage 2 backdrop image
 	Image	backgroundHighscore;	// highscore backdrop image
+	Image	rainbow;
 	Highscore* highscoreLogging;
 	Image	backgroundCredit;	// Credit backdrop image
 	Image	backgroundTutorial;
@@ -76,6 +78,8 @@ private:
 	TextureManager doorTexture;
 	Image doorFinal;
 	Image doorBonus;
+	float flashTimer = 0;
+
 
 public:
 	// Constructor

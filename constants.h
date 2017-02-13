@@ -63,10 +63,12 @@ const char BACKGROUND_CREDIT_PAGE_IMAGE[] = "pictures\\Credit_Page.png";
 const char BACKGROUND_TUTORIAL_PAGE_IMAGE[] = "pictures\\tutorial.png";
 const char BUTTONS_IMAGE[] = "pictures\\buttons.png";
 const char ITEMS_IMAGE[] = "pictures\\runes.png";
+const char RAINBOW_IMAGE[] = "pictures\\rainbow.png";
 const UINT NUMBER_OF_COINS = 37;
 const UINT arrayOfNumX = 21;
 const UINT numOfTopScore = 10;
 const UINT STUNNEDTIME = 10;
+const UINT FLASHTIME = 70;
 
 
 // key mappings
