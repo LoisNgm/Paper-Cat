@@ -28,153 +28,158 @@ Papercat::~Papercat()
 void Papercat::characterPlatformCheckingForStage1()
 {
 
-	if (cat.getX() <= (100) && cat.getY() + cat.getHeight() >= (10 + 50) && cat.getY() <= (10 + 50))//starting platform
+	if (cat.getX() <= (STARTINGPLATFORM_HEIGHT) && cat.getY() + cat.getHeight() >= (STARTINGPLATFORM_HEIGHT) && cat.getY() <= (STARTINGPLATFORM_HEIGHT))//starting platform
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
 
-		if ((cat.getY() + cat.getHeight() / 2) >= 60)
+		if ((cat.getY() + cat.getHeight() / 2) >= STARTINGPLATFORM_HEIGHT)
 		{
-			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
-
+			cat.setY(cat.getY() + STARTINGPLATFORM_HEIGHT - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY(60 - cat.getHeight());
+			cat.setY(STARTINGPLATFORM_HEIGHT - cat.getHeight());
 		}
 
 		cat.setVelocityY(0);
+		return;
 	}
 
-	if (cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight()) && cat.getY() <= (cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight()) && cat.getX()<500)
+	if (cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + C_FOR_PLATFORM_1) && cat.getY() <= (cat.getX()*0.2 + C_FOR_PLATFORM_1) && cat.getX()<PLATFORM_DISTANCEX)
 	{
-		if (cat.getVelocityY()<0)
+		if (cat.getVelocityY() < 0)
 		{
-			cat.setY(cat.getY() + 1);
+			cat.setY(cat.getY() + (cat.getHeight() / 2));
 		}
 
-		if ((cat.getY() + cat.getHeight() / 2) >= cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight())
+		if ((cat.getY() + cat.getHeight() / 2) >= cat.getX()*0.2 + C_FOR_PLATFORM_1)
 		{
-			cat.setY(cat.getY() + cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight() - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + cat.getX()*0.2 + C_FOR_PLATFORM_1 - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY(cat.getX()*0.2 + 10 + 50 + 10 + cat.getHeight() - cat.getHeight());
+			cat.setY(cat.getX()*0.2 + C_FOR_PLATFORM_1 - cat.getHeight());
 		}
 		cat.setVelocityY(0);
+		return;
 	}
-	if (cat.getX() >= GAME_WIDTH - 500 - cat.getWidth() && cat.getY() + cat.getHeight() >= ((cat.getX()*-0.2) + (454)) && cat.getY() <= ((cat.getX()*-0.2) + (454)))
+	if (cat.getX() >= GAME_WIDTH - PLATFORM_DISTANCEX - cat.getWidth() && cat.getY() + cat.getHeight() >= ((cat.getX()*-0.2) + (C_FOR_PLATFORM_2 + cat.getHeight())) && cat.getY() <= ((cat.getX()*-0.2) + (C_FOR_PLATFORM_2 + cat.getHeight())))
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
-		if ((cat.getY() + cat.getHeight() / 2) >= ((cat.getX()*-0.2) + (454)))
+		if ((cat.getY() + cat.getHeight() / 2) >= ((cat.getX()*-0.2) + (C_FOR_PLATFORM_2 + cat.getHeight())))
 		{
-			cat.setY(cat.getY() + ((cat.getX()*-0.2) + (454)) - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + ((cat.getX()*-0.2) + (C_FOR_PLATFORM_2 + cat.getHeight())) - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY(((cat.getX()*-0.2) + (454)) - cat.getHeight());
+			cat.setY(((cat.getX()*-0.2) + (C_FOR_PLATFORM_2 + cat.getHeight())) - cat.getHeight());
 		}
 		cat.setVelocityY(0);
+		return;
 	}
-	if (cat.getX()<500 && cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) && cat.getY() <= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())))
+	if (cat.getX() < PLATFORM_DISTANCEX && cat.getY() + cat.getHeight() >= (cat.getX()*0.2 + (C_FOR_PLATFORM_3)) && cat.getY() <= (cat.getX()*0.2 + (C_FOR_PLATFORM_3)))
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
-		if ((cat.getY() + cat.getHeight() / 2) >= (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())))
+		if ((cat.getY() + cat.getHeight() / 2) >= (cat.getX()*0.2 + (C_FOR_PLATFORM_3)))
 		{
-			cat.setY(cat.getY() + (cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + (cat.getX()*0.2 + (C_FOR_PLATFORM_3)) - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY((cat.getX()*0.2 + (10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight())) - cat.getHeight());
+			cat.setY((cat.getX()*0.2 + (C_FOR_PLATFORM_3)) - cat.getHeight());
 		}
 		cat.setVelocityY(0);
+		return;
 	}
 }
 void Papercat::characterPlatformCheckingForBonusStage()
 {
-	if (cat.getX() <= (100) && cat.getY() + cat.getHeight() >= (10 + 50) && cat.getY() <= (10 + 50))//starting platform
+	if (cat.getX() <= (STARTINGPLATFORM_WIDTH) && cat.getY() + cat.getHeight() >= (STARTINGPLATFORM_HEIGHT) && cat.getY() <= (STARTINGPLATFORM_HEIGHT))//starting platform
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
 
-		if ((cat.getY() + cat.getHeight() / 2) >= 60)
+		if ((cat.getY() + cat.getHeight() / 2) >= STARTINGPLATFORM_HEIGHT)
 		{
-			cat.setY(cat.getY() + 60 - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + STARTINGPLATFORM_HEIGHT - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY(60 - cat.getHeight());
+			cat.setY(STARTINGPLATFORM_HEIGHT - cat.getHeight());
 		}
 
 		cat.setVelocityY(0);
+		return;
 	}
 
-	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60) / 3) && cat.getY() <= ((GAME_HEIGHT - 60) / 3))//starting platform
+	if (cat.getX() <= (PLATFORM_DISTANCEX) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3) && cat.getY() <= ((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3))//starting platform
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
 
-		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60) / 3)
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3)
 		{
-			cat.setY(cat.getY() + (GAME_HEIGHT - 60) / 3 - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY((GAME_HEIGHT - 60) / 3 - cat.getHeight());
+			cat.setY((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 - cat.getHeight());
 		}
-
 		cat.setVelocityY(0);
+		return;
 	}
-	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60) / 3 * 2) && cat.getY() <= ((GAME_HEIGHT - 60) / 3 * 2))//starting platform
+	if (cat.getX() <= (PLATFORM_DISTANCEX) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2) && cat.getY() <= ((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2))//starting platform
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
 
-		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60) / 3 * 2)
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2)
 		{
-			cat.setY(cat.getY() + (GAME_HEIGHT - 60) / 3 * 2 - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2 - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY((GAME_HEIGHT - 60) / 3 * 2 - cat.getHeight());
+			cat.setY((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2 - cat.getHeight());
 		}
 
 		cat.setVelocityY(0);
+		return;
 	}
-	if (cat.getX() <= (500) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - 60)) && cat.getY() <= ((GAME_HEIGHT - 60)))//starting platform
+	if (cat.getX() <= (PLATFORM_DISTANCEX) && cat.getY() + cat.getHeight() >= ((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT)) && cat.getY() <= ((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT)))//starting platform
 	{
 		if (cat.getVelocityY()<0)
 		{
 			cat.setY(cat.getY() + 1);
 		}
 
-		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - 60))
+		if ((cat.getY() + cat.getHeight() / 2) >= (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT))
 		{
-			cat.setY(cat.getY() + (GAME_HEIGHT - 60) - cat.getY() + (cat.getHeight() / 2));
+			cat.setY(cat.getY() + (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) - cat.getY() + (cat.getHeight() / 2));
 		}
 		else
 		{
-			cat.setY((GAME_HEIGHT - 60) - cat.getHeight());
+			cat.setY((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) - cat.getHeight());
 		}
 
 		cat.setVelocityY(0);
+		return;
 	}
 }
-
 //=============================================================================
 // Initializes the game
 // Throws GameError on error
@@ -419,14 +424,16 @@ void Papercat::initialize(HWND hwnd)
 	if (!doorFinal.initialize(graphics, 48, 48, 8, &doorTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door"));
 	doorFinal.setCurrentFrame(39);
-	doorFinal.setX(doorFinal.getWidth());
-	doorFinal.setY(GAME_HEIGHT-(3*doorFinal.getHeight()));
+	doorFinal.setX(200);
+	doorFinal.setY((doorFinal.getX() * -0.2) + (C_FOR_PLATFORM_2 + cat.getHeight() - doorFinal.getHeight() - 10));
 	// menu image
 	if (!doorBonus.initialize(graphics, 48, 48, 8, &doorTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing door"));
 	doorBonus.setCurrentFrame(39);
-	doorBonus.setX(200);
-	doorBonus.setY(366);
+
+	doorBonus.setX(doorBonus.getWidth());
+	doorBonus.setY(GAME_HEIGHT - doorBonus.getHeight() * 2);
+
 	return;
 
 	// play sound
@@ -443,54 +450,60 @@ void Papercat::update()
 	highscoreButton.update(frameTime);
 	creditsButton.update(frameTime);
 	mciSendString("play sounds\\theme_song.wav", NULL, 0, NULL);
-	// normal game stage
-	if (gameStart == 1)
+	switch (gameStart)
 	{
-		cat.checkStunned(cat.getState());
-		cat.checkBuff(frameTime);
-		cat.setVelocityY(cat.getVelocityY() + 2.5f);
-		characterPlatformCheckingForStage1();
-		cat.characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-		bool collision = minion->collisionDetectionWithCharacter(cat);
-		if (collision)
-		{
-			PlaySound(TEXT("sounds\\meow.wav"), NULL, SND_ASYNC);
-			cat.setHealth(cat.getHealth() - 1);
-		}
-		if (cat.getHealth() <= 0)
-		{
-			gameStart = 7;
-		}
-		if (cat.stunned() == false){
-			cat.update(frameTime);
-			cat.checkStunned(cat.getState());
-		}
-		if (minion != nullptr && !paused)
-		{
-			minion->update(frameTime);
-		}
-		scissor1.update(frameTime);
-	}
-	// boss stage
-	else if (gameStart == 4)
-	{	
-		cat.update(frameTime);
-		if (cat.getVelocityX() == 0&&cat.getVelocityY() == 0)
-		{
-			gravity();
-		}
-		else
-		{
-			cat.characterMovement2(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
-		}
-	}
-	// bonus stage
-	else if (gameStart == 5)
+	case 1:
 	{
-		cat.setVelocityY(cat.getVelocityY() + 2.5f);
-		characterPlatformCheckingForBonusStage();
-		cat.update(frameTime);
+			  cat.checkStunned(cat.getState());
+			  cat.checkBuff(frameTime);
+			  cat.setVelocityY(cat.getVelocityY() + 2.5f);
+			  characterPlatformCheckingForStage1();
+			  cat.characterMovementStage(input, CHARACTER_UP, CHARACTER_DOWN, CHARACTER_LEFT, CHARACTER_RIGHT, CHARACTER_JUMP);
+			  bool collision = minion->collisionDetectionWithCharacter(cat);
+			  if (collision)
+			  {
+				  if (cat.getState() != 2)
+				  {
+					  PlaySound(TEXT("sounds\\meow.wav"), NULL, SND_ASYNC);
+					  cat.setHealth(cat.getHealth() - 1);
+				  }		
+				  else
+				  {
+					  cat.setState(-1);
+				  }
+			  }
+			  if (cat.getHealth() <= 0)
+			  {
+				  gameStart = 7;
+			  }
+			  if (cat.stunned() == false){
+				  cat.update(frameTime);
+				  cat.checkStunned(cat.getState());
+			  }
+			  if (minion != nullptr && !paused)
+			  {
+				  minion->update(frameTime);
+			  }
+			  scissor1.update(frameTime);
 	}
+		break;
+	case 4:
+		gravity();
+		cat.characterMovementFinal(input, CHARACTER_UP, CHARACTER_DOWN, CHARACTER_LEFT, CHARACTER_RIGHT);
+		cat.update(frameTime);
+		break;
+	case 8:
+	{
+			  cat.setVelocityY(cat.getVelocityY() + 2.5f);
+			  characterPlatformCheckingForBonusStage();
+			  cat.characterMovementStage(input, CHARACTER_UP, CHARACTER_DOWN, CHARACTER_LEFT, CHARACTER_RIGHT, CHARACTER_JUMP);
+			  cat.update(frameTime);
+	}
+		break;
+	default:
+		break;
+	}
+	
 	
 }
 
@@ -505,84 +518,47 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-	//collision with enemy boss
-	if (cat.getState() != 3)
+
+	switch (gameStart)
 	{
+	case 1:
+		//collision with enemy boss
+
 		if ((cat.getX() + cat.getWidth()) >= (minion->getX()) &&
 			(cat.getX() <= (minion->getX() + minion->getWidth()) &&
 			(cat.getY() + cat.getHeight()) >= minion->getY()) &&
 			cat.getY() <= (minion->getY() + minion->getHeight()))
 		{
-	     	minion->setVisible(false);
-			cat.setHealth(cat.getHealth() - 1);
-		}
-	}
-	//collision with scissors
-	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
-		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
-		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
-		cat.getY() <= (scissor1.getY() + scissor1.getHeight()) && scissor1.getVisible())
-	{
-		PlaySound(TEXT("sounds\\meow.wav"), NULL, SND_ASYNC);
-		if (cat.getState() != 3)
-		{//playerScore++;
-			scissor1.setY(50 * rand() % 15 + 1);
-			scissor1.setX(0);
-			scissor1.setVisible(false);
-			cat.setHealth(cat.getHealth() - 1);
-		
-			if (cat.getHealth() <= 0)
+			if (cat.getState() != 2)
 			{
-				gameStart = 7;
+				minion->setVisible(false);
+				cat.setHealth(cat.getHealth() - 1);
 			}
 		}
-		else
-		{
-			cat.setState(-1);
-		}
-	}
 
-	//collision with coins
-	for (int i = 0; i < NUMBER_OF_COINS; i++)
-	{
-		if ((cat.getX() + cat.getWidth()) >= (coins[i].getX()) &&
-			(cat.getX() <= (coins[i].getX() + coins[i].getWidth()) &&
-			(cat.getY() + cat.getHeight()) >= coins[i].getY()) &&
-			cat.getY() <= (coins[i].getY() + coins[i].getHeight()))
-		{
-			PlaySound(TEXT("sounds\\coin.wav"), NULL, SND_ASYNC);
-			if (cat.getState() == 1)
-			{
-				playerScore++;
-				numberOfCoinsCollected++;
-			}	
-			playerScore++;
-				coins[i].setVisible(false);
-				coins[i].setX(-100.0f);
-				coins[i].setY(-100.0f);
-				if (numberOfCoinsCollected > 10)
-				{
-					cat.setState(-1);
-				}
-		}
-	}
+		//collision with scissors
+		checkScissorCollision();
 
-	//collision with buff
-	for (int i = 0; i < BUFF_NUM; i++)
-	{
-		if ((cat.getX() + cat.getWidth()) >= (items[i].getX()) &&
-			(cat.getX() <= (items[i].getX() + items[i].getWidth()) &&
-			(cat.getY() + cat.getHeight()) >= items[i].getY()) &&
-			cat.getY() <= (items[i].getY() + items[i].getHeight()))
-		{
-			PlaySound(TEXT("sounds\\rune.wav"), NULL, SND_ASYNC);
-			items[i].setVisible(false);
-			items[i].setX(-100.0f);
-			items[i].setY(-100.0f);
-			cat.setState(i);
-		}
+		//collision with coins
+		checkCoinCollision();
+
+		//collision with buff
+		checkBuffCollision();
+
+		checkFinalDoor();
+		checkBonusDoor();
+		break;
+	case 4:
+		checkCoinCollision();
+		break;
+	case 8:
+		checkCoinCollision();
+		checkFinalDoor();
+		break;
 	}
 }
+
+
 
 //=============================================================================
 // Render game items
@@ -591,8 +567,9 @@ void Papercat::render()
 {
 	const int BUF_SIZE = 50;
 	static char buffer[BUF_SIZE];
-	if (gameStart == 0)
+	switch (gameStart)
 	{
+	case 0:
 		graphics->spriteBegin();
 		menu.draw();							// add the menu to the scene
 		startButton.draw();						// add start button to menu scene
@@ -616,13 +593,11 @@ void Papercat::render()
 		{
 			gameStart = 3;
 		}
-	}
-	else if (gameStart == 1)
-	{
+		break;
+	case 1:
 		graphics->spriteBegin();
 		backgroundStage.draw();
-		scissor1.draw();	
-		cat.draw();
+		scissor1.draw();
 		doorFinal.draw();
 		doorBonus.draw();
 		for (int i = 0; i < BUFF_NUM; i++)
@@ -630,13 +605,13 @@ void Papercat::render()
 			items[i].draw();
 			items[i].update(frameTime);
 		}
-		
+
 		for (int i = 0; i < NUMBER_OF_COINS; i++)
 		{
 			coins[i].draw();
 			coins[i].update(frameTime);
 		}
-
+		
 		if (minion != nullptr && !paused)
 		{
 			if (minion->getY()<0)
@@ -649,7 +624,7 @@ void Papercat::render()
 				minion->draw();
 			}
 		}
-
+		cat.draw();
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
 		mainFont->print(buffer, GAME_WIDTH - 150, 20);
@@ -663,7 +638,7 @@ void Papercat::render()
 		if (paused)
 		{
 			pausedFont->setFontColor(graphicsNS::WHITE);
-			pausedFont->print("PAUSED\n", GAME_WIDTH/4, 200);
+			pausedFont->print("PAUSED\n", GAME_WIDTH / 4, 200);
 			pausedFont->print("Hit \"Enter\" \nto resume", GAME_WIDTH / 10, 300);
 			if (input->wasKeyPressed(VK_RETURN))
 				paused = false;
@@ -699,19 +674,17 @@ void Papercat::render()
 		}
 		else
 			rainbow.setVisible(false);
-		graphics->spriteEnd();		
+		graphics->spriteEnd();
 		drawing.GetDevice(graphics->get3Ddevice());
-		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
+		drawing.Line(0, STARTINGPLATFORM_HEIGHT, STARTINGPLATFORM_WIDTH, STARTINGPLATFORM_HEIGHT, 5, true, graphicsNS::WHITE);//starting platform. (10 for holdoff, 50 for the charcter's height(not created yet))
 
-		drawing.Line(0, 10 + 50 + 10 + cat.getHeight(), 500, 10 + 50 + 10 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 1 (500 for the hortizol distance of the platform)
+		drawing.Line(0, C_FOR_PLATFORM_1, 0 + PLATFORM_DISTANCEX, C_FOR_PLATFORM_1 + PLATFORM_DISTANCEY, 5, true, graphicsNS::WHITE);//platform 1 (500 for the hortizol distance of the platform)
 
-		drawing.Line(GAME_WIDTH - 500, 10 + 50 + 10 + 100 + 100 + 100 + cat.getHeight(), GAME_WIDTH, 10 + 50 + 10 + 100 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 2(100 for holdoff betwe)
+		drawing.Line(GAME_WIDTH - PLATFORM_DISTANCEX, C_FOR_PLATFORM_1 + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY, GAME_WIDTH, C_FOR_PLATFORM_1 + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY, 5, true, graphicsNS::WHITE);//platform 2(100 for holdoff betwe)
 
-		drawing.Line(0, 10 + 50 + 10 + 100 + 100 + 100 + 100 + cat.getHeight(), 500, 10 + 50 + 10 + 100 + 100 + 100 + 100 + 100 + cat.getHeight(), 5, true, graphicsNS::WHITE);//platform 3
-
-	}
-	else if (gameStart == 2)
-	{
+		drawing.Line(0, C_FOR_PLATFORM_3, 0 + PLATFORM_DISTANCEX, C_FOR_PLATFORM_3 + PLATFORM_DISTANCEY, 5, true, graphicsNS::WHITE);//platform 3
+		break;
+	case 2:
 		graphics->spriteBegin();
 		highscoreLogging->draw();
 		graphics->spriteEnd();
@@ -719,24 +692,23 @@ void Papercat::render()
 		{
 			gameStart = 0;
 		}
-	}
-	else if (gameStart == 3)
-	{
+		break;
+	case 3:
 		graphics->spriteBegin();
-		backgroundCredit.draw();		
+		backgroundCredit.draw();
 		graphics->spriteEnd();
 		if (input->anyKeyPressed())
 		{
 			gameStart = 0;
 		}
-	}
-	else if (gameStart == 4)
-	{
+		break;
+	case 4:
 		graphics->spriteBegin();
 		backgroundStage2.draw();
 		blackhole.draw();
 		for (int i = 0; i < NUMBER_OF_COINS; i++)
 		{
+			coins[i].setVisible(true);
 			coins[i].draw();
 			coins[i].setVisible(true);
 		}
@@ -748,9 +720,8 @@ void Papercat::render()
 		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
 		mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
 		graphics->spriteEnd();
-	}
-	else if (gameStart == 5)
-	{
+		break;
+	case 5:
 		graphics->spriteBegin();
 		backgroundHighscore.draw();
 		if (playerName.size() < 8)
@@ -758,14 +729,15 @@ void Papercat::render()
 			playerName = input->getTextIn();
 		}
 		if (playerName.size() > 7)
-		{		
-			input->clearAll();
-			input->getTextIn() = playerName.substr(5);
+		{
+
 			if (input->wasKeyPressed(VK_BACK))
-				playerName = input->getTextIn();					
+				playerName = input->getTextIn();
+			else
+				input->setTextIn(playerName);
 		}
-		
-		pausedFont->print(playerName, GAME_WIDTH / 4, GAME_HEIGHT/2);
+
+		pausedFont->print(playerName, GAME_WIDTH / 4, GAME_HEIGHT / 2);
 		if (input->isKeyDown(VK_RETURN) && playerName != "")
 		{
 			highscoreLogging->setScores(playerScore, playerName);
@@ -773,9 +745,8 @@ void Papercat::render()
 		}
 
 		graphics->spriteEnd();
-	}
-	else if (gameStart == 6)
-	{
+		break;
+	case 6:
 		graphics->spriteBegin();
 		backgroundTutorial.draw();
 		graphics->spriteEnd();
@@ -783,34 +754,41 @@ void Papercat::render()
 		{
 			gameStart = 1;
 		}
-	}
-	else if (gameStart == 5)
-	{
-		graphics->spriteBegin();
-		backgroundStage.draw();
-		cat.draw();
-		graphics->spriteEnd();
-		drawing.GetDevice(graphics->get3Ddevice());
-		drawing.Line(0, 10 + 50, 100, 10 + 50, 5, true, graphicsNS::WHITE);
-
-		drawing.Line(0, (GAME_HEIGHT - 60) / 3, 500, (GAME_HEIGHT - 60) / 3, 5, true, graphicsNS::WHITE);
-
-		drawing.Line(0, (GAME_HEIGHT - 60) / 3 * 2, 500, (GAME_HEIGHT - 60) / 3 * 2, 5, true, graphicsNS::WHITE);
-
-		drawing.Line(0, (GAME_HEIGHT - 60), 500, (GAME_HEIGHT - 60), 5, true, graphicsNS::WHITE);
-
-	}
-	else if (gameStart == 7)
-	{
+		break;
+	case 7:
 		mciSendString("play sounds\\game_over.wav", NULL, 0, NULL);
 		graphics->spriteBegin();
 		backgroundStage.draw();
-		
+
 		mainFont->setFontColor(graphicsNS::WHITE);
 		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
-		mainFont->print(buffer, GAME_WIDTH/2 - 60, GAME_HEIGHT/2 + 30);
+		mainFont->print(buffer, GAME_WIDTH / 2 - 60, GAME_HEIGHT / 2 + 30);
 		graphics->spriteEnd();
+		break;
+	case 8:
+		graphics->spriteBegin();
+		backgroundStage.draw();
+		cat.draw();
+		
+		doorFinal.draw();
+		for (int i = 0; i < NUMBER_OF_COINS; i++)
+		{
+			coins[i].draw();
+			coins[i].update(frameTime);
+		}
+		graphics->spriteEnd();
+		drawing.GetDevice(graphics->get3Ddevice());
+		drawing.Line(0, STARTINGPLATFORM_HEIGHT, STARTINGPLATFORM_WIDTH, STARTINGPLATFORM_HEIGHT, 5, true, graphicsNS::WHITE);
 
+		drawing.Line(0, (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3, PLATFORM_DISTANCEX, (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2, PLATFORM_DISTANCEX, (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2, 5, true, graphicsNS::WHITE);
+
+		drawing.Line(0, (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT), PLATFORM_DISTANCEX, (GAME_HEIGHT - STARTINGPLATFORM_HEIGHT), 5, true, graphicsNS::WHITE);
+ 
+		break;
+	default:
+		break;
 	}
 	// exit at any point
 	if (GetKeyState(VK_LMENU) && input->wasKeyPressed(VK_F4))
@@ -860,26 +838,33 @@ void Papercat::resetAll()
 void Papercat::gravity()
 {
 
-	//distance between the two point 
-		float squareDistanceX = pow((cat.getX() - blackhole.getX()), 2);
-		float squareDistanceY = pow((cat.getY() - blackhole.getY()), 2);
-		float distanceBetweenCatAndBlackhole = sqrt(squareDistanceX + squareDistanceY);
-		//get acceleration whereby a = velocity^2/distance
-		float acceleration = pow(10.0f, 2) / distanceBetweenCatAndBlackhole;
-		//update x value of cat
-		float constantVelocity = 0.0f;
-		if (cat.getX()<blackhole.getCenterX())
-			cat.setX(cat.getX() + constantVelocity + acceleration);
-		else if (cat.getX()>blackhole.getCenterX())
-			cat.setX(cat.getX() - constantVelocity - acceleration);
+	float testX = 0;
+	float testY = 0;
 
-		//update y value of cat
-		if (cat.getY() < blackhole.getCenterY())
-			cat.setY(cat.getY() + constantVelocity + acceleration);
-		else if (cat.getY() > blackhole.getCenterY())
-			cat.setY(cat.getY() - constantVelocity - acceleration);		
+
+	////update y value of cat			
+	if (cat.getY() < blackhole.getCenterY())
+	{
+		testY = cat.getVelocityY() + GRAVITY;
+		cat.setVelocityY(testY);
+	}
+	else if (cat.getY() > blackhole.getCenterY())
+	{
+		testY = cat.getVelocityY() - GRAVITY;
+		cat.setVelocityY(testY);
+	}
+	if (cat.getX() < blackhole.getCenterX())
+	{
+		testX = cat.getVelocityX() + GRAVITY;
+		cat.setVelocityX(testX);
+	}
+	else if (cat.getX() > blackhole.getCenterX())
+	{
+		testX = cat.getVelocityX() - GRAVITY;
+		cat.setVelocityX(testX);
+	}
+
 }
-
 
 void Papercat::setYvalue(int randLineNum, int i, int type)
 {
@@ -931,7 +916,7 @@ void Papercat::setArray(float arrayOfposition[arrayOfNumX])
 int Papercat::SetRandomNum(int lineNum)
 {
 	int randNum;
-	if (lineNum == 1 || lineNum ==3|| lineNum==2)
+	if (lineNum == 1 || lineNum ==3)
 	{
 		randNum = rand() % (arrayOfNumX / 2);
 	}
@@ -980,4 +965,228 @@ bool Papercat::checkCollisionforStage2(){
 			}
 		}
 	}
+}
+void Papercat::checkScissorCollision()
+{
+	if ((cat.getX() + cat.getWidth()) >= (scissor1.getX()) &&
+		(cat.getX() <= (scissor1.getX() + scissor1.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= scissor1.getY()) &&
+		cat.getY() <= (scissor1.getY() + scissor1.getHeight()) && scissor1.getVisible())
+	{
+		PlaySound(TEXT("sounds\\meow.wav"), NULL, SND_ASYNC);
+		if (cat.getState() != 2)
+		{//playerScore++;
+			scissor1.setY(50 * rand() % 15 + 1);
+			scissor1.setX(0);
+			scissor1.setVisible(false);
+			cat.setHealth(cat.getHealth() - 1);
+
+			if (cat.getHealth() <= 0)
+			{
+				gameStart = 7;
+			}
+		}
+		else
+		{
+			cat.setState(-1);
+		}
+	}
+}
+void Papercat::checkCoinCollision()
+{
+	for (int i = 0; i < NUMBER_OF_COINS; i++)
+	{
+		if ((cat.getX() + cat.getWidth()) >= (coins[i].getX()) &&
+			(cat.getX() <= (coins[i].getX() + coins[i].getWidth()) &&
+			(cat.getY() + cat.getHeight()) >= coins[i].getY()) &&
+			cat.getY() <= (coins[i].getY() + coins[i].getHeight()))
+		{
+			PlaySound(TEXT("sounds\\coin.wav"), NULL, SND_ASYNC);
+			if (cat.getState() == 1)
+			{
+				playerScore++;
+				numberOfCoinsCollected++;
+			}
+			playerScore++;
+			coins[i].setVisible(false);
+			coins[i].setX(-100.0f);
+			coins[i].setY(-100.0f);
+			if (numberOfCoinsCollected > 10)
+			{
+				cat.setState(-1);
+			}
+		}
+	}
+}
+void Papercat::checkBuffCollision()
+{
+	for (int i = 0; i < BUFF_NUM; i++)
+	{
+		if ((cat.getX() + cat.getWidth()) >= (items[i].getX()) &&
+			(cat.getX() <= (items[i].getX() + items[i].getWidth()) &&
+			(cat.getY() + cat.getHeight()) >= items[i].getY()) &&
+			cat.getY() <= (items[i].getY() + items[i].getHeight()))
+		{
+			PlaySound(TEXT("sounds\\rune.wav"), NULL, SND_ASYNC);
+			items[i].setVisible(false);
+			items[i].setX(-100.0f);
+			items[i].setY(-100.0f);
+			cat.setState(i);
+		}
+	}
+}
+void Papercat::checkFinalDoor()
+{
+	if ((cat.getX() + cat.getWidth()) >= (doorFinal.getX()) &&
+		(cat.getX() <= (doorFinal.getX() + doorFinal.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= doorFinal.getY()) &&
+		cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) && doorFinal.getVisible())
+	{
+		if (input->wasKeyPressed(VK_UP))
+		{
+			gameStart = 4;
+			for (int i = 0; i < NUMBER_OF_COINS; i++)
+			{
+				coins[i].setCurrentFrame(itemsNS::COIN_FRAME);
+				coins[i].setVisible(true);
+				coins[i].setX(rand() % GAME_WIDTH + 0);
+				coins[i].setY(rand() % GAME_HEIGHT + 0);
+				coins[i].update(frameTime);
+			}
+			cat.setX(mainCharNS::X);
+			cat.setY(mainCharNS::Y);
+		}
+		
+	}
+}
+void Papercat::checkBonusDoor()
+{
+	if ((cat.getX() + cat.getWidth()) >= (doorBonus.getX()) &&
+		(cat.getX() <= (doorBonus.getX() + doorBonus.getWidth()) &&
+		(cat.getY() + cat.getHeight()) >= doorBonus.getY()) &&
+		cat.getY() <= (doorBonus.getY() + doorBonus.getHeight()) && doorBonus.getVisible())
+	{
+		if (input->wasKeyPressed(VK_UP))
+		{
+			gameStart = 8;
+			srand(time(0));
+			for (int i = 0; i < NUMBER_OF_COINS; i++)
+			{
+				if (!coins[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
+					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing items"));
+				coins[i].setCurrentFrame(itemsNS::COIN_FRAME);
+				Items* currentItem = &coins[i];
+				setItemsInPosition(currentItem);
+				bool reCheckForRepeats = false;
+				do
+				{
+					for (int j = 0; j < i - 1; j++)
+					{
+						if ((currentItem->getX() == coins[j].getX() && currentItem->getY() == coins[j].getY()))
+						{
+							setItemsInPosition(currentItem);
+							reCheckForRepeats = true;
+							break;
+						}
+						reCheckForRepeats = false;
+					}
+
+				} while (reCheckForRepeats);
+			}
+			doorFinal.setY(GAME_HEIGHT - doorFinal.getHeight());
+			doorFinal.setX(0);
+			cat.setX(mainCharNS::X);
+			cat.setY(mainCharNS::Y);
+		}
+	}
+}
+void Papercat::setItemsInPosition(Entity* item)
+{
+	int spawnColumns = floor(GAME_WIDTH / itemsNS::WIDTH);
+	int spawnLine = rand() % 3 + 1;
+	int spawnColumn = rand() % spawnColumns + 1;
+	item->setX(spawnColumn*itemsNS::WIDTH);
+	switch (gameStart)
+	{
+	case 8:
+		switch (spawnLine)
+		{
+		case 1:
+			if (item->getX() < PLATFORM_DISTANCEX)
+			{
+				item->setY((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 - item->getHeight() - 10);
+			}
+			else
+			{
+				setItemsInPosition(item);
+			}
+			break;
+		case 2:
+			if (item->getX() < (PLATFORM_DISTANCEX))
+			{
+				item->setY((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) / 3 * 2 - item->getHeight() - 10);
+			}
+			else
+			{
+				setItemsInPosition(item);
+			}
+			break;
+		case 3:
+			if (item->getX() < PLATFORM_DISTANCEX)
+			{
+				item->setY((GAME_HEIGHT - STARTINGPLATFORM_HEIGHT) - item->getHeight() - 10);
+			}
+			else
+			{
+				setItemsInPosition(item);
+			}
+			break;
+
+		default:
+			break;
+		}
+		break;
+	case 1:
+		switch (spawnLine)
+		{
+		case 1:
+			if (item->getX() < PLATFORM_DISTANCEX)
+			{
+				item->setY(item->getX()*0.2 + (C_FOR_PLATFORM_1 - item->getHeight() - 10)); //7 is item holdoff
+			}
+			else
+			{
+				setItemsInPosition(item);
+			}
+
+			break;
+		case 2:
+			if (item->getX() > (GAME_WIDTH - PLATFORM_DISTANCEX))
+			{
+				item->setY((item->getX() * -0.2) + (C_FOR_PLATFORM_2 + cat.getHeight() - item->getHeight() - 10));
+			}
+			else
+			{
+				setItemsInPosition(item);
+			}
+			break;
+		case 3:
+			if (item->getX() < PLATFORM_DISTANCEX)
+			{
+				item->setY(item->getX() * 0.2 + (C_FOR_PLATFORM_3 - item->getHeight() - 10));
+			}
+			else
+			{
+				setItemsInPosition(item);
+			}
+			break;
+
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+
 }

@@ -47,8 +47,8 @@ public:
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
 		TextureManager *textureM);
 	void update(float frameTime);
-	void characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
-	void characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
+	void characterMovementStage(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right, UCHAR jump);
+	void characterMovementFinal(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right);
 	boolean getActive();
 	void checkDirection();
 	void characterOutOfScreen();
