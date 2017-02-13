@@ -465,7 +465,7 @@ void Papercat::update()
 			cat.update(frameTime);
 			cat.checkStunned(cat.getState());
 		}
-		if (minion != nullptr)
+		if (minion != nullptr && !paused)
 		{
 			minion->update(frameTime);
 		}
@@ -637,7 +637,7 @@ void Papercat::render()
 			coins[i].update(frameTime);
 		}
 
-		if (minion != nullptr)
+		if (minion != nullptr && !paused)
 		{
 			if (minion->getY()<0)
 			{

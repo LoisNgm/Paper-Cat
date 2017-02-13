@@ -1,4 +1,4 @@
-﻿Build started 13/02/2017 09:56:39.
+﻿Build started 13/02/2017 10:15:04.
      1>Project "D:\Ngee Ann\Semester 3.2\GPP\Assignment 2\Paper-Cat\Paper Cat.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Paper Cat.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
@@ -64,4 +64,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.94
+Time Elapsed 00:00:06.07
