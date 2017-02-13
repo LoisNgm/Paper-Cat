@@ -412,6 +412,20 @@ void Papercat::initialize(HWND hwnd)
 		if (currentLine == 3 && arrayNum == cutOff)
 			i = NUMBER_OF_COINS;
 	}
+	// star initialization
+	for (int i = 0; i < NUMBER_OF_STARS; i++)
+	{
+		if (!stars[i].initialize(this, starNS::WIDTH, starNS::HEIGHT, starNS::TEXTURE_COLS, &mainTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing asteroid"));
+		stars[i].setFrames(starNS::STAR_FRAME, starNS::STAR_FRAME);
+		stars[i].setCurrentFrame(starNS::STAR_FRAME);
+		stars[i].setX(rand() % GAME_WIDTH);
+		stars[i].setY(rand() % GAME_HEIGHT);
+		stars[i].setVelocity(VECTOR2((rand() % 250 + 50), -(rand() % 250 + 50))); // VECTOR2(X, Y)
+
+	}
+
+
 	// initialize font
 	if (mainFont->initialize(graphics, 30, true, false, "Courier New") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
@@ -490,7 +504,13 @@ void Papercat::update()
 	case 4:
 		gravity();
 		cat.characterMovementFinal(input, CHARACTER_UP, CHARACTER_DOWN, CHARACTER_LEFT, CHARACTER_RIGHT);
-		cat.update(frameTime);
+		cat.update(frameTime); 
+		for (int i = 0; i < NUMBER_OF_STARS; i++)
+		{
+			stars[i].update(frameTime);
+		}
+		if (numberOfStarsCollected == NUMBER_OF_STARS)
+			gameStart = 7;
 		break;
 	case 8:
 	{
@@ -518,7 +538,7 @@ void Papercat::ai()
 //=============================================================================
 void Papercat::collisions()
 {
-
+	VECTOR2 collisionVector;
 	switch (gameStart)
 	{
 	case 1:
@@ -550,6 +570,20 @@ void Papercat::collisions()
 		break;
 	case 4:
 		checkCoinCollision();
+		for (int i = 0; i < NUMBER_OF_STARS; i++){
+			if (stars[i].collidesWith(blackhole, collisionVector))
+				stars[i].bounce(collisionVector, blackhole);
+			if ((cat.getX() + cat.getWidth()) >= (stars[i].getX()) &&
+				(cat.getX() <= (stars[i].getX() + stars[i].getWidth()) &&
+				(cat.getY() + cat.getHeight()) >= stars[i].getY()) &&
+				cat.getY() <= (stars[i].getY() + stars[i].getHeight()))
+			{
+				stars[i].setVisible(false);
+				stars[i].setX(-50);
+				stars[i].setY(-50);
+				numberOfStarsCollected++;
+			}
+		}
 		break;
 	case 8:
 		checkCoinCollision();
@@ -646,7 +680,7 @@ void Papercat::render()
 		if ((cat.getX() + cat.getWidth()) >= (doorFinal.getX()) &&
 			(cat.getX() <= (doorFinal.getX() + doorFinal.getWidth()) &&
 			(cat.getY() + cat.getHeight()) >= doorFinal.getY()) &&
-			cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) && input->wasKeyPressed(VK_UP))
+			cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) || input->wasKeyPressed(VK_UP))
 		{
 			for (int i = 0; i < NUMBER_OF_COINS; i++)
 			{
@@ -705,6 +739,10 @@ void Papercat::render()
 	case 4:
 		graphics->spriteBegin();
 		backgroundStage2.draw();
+		for (int i = 0; i < NUMBER_OF_STARS; i++)
+		{
+			stars[i].draw();
+		}
 		blackhole.draw();
 		for (int i = 0; i < NUMBER_OF_COINS; i++)
 		{

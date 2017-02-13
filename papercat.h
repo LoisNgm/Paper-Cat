@@ -9,6 +9,7 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include "game.h"
+#include "star.h"
 #include "textureManager.h"
 #include "image.h"
 #include "buttons.h"
@@ -52,6 +53,7 @@ private:
 	Buttons highscoreButton;
 	Buttons creditsButton;
 	Scissors scissor1;
+	Star	stars[NUMBER_OF_STARS];
 	MainChar cat;
 	Blackhole blackhole;
 	string playerName = "";
@@ -75,6 +77,7 @@ private:
 	int playerScore;		// player's score in the game
 	float arrayOfPosition[arrayOfNumX];
 	int numberOfCoinsCollected = 0;
+	int numberOfStarsCollected = 0;
 	TextureManager doorTexture;
 	Image doorFinal;
 	Image doorBonus;
