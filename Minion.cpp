@@ -34,24 +34,24 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minionBoss textures"));
 
 	minionBoss.initialize(gamePtr->getGraphics(), minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, minionNS::LARGE_MINION_TEXTURE_COLS, &minionBossTexture);
+	minions[0].setX(500);
+	minions[0].setY(C_FOR_PLATFORM_3 + minionNS::SMALL_MINION_HEIGHT - 5);
+	minions[1].setX(GAME_WIDTH - 500);
+	minions[1].setY(C_FOR_PLATFORM_1 + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY + minionNS::SMALL_MINION_HEIGHT - 5);
+	minions[2].setX(500);
+	minions[2].setY(C_FOR_PLATFORM_1 + minionNS::SMALL_MINION_HEIGHT - 5);
+	for (int i = 0; i < NUM_OF_SMALL_MINION; i++)
+	{
+		minions[i].initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
+		minions[i].setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
+		minions[i].setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
+	}
 
-	minion.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
-	minion2.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
-	minion3.initialize(gamePtr->getGraphics(), width, height, ncols, &minionTexture);
+
 	velocity.x = -100;
 	velocity.y = -20;
-	minion.setX(500);
-	minion.setY(10 + 50 + 10 + 100 + 100 + 100 + 100 + 100);
-	minion2.setX(GAME_WIDTH - 500);
-	minion2.setY(10 + 50 + 10 + 100 + 100 + 100);
-	minion3.setX(500);
-	minion3.setY(10 + 50 + 10 + 100);
-	minion.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
-	minion.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
-	minion2.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
-	minion2.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
-	minion3.setCurrentFrame(minionNS::SMALL_MINION_START_FRAME);
-	minion3.setFrames(minionNS::SMALL_MINION_START_FRAME, minionNS::SMALL_MINION_END_FRAME);
+
+
 	return(Entity::initialize(gamePtr, minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, minionNS::LARGE_MINION_TEXTURE_COLS, &minionBossTexture));
 }
 //=============================================================================
@@ -59,9 +59,14 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 //=============================================================================
 void Minion::draw()
 {
-	minion.draw();
+	/*minion.draw();
 	minion2.draw();
-	minion3.draw();
+	minion3.draw();*/
+	for (int i = 0; i < NUM_OF_SMALL_MINION; i++)
+	{
+
+		minions[i].draw();
+	}
 	Image::draw();              // draw comet
 }
 
@@ -74,53 +79,43 @@ void Minion::update(float frameTime)
 {
 	Entity::update(frameTime);
 
+	for (int i = 0; i < NUM_OF_SMALL_MINION; i++)
+	{
 
-	if (spriteData.y > GAME_HEIGHT - minionNS::SMALL_MINION_HEIGHT*getScale())
-	{
-		this->setX(0);
-		this->setY(0);
+		minions[i].update(frameTime);
+		if (i % 2 == 0)
+		{
+			minions[i].setX(minions[i].getX() + frameTime * velocity.x);
+			minions[i].setY(minions[i].getY() + frameTime * velocity.y);
+		}
+		else
+		{
+			minions[i].setX(minions[i].getX() - frameTime * velocity.x);
+			minions[i].setY(minions[i].getY() + frameTime * velocity.y);
+		}
+
+		if (minions[i].getX() < 0 || minions[i].getX() > GAME_WIDTH - minions[i].getWidth())
+		{
+			velocity.x *= -1;
+			velocity.y *= -1;
+			minions[i].setVisible(true);
+		}
 	}
-	if (minion.getX() < 0 || minion.getX() > GAME_WIDTH - minion.getWidth())
-	{
-		velocity.x *= -1;
-		velocity.y *= -1;
-		minion.setVisible(true);
-		minion2.setVisible(true);
-		minion3.setVisible(true);
-	}
-	minion.setX(minion.getX() + frameTime * velocity.x);
-	minion.setY(minion.getY() + frameTime * velocity.y);
-	minion2.setX(minion2.getX() - frameTime * velocity.x);
-	minion2.setY(minion2.getY() + frameTime * velocity.y);
-	minion3.setX(minion3.getX() + frameTime * velocity.x);
-	minion3.setY(minion3.getY() + frameTime * velocity.y);
 
 }
 bool Minion::collisionDetectionWithCharacter(Entity cat)
 {
-	if ((cat.getX() + cat.getWidth()) >= (minion.getX()) &&
-		(cat.getX() <= (minion.getX() + minion.getWidth()) &&
-		(cat.getY() + cat.getHeight()) >= minion.getY()) &&
-		cat.getY() <= (minion.getY() + minion.getHeight()) && minion.getVisible())
+	for (int i = 0; i < NUM_OF_SMALL_MINION; i++)
 	{
-		minion.setVisible(false);
-		return true;
-	}
-	if ((cat.getX() + cat.getWidth()) >= (minion2.getX()) &&
-		(cat.getX() <= (minion2.getX() + minion2.getWidth()) &&
-		(cat.getY() + cat.getHeight()) >= minion2.getY()) &&
-		cat.getY() <= (minion2.getY() + minion2.getHeight()) && minion2.getVisible())
-	{
-		minion2.setVisible(false);	
-		return true;
-	}
-	if ((cat.getX() + cat.getWidth()) >= (minion3.getX()) &&
-		(cat.getX() <= (minion3.getX() + minion3.getWidth()) &&
-		(cat.getY() + cat.getHeight()) >= minion3.getY()) &&
-		cat.getY() <= (minion3.getY() + minion3.getHeight()) && minion3.getVisible())
-	{
-		minion3.setVisible(false);
-		return true;
+
+		if ((cat.getX() + cat.getWidth()) >= (minions[i].getX()) &&
+			(cat.getX() <= (minions[i].getX() + minions[i].getWidth()) &&
+			(cat.getY() + cat.getHeight()) >= minions[i].getY()) &&
+			cat.getY() <= (minions[i].getY() + minions[i].getHeight()) && minions[i].getVisible())
+		{
+			minions[i].setVisible(false);
+			return true;
+		}
 	}
 	return false;
 }

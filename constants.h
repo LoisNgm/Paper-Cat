@@ -48,7 +48,7 @@ const float FRAME_RATE = 200.0f;                // the target frame rate (frames
 const float MIN_FRAME_RATE = 10.0f;             // the minimum frame rate
 const float MIN_FRAME_TIME = 1.0f / FRAME_RATE;   // minimum desired time for 1 frame
 const float MAX_FRAME_TIME = 1.0f / MIN_FRAME_RATE; // maximum time used in calculations
-const float GRAVITY = 6.67428e-11f;             // gravitational constant
+const float GRAVITY = 1.5f;             // gravitational constant
 const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
 
@@ -70,7 +70,23 @@ const UINT arrayOfNumX = 21;
 const UINT numOfTopScore = 10;
 const UINT STUNNEDTIME = 10;
 const UINT FLASHTIME = 70;
+const int NUM_OF_SMALL_MINION = 3;
+//platforms
+const int PLATFORM_DISTANCEX = 500;
+const int PLATFORM_DISTANCEY = 100;
+const int CHARATER_WIDTHANDHEIGHT = 48;//This is only for reference the height can be adjusted for hold offs. 
+const int C_FOR_PLATFORM_1 = 10 + 50 + 10 + CHARATER_WIDTHANDHEIGHT;
+const int C_FOR_PLATFORM_2 = 454 - CHARATER_WIDTHANDHEIGHT;
+const int C_FOR_PLATFORM_3 = 10 + 50 + 10 + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY + PLATFORM_DISTANCEY + CHARATER_WIDTHANDHEIGHT;
 
+const int STARTINGPLATFORM_WIDTH = 100;
+const int STARTINGPLATFORM_HEIGHT = 50 + 10;
+//character
+const float CHARACTER_S_ACCLERATION = 3.0f;
+const float FRICTION = 1.0f;
+const float CHARACTER_JUMPING_FORCE = 150;
+//words
+const int BUF_SIZE = 50;
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
@@ -79,5 +95,10 @@ const UCHAR ESC_KEY = VK_ESCAPE;       // escape key
 const UCHAR ALT_KEY = VK_MENU;         // Alt key
 const UCHAR ENTER_KEY = VK_RETURN;       // Enter key
 const UINT BUFF_NUM = 4;
+const UCHAR CHARACTER_UP = VK_UP;
+const UCHAR CHARACTER_DOWN = VK_DOWN;
+const UCHAR CHARACTER_LEFT = VK_LEFT;
+const UCHAR CHARACTER_RIGHT = VK_RIGHT;
+const UCHAR CHARACTER_JUMP = VK_SPACE;
 
 #endif

@@ -108,6 +108,12 @@ public:
 	void characterPlatformCheckingForBonusStage();
 	int SetRandomNum(int lineNum);
 	bool checkCollisionforStage2();
+	void checkScissorCollision();
+	void checkCoinCollision();
+	void checkBuffCollision();
+	void checkFinalDoor();
+	void checkBonusDoor();
+	void setItemsInPosition(Entity* item);
 };
 
 #endif

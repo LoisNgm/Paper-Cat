@@ -75,7 +75,6 @@ void MainChar::update(float frameTime)
 	}	
 	//condition for removing buff state
 	//set state to false;
-	characterMovement(input, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT);
 	setX(getX() + frameTime*velocity.x);
 	setY(getY() + frameTime*velocity.y);
 	checkDirection();
@@ -86,32 +85,33 @@ void MainChar::update(float frameTime)
 //=============================================================================
 //Movement
 //=============================================================================
-void MainChar::characterMovement(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)
+void MainChar::characterMovementStage(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right, UCHAR jump)
 {
 	if (input->isKeyDown(right))
 	{
-		velocity.x += 2.0f;
+		velocity.x += CHARACTER_S_ACCLERATION;
 		flipHorizontal(true);
 	}
 	if (input->isKeyDown(left))
 	{
-		velocity.x -= 2.0f;
+		velocity.x -= CHARACTER_S_ACCLERATION;
 		flipHorizontal(false);
 	}
 
-	if (input->wasKeyPressed(VK_SPACE))
+	if (input->wasKeyPressed(jump))
 	{
-		input->clearKeyPress(VK_SPACE);		
-		velocity.y = -150;	
+		input->clearKeyPress(jump);
+
+		velocity.y = -CHARACTER_JUMPING_FORCE;
 	}
 
 	if (velocity.x > 0)
 	{
-		velocity.x -= 1.0f;
+		velocity.x -= FRICTION;
 	}
 	else
 	{
-		velocity.x += 1.0f;
+		velocity.x += FRICTION;
 	}
 }
 
@@ -169,36 +169,7 @@ void MainChar::checkStunned(int state)
 		stunState = false;
 }
 
-void MainChar::characterMovement2(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)
-{
-	if (input->isKeyDown(right))
-	{
-		velocity.x += 2.0f;
-		flipHorizontal(true);
-	}
-	if (input->isKeyDown(left))
-	{
-		velocity.x -= 2.0f;
-		flipHorizontal(false);
-	}
 
-	if (input->wasKeyPressed(up))
-	{
-		velocity.y -= 2.0f;
-	}
-	if (input->wasKeyPressed(down))
-	{
-		velocity.y += 2.0f;
-	}
-	if (velocity.x > 0)
-	{
-		velocity.x -= 1.0f;
-	}
-	else
-	{
-		velocity.x += 1.0f;
-	}
-}
 void MainChar::checkBuff(float frameTime)
 {
 	if (getState() != -1)
@@ -207,5 +178,44 @@ void MainChar::checkBuff(float frameTime)
 		buff[getState()].setX(this->getX());
 		buff[getState()].setY(this->getY() - this->getHeight());
 		buff[getState()].update(frameTime);
+	}
+}
+void MainChar::characterMovementFinal(Input *input, UCHAR up, UCHAR down, UCHAR left, UCHAR right)
+{
+	if (input->isKeyDown(right))
+	{
+		velocity.x += CHARACTER_S_ACCLERATION;
+		flipHorizontal(true);
+	}
+	if (input->isKeyDown(left))
+	{
+		velocity.x -= CHARACTER_S_ACCLERATION;
+		flipHorizontal(false);
+	}
+	if (input->isKeyDown(up))
+	{
+		velocity.y -= CHARACTER_S_ACCLERATION;
+	}
+	if (input->isKeyDown(down))
+	{
+		velocity.y += CHARACTER_S_ACCLERATION;
+
+	}
+
+	if (velocity.x > 0)
+	{
+		velocity.x -= FRICTION;
+	}
+	else
+	{
+		velocity.x += FRICTION;
+	}
+	if (velocity.y > 0)
+	{
+		velocity.y -= FRICTION;
+	}
+	else
+	{
+		velocity.y += FRICTION;
 	}
 }
