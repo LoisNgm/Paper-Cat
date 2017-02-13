@@ -139,6 +139,7 @@ public:
 
 	// Return text input as a string
 	std::string getTextIn() { return textIn; }
+	void setTextIn(std::string text) { textIn = text; }
 
 	// Return last character entered
 	char getCharIn()        { return charIn; }

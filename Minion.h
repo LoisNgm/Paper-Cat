@@ -9,13 +9,14 @@
 
 #include "entity.h"
 #include "constants.h"
+#include <vector>
 
 namespace minionNS
 {
 
 	const int SMALL_MINION_WIDTH = 48;                   // image width
 	const int SMALL_MINION_HEIGHT = 48;                  // image height
-	 
+
 	const int LARGE_MINION_WIDTH = 192;                   // image width
 	const int LARGE_MINION_HEIGHT = 192;                  // image height
 
@@ -39,10 +40,9 @@ private:
 	TextureManager minionTexture;
 	TextureManager minionBossTexture;
 	Image minionBoss;
-	Image minion;
-	Image minion2;
-	Image minion3;
-	
+	Image minions[NUM_OF_SMALL_MINION];
+
+
 public:
 	// constructor
 	Minion();

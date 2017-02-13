@@ -22,7 +22,7 @@ void Highscore::draw()
 	dxFontForScore->print("Position", 50, GAME_HEIGHT / 4 + (i * 25));
 	dxFontForScore->print("Name", 200, GAME_HEIGHT / 4 + (i * 25));
 	dxFontForScore->print("Score", 450, GAME_HEIGHT / 4 + (i * 25));
-	while (i<currentNumberOfHighScorers)
+	while (highScore[i]!=NULL)
 	{
 		dxFontForScore->print(to_string((i + 1)), 50, GAME_HEIGHT / 4 + ((i + 1) * 25));
 		dxFontForScore->print(scoreName[i], 200, GAME_HEIGHT / 4 + ((i + 1) * 25));
@@ -108,42 +108,38 @@ bool Highscore::getDisplayStatus()
 
 void Highscore::recordingScore(int score, string name)
 {
-
-	bool checkHighScore = true;
-	int i = 0;
-	string n = name;
-
-	while (checkHighScore)
+	int currentScore;
+	int storedScore;
+	string currentName;
+	string storedName;
+	for (int i = 0; i < 9; i++)
 	{
-		//if score is not the first one recorded(means text file not empty)
 		if (highScore[i] != NULL)
 		{
-			if (score >= highScore[i])
+			if (highScore[i] < score)
 			{
-				for (int j = 10; j < i; j--)
+				storedScore = highScore[i];
+				storedName = scoreName[i];
+				for (int j = i + 1; j < 10; j++)
 				{
-					if (highScore[j - 1] != NULL&& highScore[j - 1] > 0)
-					{
-						scoreName[j - 1] = scoreName[j];
-						highScore[j - 1] = highScore[j];
-					}
+
+
+					currentScore = highScore[j];
+					highScore[j] = storedScore;
+					storedScore = currentScore;
+					currentName = scoreName[j];
+					scoreName[j] = storedName;
+					storedName = currentName;
 				}
-				scoreName[i] = n;
-				highScore[i] = score;
-				checkHighScore = false;
+				return;
 			}
 		}
 		else
 		{
-			scoreName[i] = n;
+			scoreName[i] = name;
 			highScore[i] = score;
-			checkHighScore = false;
+			return;
 		}
-		if (i > 10)
-		{
-			checkHighScore = false;
-		}
-		i++;
 	}
 }
 bool Highscore::checkingScore(int score)
