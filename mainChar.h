@@ -35,6 +35,7 @@ private:
 	bool shield = false;
 	bool stunState = false;
 	float Timer = 0;
+	bool flashState = false;
 
 public:
 	int stage = 0;
@@ -64,7 +65,7 @@ public:
 	bool stunned(){ return stunState; };
 	void checkStunned(int state);
 	void checkBuff(float frameTime);
-	void checkRainbow(int state);
+	bool rainbowFlashing(){ return flashState; };
 };
 #endif
 
