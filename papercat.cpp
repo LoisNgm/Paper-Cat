@@ -579,6 +579,8 @@ void Papercat::collisions()
 				cat.getY() <= (stars[i].getY() + stars[i].getHeight()))
 			{
 				stars[i].setVisible(false);
+				stars[i].setX(-50);
+				stars[i].setY(-50);
 				numberOfStarsCollected++;
 			}
 		}
