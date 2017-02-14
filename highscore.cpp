@@ -22,7 +22,7 @@ void Highscore::draw()
 	dxFontForScore->print("Position", 50, GAME_HEIGHT / 4 + (i * 25));
 	dxFontForScore->print("Name", 200, GAME_HEIGHT / 4 + (i * 25));
 	dxFontForScore->print("Score", 450, GAME_HEIGHT / 4 + (i * 25));
-	while (highScore[i]!=NULL)
+	while (highScore[i]!=NULL && i<10)
 	{
 		dxFontForScore->print(to_string((i + 1)), 50, GAME_HEIGHT / 4 + ((i + 1) * 25));
 		dxFontForScore->print(scoreName[i], 200, GAME_HEIGHT / 4 + ((i + 1) * 25));
@@ -119,11 +119,11 @@ void Highscore::recordingScore(int score, string name)
 			if (highScore[i] < score)
 			{
 				storedScore = highScore[i];
-				storedName = scoreName[i];
-				for (int j = i + 1; j < 10; j++)
+				storedName = scoreName[i]; 
+				highScore[i] = score;
+				scoreName[i] = name;
+				for (int j = i + 1; j < 9; j++)
 				{
-
-
 					currentScore = highScore[j];
 					highScore[j] = storedScore;
 					storedScore = currentScore;
@@ -148,14 +148,14 @@ bool Highscore::checkingScore(int score)
 	{
 		if (highScore[i] != NULL)
 		{
-			if (score >= highScore[i])
+			if (highScore[i] < score)
 			{
 				return true;
 			}
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 		if (i > 9)
 		{

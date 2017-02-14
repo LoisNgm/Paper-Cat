@@ -3,7 +3,6 @@
 //  Student Name:       Ngm Hui Min, Lois	| Jessica Tan Hwee Ching	| Pang Jin Xiang
 //  Student Number:     S10158786C			| S10156827G				| S10157119D
 
-// GPP Common Test
 #include "Minion.h"
 
 //=============================================================================
@@ -11,7 +10,7 @@
 //=============================================================================
 Minion::Minion() : Entity()
 {
-	spriteData.width = minionNS::LARGE_MINION_WIDTH;		        // size of comet
+	spriteData.width = minionNS::LARGE_MINION_WIDTH;		        // size of minion
 	spriteData.height = minionNS::LARGE_MINION_HEIGHT;
 	spriteData.x = minionNS::X;						// location on screen
 	spriteData.y = minionNS::Y;
@@ -22,7 +21,7 @@ Minion::Minion() : Entity()
 }
 
 //=============================================================================
-// Initialize the Comet.
+// Initialize the minion
 // Post: returns true if successful, false if failed
 //=============================================================================
 bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
@@ -55,7 +54,7 @@ bool Minion::initialize(Game *gamePtr, int width, int height, int ncols)
 	return(Entity::initialize(gamePtr, minionNS::LARGE_MINION_WIDTH, minionNS::LARGE_MINION_HEIGHT, minionNS::LARGE_MINION_TEXTURE_COLS, &minionBossTexture));
 }
 //=============================================================================
-// draw the comet
+// draw the minion
 //=============================================================================
 void Minion::draw()
 {
@@ -119,4 +118,3 @@ bool Minion::collisionDetectionWithCharacter(Entity cat)
 	}
 	return false;
 }
-// End of GPP Common Test

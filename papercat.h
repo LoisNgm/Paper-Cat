@@ -48,6 +48,7 @@ private:
 	TextureManager		buttonsTexture;
 	TextureManager      backgroundStage2Texture;
 	TextureManager		tutorialTexture;
+	TextureManager		tutorial2Texture;
 	TextureManager		rainbowTexture;
 	Buttons startButton;
 	Buttons highscoreButton;
@@ -69,6 +70,7 @@ private:
 	Highscore* highscoreLogging;
 	Image	backgroundCredit;	// Credit backdrop image
 	Image	backgroundTutorial;
+	Image	backgroundTutorial2;
 	int gameStart = 0;		// for game status
 	CDraw drawing;			// for platform in stages
 	Minion* minion = new Minion();	// minions
@@ -114,6 +116,9 @@ public:
 	void checkFinalDoor();
 	void checkBonusDoor();
 	void setItemsInPosition(Entity* item);
+	void checkCoinCollisionWithCatAndBlackhole();
+	void resetForStage2();
+	void initalizePosition();
 };
 
 #endif

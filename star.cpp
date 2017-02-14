@@ -40,12 +40,12 @@ bool Star::initialize(Game *gamePtr, int width, int height, int ncols,
 }
 
 //=============================================================================
-// draw the asteroid
+// draw the star
 //=============================================================================
 void Star::draw()
 {
 
-	Image::draw();              // draw asteroid
+	Image::draw();              // draw star
 
 
 }
@@ -58,10 +58,9 @@ void Star::draw()
 void Star::update(float frameTime)
 {
 	Entity::update(frameTime);
-	// GPP Common Test
-	spriteData.angle += frameTime * starNS::ROTATION_RATE;  // rotate the ship
-	spriteData.x += frameTime * velocity.x;         // move ship along X 
-	spriteData.y += frameTime * velocity.y;         // move ship along Y
+	spriteData.angle += frameTime * starNS::ROTATION_RATE;  // rotate the star
+	spriteData.x += frameTime * velocity.x;         // move star along X 
+	spriteData.y += frameTime * velocity.y;         // move star along Y
 
 	// Bounce off walls
 	if (spriteData.x > GAME_WIDTH - starNS::WIDTH*getScale())    // if hit right screen edge
@@ -84,7 +83,6 @@ void Star::update(float frameTime)
 		spriteData.y = 0;                           // position at top screen edge
 		velocity.y = -velocity.y;                   // reverse Y direction
 	}
-	// End of GPP Common Test
 }
 
 boolean Star::getActive()
