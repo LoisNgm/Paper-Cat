@@ -993,7 +993,7 @@ void Papercat::setArray(float arrayOfposition[arrayOfNumX])
 {
 	for (int i = 0; i < arrayOfNumX; i++)
 	{
-		arrayOfPosition[i] =  items[0].getWidth()*i + 0.2f / 2;
+		arrayOfPosition[i] =  items[0].getWidth()*i + 0.1f;
 	}
 }
 int Papercat::SetRandomNum(int lineNum)
