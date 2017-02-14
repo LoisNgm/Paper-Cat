@@ -16,13 +16,14 @@ Highscore::Highscore()
 
 void Highscore::draw()
 {
+	
 	backgroundHighscore2.draw();
 	dxFontForScore->setFontColor(graphicsNS::WHITE);
 	int i = 0;
 	dxFontForScore->print("Position", 50, GAME_HEIGHT / 4 + (i * 25));
 	dxFontForScore->print("Name", 200, GAME_HEIGHT / 4 + (i * 25));
 	dxFontForScore->print("Score", 450, GAME_HEIGHT / 4 + (i * 25));
-	while (highScore[i]!=NULL)
+	while (highScore[i]!=NULL && i < 9)
 	{
 		dxFontForScore->print(to_string((i + 1)), 50, GAME_HEIGHT / 4 + ((i + 1) * 25));
 		dxFontForScore->print(scoreName[i], 200, GAME_HEIGHT / 4 + ((i + 1) * 25));

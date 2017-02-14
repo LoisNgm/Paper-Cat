@@ -312,106 +312,7 @@ void Papercat::initialize(HWND hwnd)
 	//minion
 	if (!minion->initialize(this, minionNS::SMALL_MINION_WIDTH, minionNS::SMALL_MINION_HEIGHT, minionNS::SMALL_MINION_TEXTURE_COLS))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing minion"));
-	// items
-	for (int i = 0; i < BUFF_NUM; i++)
-	{
-		if (!items[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
-			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing items"));
-		items[i].setFrames(i, i);
-		items[i].setCurrentFrame(i);
-	}
-
-	srand(time(0));//To truely randomized random number
-	int randLineNum;//randomize the platform whereby items are placed
-	int arrayNum;
-	Items temp1;
-	Items temp2;
-	setArray(arrayOfPosition);
-	for (int i = 0; i < BUFF_NUM; i++)
-	{
-		randLineNum = rand() % 3 + 1;
-		arrayNum =SetRandomNum(randLineNum);
-		items[i].setX(arrayOfPosition[arrayNum]);
-		temp1 = items[i];
-		setYvalue(randLineNum, i, 1);
-		for (int j = 0; j < BUFF_NUM; j++)
-		{
-			temp2 = items[j];
-			if (collisionWithItem(temp1, temp2))
-			{
-				randLineNum = rand() % 3 + 1;
-				arrayNum = SetRandomNum(randLineNum);
-				items[i].setX(arrayOfPosition[arrayNum]);
-				setYvalue(randLineNum, i,1);
-				temp1 = items[i];				
-			}
-		}
-	}
 	
-	//coins initialization	
-	for (int i = 0; i < NUMBER_OF_COINS; i++)
-	{
-		if (!coins[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
-			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing coins"));
-		coins[i].setFrames(BUFF_NUM, BUFF_NUM);
-		coins[i].setCurrentFrame(BUFF_NUM);
-	}
-
-
-	int currentLine = 1;
-	arrayNum = 0;
-	int cutOff = (3 * arrayOfNumX / 4) - 1;
-	for (int i = 0; i < NUMBER_OF_COINS; i++)
-	{
-		if (arrayNum == cutOff)
-		{
-			arrayNum = 0;
-			currentLine++;
-			if (currentLine == 2)
-			{
-				arrayNum = arrayOfNumX / 3;
-				cutOff = arrayOfNumX - 1;
-			}
-			else
-			{
-				arrayNum = 0;
-				cutOff = (3 * arrayOfNumX / 4) - 1;
-			}
-		}
-		coins[i].setX(arrayOfPosition[arrayNum]);
-		setYvalue(currentLine, i,2);
-		for (int j = 0; j < BUFF_NUM; j++)
-		{
-			if (collisionWithItem(coins[i], items[j]))
-			{
-				if (arrayNum == cutOff)
-				{
-					arrayNum = 0;
-					currentLine++;
-					if (currentLine == 2)
-					{
-						arrayNum = arrayOfNumX / 3;
-						cutOff = arrayOfNumX - 1;
-					}
-					else
-					{
-						arrayNum = 0;
-						cutOff = (3*arrayOfNumX / 4)-1;						
-					}
-				}
-				else
-				{
-					arrayNum++;
-				}								
-				coins[i].setX(arrayOfPosition[arrayNum]);
-				setYvalue(currentLine, i, 2);
-				j = 0;
-			}
-		}
-		arrayNum++;	
-		if (currentLine == 3 && arrayNum == cutOff)
-			i = NUMBER_OF_COINS;
-	}
 	// star initialization
 	for (int i = 0; i < NUMBER_OF_STARS; i++)
 	{
@@ -618,6 +519,106 @@ void Papercat::render()
 		if (startButton.getClickedState())
 		{
 			gameStart = 6;
+			// items
+			for (int i = 0; i < BUFF_NUM; i++)
+			{
+				if (!items[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
+					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing items"));
+				items[i].setFrames(i, i);
+				items[i].setCurrentFrame(i);
+			}
+
+			srand(time(0));//To truely randomized random number
+			int randLineNum;//randomize the platform whereby items are placed
+			int arrayNum;
+			Items temp1;
+			Items temp2;
+			setArray(arrayOfPosition);
+			for (int i = 0; i < BUFF_NUM; i++)
+			{
+				randLineNum = rand() % 3 + 1;
+				arrayNum = SetRandomNum(randLineNum);
+				items[i].setX(arrayOfPosition[arrayNum]);
+				temp1 = items[i];
+				setYvalue(randLineNum, i, 1);
+				for (int j = 0; j < BUFF_NUM; j++)
+				{
+					temp2 = items[j];
+					if (collisionWithItem(temp1, temp2))
+					{
+						randLineNum = rand() % 3 + 1;
+						arrayNum = SetRandomNum(randLineNum);
+						items[i].setX(arrayOfPosition[arrayNum]);
+						setYvalue(randLineNum, i, 1);
+						temp1 = items[i];
+					}
+				}
+			}
+
+			//coins initialization	
+			for (int i = 0; i < NUMBER_OF_COINS; i++)
+			{
+				if (!coins[i].initialize(this, itemsNS::WIDTH, itemsNS::HEIGHT, itemsNS::TEXTURE_COLS, &itemTexture))
+					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing coins"));
+				coins[i].setFrames(BUFF_NUM, BUFF_NUM);
+				coins[i].setCurrentFrame(BUFF_NUM);
+			}
+
+
+			int currentLine = 1;
+			arrayNum = 0;
+			int cutOff = (3 * arrayOfNumX / 4) - 1;
+			for (int i = 0; i < NUMBER_OF_COINS; i++)
+			{
+				if (arrayNum == cutOff)
+				{
+					arrayNum = 0;
+					currentLine++;
+					if (currentLine == 2)
+					{
+						arrayNum = arrayOfNumX / 3;
+						cutOff = arrayOfNumX - 1;
+					}
+					else
+					{
+						arrayNum = 0;
+						cutOff = (3 * arrayOfNumX / 4) - 1;
+					}
+				}
+				coins[i].setX(arrayOfPosition[arrayNum]);
+				setYvalue(currentLine, i, 2);
+				for (int j = 0; j < BUFF_NUM; j++)
+				{
+					if (collisionWithItem(coins[i], items[j]))
+					{
+						if (arrayNum == cutOff)
+						{
+							arrayNum = 0;
+							currentLine++;
+							if (currentLine == 2)
+							{
+								arrayNum = arrayOfNumX / 3;
+								cutOff = arrayOfNumX - 1;
+							}
+							else
+							{
+								arrayNum = 0;
+								cutOff = (3 * arrayOfNumX / 4) - 1;
+							}
+						}
+						else
+						{
+							arrayNum++;
+						}
+						coins[i].setX(arrayOfPosition[arrayNum]);
+						setYvalue(currentLine, i, 2);
+						j = 0;
+					}
+				}
+				arrayNum++;
+				if (currentLine == 3 && arrayNum == cutOff)
+					i = NUMBER_OF_COINS;
+			}
 		}
 		else if (highscoreButton.getClickedState())
 		{
@@ -659,12 +660,7 @@ void Papercat::render()
 			}
 		}
 		cat.draw();
-		mainFont->setFontColor(graphicsNS::WHITE);
-		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
-		mainFont->print(buffer, GAME_WIDTH - 150, 20);
-		mainFont->setFontColor(graphicsNS::WHITE);
-		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
-		mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
+		HUI();
 		rainbow.draw();
 		if (input->wasKeyPressed(VK_ESCAPE)){
 			paused = true;
@@ -677,23 +673,7 @@ void Papercat::render()
 			if (input->wasKeyPressed(VK_RETURN))
 				paused = false;
 		}
-		if ((cat.getX() + cat.getWidth()) >= (doorFinal.getX()) &&
-			(cat.getX() <= (doorFinal.getX() + doorFinal.getWidth()) &&
-			(cat.getY() + cat.getHeight()) >= doorFinal.getY()) &&
-			cat.getY() <= (doorFinal.getY() + doorFinal.getHeight()) || input->wasKeyPressed(VK_UP))
-		{
-			for (int i = 0; i < NUMBER_OF_COINS; i++)
-			{
-				coins[i].setX(rand() % GAME_WIDTH + 0);
-				coins[i].setY(rand() % GAME_HEIGHT + 0);
-				while (checkCollisionforStage2())
-				{
-					coins[i].setX(rand() % GAME_WIDTH + 0);
-					coins[i].setY(rand() % GAME_HEIGHT + 0);
-				}
-			}
-			gameStart = 4;
-		}
+		checkFinalDoor();
 		if (cat.getState() == 3){
 			flashTimer += 0.05;
 			if ((int)flashTimer % 10 == 0)
@@ -739,6 +719,7 @@ void Papercat::render()
 	case 4:
 		graphics->spriteBegin();
 		backgroundStage2.draw();
+		HUI();
 		for (int i = 0; i < NUMBER_OF_STARS; i++)
 		{
 			stars[i].draw();
@@ -751,12 +732,7 @@ void Papercat::render()
 			coins[i].setVisible(true);
 		}
 		cat.draw();
-		mainFont->setFontColor(graphicsNS::WHITE);
-		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
-		mainFont->print(buffer, GAME_WIDTH - 150, 20);
-		mainFont->setFontColor(graphicsNS::WHITE);
-		_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
-		mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
+		
 		graphics->spriteEnd();
 		break;
 	case 5:
@@ -794,20 +770,29 @@ void Papercat::render()
 		}
 		break;
 	case 7:
-		mciSendString("play sounds\\game_over.wav", NULL, 0, NULL);
-		graphics->spriteBegin();
-		backgroundStage.draw();
+		if (highscoreLogging->checkingScore(playerScore))
+		{
+			gameStart = 2;
+			input->clearAll();
+		}
+		else
+		{
+			mciSendString("play sounds\\game_over.wav", NULL, 0, NULL);
+			graphics->spriteBegin();
+			backgroundStage.draw();
 
-		mainFont->setFontColor(graphicsNS::WHITE);
-		_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
-		mainFont->print(buffer, GAME_WIDTH / 2 - 60, GAME_HEIGHT / 2 + 30);
-		graphics->spriteEnd();
+			mainFont->setFontColor(graphicsNS::WHITE);
+			_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
+			mainFont->print(buffer, GAME_WIDTH / 2 - 60, GAME_HEIGHT / 2 + 30);
+			graphics->spriteEnd();
+		}
+		
 		break;
 	case 8:
 		graphics->spriteBegin();
 		backgroundStage.draw();
 		cat.draw();
-		
+		HUI();
 		doorFinal.draw();
 		for (int i = 0; i < NUMBER_OF_COINS; i++)
 		{
@@ -1091,6 +1076,16 @@ void Papercat::checkFinalDoor()
 				coins[i].setY(rand() % GAME_HEIGHT + 0);
 				coins[i].update(frameTime);
 			}
+			for (int i = 0; i < NUMBER_OF_COINS; i++)
+			{
+				coins[i].setX(rand() % GAME_WIDTH + 0);
+				coins[i].setY(rand() % GAME_HEIGHT + 0);
+				while (checkCollisionforStage2())
+				{
+					coins[i].setX(rand() % GAME_WIDTH + 0);
+					coins[i].setY(rand() % GAME_HEIGHT + 0);
+				}
+			}
 			cat.setX(mainCharNS::X);
 			cat.setY(mainCharNS::Y);
 		}
@@ -1227,4 +1222,14 @@ void Papercat::setItemsInPosition(Entity* item)
 		break;
 	}
 
+}
+void Papercat::HUI()
+{
+	static char buffer[BUF_SIZE];
+	mainFont->setFontColor(graphicsNS::WHITE);
+	_snprintf_s(buffer, BUF_SIZE, "Score: %d", (int)playerScore);
+	mainFont->print(buffer, GAME_WIDTH - 150, 20);
+	mainFont->setFontColor(graphicsNS::WHITE);
+	_snprintf_s(buffer, BUF_SIZE, "Health: %d", (int)cat.getHealth());
+	mainFont->print(buffer, GAME_WIDTH - 150 - 200, 20);
 }

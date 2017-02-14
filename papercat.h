@@ -81,6 +81,7 @@ private:
 	TextureManager doorTexture;
 	Image doorFinal;
 	Image doorBonus;
+
 	float flashTimer = 0;
 
 
@@ -114,6 +115,7 @@ public:
 	void checkFinalDoor();
 	void checkBonusDoor();
 	void setItemsInPosition(Entity* item);
+	void HUI();
 };
 
 #endif
